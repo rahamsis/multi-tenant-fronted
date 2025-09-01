@@ -144,12 +144,12 @@ const Dropdown = ({ isVisible, products, filteredProducts, selectedFilters, onFi
         <div className="relative lg:w-52 w-full min-h-screen" ref={dropdownRef}>
             <div className={`flex flex-row border-2 gap-4 justify-center border-zinc-300 text-center p-3 cursor-pointer`}>
                 {hasActiveFilters &&
-                    <div className="flex gap-1 bg-buttonGray py-2 px-5" onClick={() => clearFilters()}>
+                    <div className="flex gap-1 bg-importonyperu-Gray py-2 px-5" onClick={() => clearFilters()}>
                         <span><i className="bi bi-x-lg"></i></span>
                         <span>LIMPIAR FILTROS</span>
                     </div>
                 }
-                <div className="flex gap-1 bg-buttonGray py-2 px-5" onClick={handleOk}>
+                <div className="flex gap-1 bg-importonyperu-Gray py-2 px-5" onClick={handleOk}>
                     <span><i className="bi bi-check2"></i>
                     </span><span>OK</span>
                 </div>
@@ -224,7 +224,7 @@ const Dropdown = ({ isVisible, products, filteredProducts, selectedFilters, onFi
                                     />
                                 </div>
                                 <div className="text-left relative items-center justify-start mx-auto mt-2 w-full">
-                                    <h3 className="text-base text-gray mb-2 w-full">{prod.nombre}</h3>
+                                    <h3 className="text-base text-importonyperu-secondary mb-2 w-full">{prod.nombre}</h3>
 
                                     <h3 className={`text-lg font-semibold`}>
                                         S/ {prod.precio}

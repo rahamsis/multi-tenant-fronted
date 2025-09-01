@@ -1,6 +1,6 @@
 function MainFooter() {
     return (
-        <footer className="w-full footer bg-theme-light/50 bg-zinc-900 text-zinc-400">
+        <footer className="w-full bg-zinc-900 text-zinc-400">
             <div className="mx-auto max-w-[1202px]  px-3">
                 <div className="flex flex-wrap mt-0 gx-5 pb-10 pt-[52px]">
                     <div className="px-6 w-full mt-12 md:w-1/2 lg:w-1/4 ">
@@ -36,8 +36,8 @@ function MainFooter() {
                 </div>
             </div>
             <div className="mx-auto px-3 max-w-[1440px]">
-                <div className="footer-copyright mx-auto border-t-[1px] border-zinc-600 pb-10 pt-7 text-center">
-                    <p className="text-sm text-gray-500 mx-3 lg:mx-0">Diseñado por <a href="https://www.facebook.com/profile.php?id=100007722019176" target="_blank">Rahamsis CG</a></p>
+                <div className="mx-auto border-t-[1px] border-zinc-600 pb-10 pt-7 text-center">
+                    <p className="text-sm text-gray-500 mx-3 lg:mx-0">Copyright {new Date().getFullYear()}. Todos los derechos reservados. — Diseñado por <a href="https://www.facebook.com/profile.php?id=100007722019176" target="_blank">Rahamsis CG</a></p>
 
                 </div>
             </div>

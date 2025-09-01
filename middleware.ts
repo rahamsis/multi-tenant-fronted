@@ -18,5 +18,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|importonyperu/images|importonyperu/assets|depsac/images|depsac/assets).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|pdfjs|importonyperu/|depsac/).*)'],
 }

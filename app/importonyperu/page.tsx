@@ -86,7 +86,7 @@ function Banner() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`lg:w-5 w-3 lg:h-5 h-3 rounded-full border-2 border-slate-800 ${currentIndex === index ? "bg-white" : "bg-gray"
+            className={`lg:w-5 w-3 lg:h-5 h-3 rounded-full border-2 border-slate-800 ${currentIndex === index ? "bg-white" : "bg-importonyperu-secondary"
               }`}
           ></button>
         ))}
@@ -181,19 +181,19 @@ function Products() {
         <button
           onClick={() => { setFeature(1); setActiveButton(1) }}
           className={`font-semibold py-2 px-4 lg:mb-4 mb-2 w-full lg:w-auto hover:bg-black hover:text-white 
-          ${activeButton === 1 ? 'bg-black text-white' : 'bg-buttonGray text-primary'}`}>
+          ${activeButton === 1 ? 'bg-black text-white' : 'bg-importonyperu-Gray text-importonyperu-primary'}`}>
           PRODUCTOS DESTACADOS
         </button>
         <button
           onClick={() => { setFeature(2); setActiveButton(2) }}
           className={`font-semibold py-2 px-4 lg:mb-4 mb-2 lg:ml-4 w-full lg:w-auto hover:bg-black hover:text-white
-          ${activeButton === 2 ? 'bg-black text-white' : 'bg-buttonGray text-primary'}`}>
+          ${activeButton === 2 ? 'bg-black text-white' : 'bg-importonyperu-Gray text-importonyperu-primary'}`}>
           PRODUCTOS NUEVOS
         </button>
         <button
           onClick={() => { setFeature(3); setActiveButton(3) }}
           className={`font-semibold py-2 px-4 lg:mb-4 mb-2 lg:ml-4 w-full lg:w-auto hover:bg-black hover:text-white
-          ${activeButton === 3 ? 'bg-black text-white' : 'bg-buttonGray text-primary'}`}>
+          ${activeButton === 3 ? 'bg-black text-white' : 'bg-importonyperu-Gray text-importonyperu-primary'}`}>
           MAS VENDIDOS
         </button>
       </div>
@@ -227,7 +227,7 @@ function Products() {
 
             {/* Contenedor del texto y botón */}
             <div className="text-center relative items-center justify-center mx-auto mt-2 w-full">
-              <h3 className="text-base text-gray mb-2 w-full">{product.nombre}</h3>
+              <h3 className="text-base text-importonyperu-secondary mb-2 w-full">{product.nombre}</h3>
 
               {/* Precio: desaparece con hover */}
               <h3 className="text-lg font-semibold  transition-opacity duration-300 lg:group-hover:opacity-0 ">
@@ -248,7 +248,7 @@ function Products() {
 
       <div className="w-full flex justify-center mt-8">
         <div>
-          <button className="bg-buttonGray text-primary font-semibold py-2 px-4 lg:mb-4 mb-2 w-full lg:w-auto">
+          <button className="bg-importonyperu-Gray text-importonyperu-primary font-semibold py-2 px-4 lg:mb-4 mb-2 w-full lg:w-auto">
             VER MÁS PRODUCTOS
           </button>
         </div>
@@ -360,7 +360,7 @@ function Servicios() {
           <div className="text-xl font-semibold lg:mb-16 mb-4 text-zinc-800">
             <h3>QUE DICEN NUESTROS TRABAJADORES</h3>
           </div>
-          <div className="bg-buttonGray p-10 flex flex-col items-center gap-6">
+          <div className="bg-importonyperu-Gray p-10 flex flex-col items-center gap-6">
             {/* Contenido del vendedor actual */}
             <div className="flex items-start gap-4 max-w-2xl py-10">
               {/* Imagen */}
@@ -381,7 +381,7 @@ function Servicios() {
                 </p>
                 <h3 className="font-bold text-neutral-800">
                   {vendors[current].nombre}{" "}
-                  <span className="font-normal text-gray">{vendors[current].cargo}</span>
+                  <span className="font-normal text-importonyperu-secondary">{vendors[current].cargo}</span>
                 </h3>
               </div>
             </div>
@@ -414,7 +414,7 @@ function Servicios() {
                     <h3 className="font-semibold text-lg">
                       {service.title}
                     </h3>
-                    <p className="text-gray">
+                    <p className="text-importonyperu-secondary">
                       {service.description}
                     </p>
                   </div>

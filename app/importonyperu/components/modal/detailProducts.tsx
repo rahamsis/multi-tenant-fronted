@@ -55,7 +55,7 @@ export const ModalDetailProduct = ({ producto, onClose }: ModalDetailProducts) =
                 {/* Botón Cerrar */}
                 <button
                     onClick={onClose}
-                    className="absolute top-2 right-2 text-gray-500 bg-black text-white hover:opacity-30 text-xl font-bold"
+                    className="absolute top-2 right-2 bg-black text-white hover:opacity-30 text-xl font-bold"
                 >
                     <X />
                 </button>

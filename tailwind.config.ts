@@ -25,8 +25,9 @@ const config: Config = {
       },
       colors: {
         'importonyperu': {
-          primary: '#1e40af',
-          secondary: '#3b82f6',
+          primary: '#1F1F1F',
+          secondary: "#696969",
+          Gray: "#f0f0f0",
         },
         'depsac': {
           primary: "#0077B6", //Azul frío

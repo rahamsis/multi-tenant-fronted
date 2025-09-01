@@ -134,7 +134,7 @@ const Sidebar = ({ products, filteredProducts, selectedFilters, onFiltersChange 
                                 />
                             </div>
                             <div className="text-left relative items-center justify-start mx-auto mt-2 w-full">
-                                <h3 className="text-base text-gray mb-2 w-full font-light">{prod.nombre}</h3>
+                                <h3 className="text-base text-importonyperu-secondary mb-2 w-full font-light">{prod.nombre}</h3>
 
                                 <h3 className={`text-lg font-medium`}>
                                     S/ {prod.precio}

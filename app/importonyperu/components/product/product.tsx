@@ -127,7 +127,7 @@ const Product = ({
                     </div>
                 </div>
                 <div className="lg:hidden">
-                    <button className="py-2 px-3 bg-buttonGray" onClick={() => setFilterVisible(true)}>
+                    <button className="py-2 px-3 bg-importonyperu-Gray" onClick={() => setFilterVisible(true)}>
                         FILTRAR
                     </button>
                 </div>
@@ -161,7 +161,7 @@ const Product = ({
                             </div>
                         </div>
                         <div className="text-center relative items-center justify-center mx-auto mt-2 w-full">
-                            <h3 className="text-base text-gray mb-2 w-full">{product.nombre}</h3>
+                            <h3 className="text-base text-importonyperu-secondary mb-2 w-full">{product.nombre}</h3>
 
                             {/* Precio: desaparece con hover */}
                             <h3 className={`text-lg font-semibold ${order === 1 && !isMobile ? "transition-opacity duration-300 group-hover:opacity-0" : ""}`}>

@@ -12,7 +12,7 @@ import Product from "../components/product/product"
 function Banner() {
     return (
         <div className="relative w-full lg:h-full overflow-hidden pt-3 lg:pt-6">
-            <div className="bg-buttonGray w-full text-center lg:py-16 py-8 text-zinc-800 text-2xl font-semibold">
+            <div className="bg-importonyperu-Gray w-full text-center lg:py-16 py-8 text-zinc-800 text-2xl font-semibold">
                 <h3>AGUJAS</h3>
             </div>
         </div>

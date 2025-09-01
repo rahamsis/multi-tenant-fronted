@@ -91,3 +91,23 @@ export async function getCatalogs() {
         throw new Error("Error al obtener los catalogos");
     }
 }
+
+export async function getPortadaCatalogs() {
+    try {
+        const response = await fetch(`${process.env.APP_BACK_END}/catalogos/all-covers-catalogos`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': '/'
+            },
+            next: { revalidate: 0 }
+        });
+
+        const data = await response.json();
+
+        return data;
+    } catch (error) {
+        console.error('Error al obtener los catalogos:', error);
+        throw new Error("Error al obtener los catalogos");
+    }
+}

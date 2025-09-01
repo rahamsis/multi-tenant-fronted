@@ -153,7 +153,7 @@ const HeaderMobile = () => {
                 <div className="flex w-full justify-between px-3">
                     <button
                         ref={buttonRef}
-                        className="text-primary focus:outline-none py-1 leading-none bg-transparent rounded m-0 text-4xl"
+                        className="text-importonyperu-primary focus:outline-none py-1 leading-none bg-transparent rounded m-0 text-4xl"
                         onClick={toggleMenu}
                         aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
                         aria-expanded={menuOpen}
@@ -179,7 +179,7 @@ const HeaderMobile = () => {
             <div
                 ref={menuRef}
                 id="mobile-menu"
-                className={`lg:hidden bg-white shadow-lg fixed top-0 left-0 w-3/4 max-w-xs h-full bg-greenBanner px-3 pt-2 transform transition-all duration-300 ease-in-out z-50
+                className={`lg:hidden bg-white shadow-lg fixed top-0 left-0 w-3/4 max-w-xs h-full px-3 pt-2 transform transition-all duration-300 ease-in-out z-50
                     ${menuOpen ? "translate-x-0 opacity-100 visible" : "-translate-x-full opacity-0 invisible"}`}
                 role="dialog"
                 aria-modal="true"
@@ -187,7 +187,7 @@ const HeaderMobile = () => {
             >
                 <div className="flex justify-start py-2 border-slate-300 border-b">
                     <button
-                        className="text-primary pl-3 text-3xl focus:outline-none"
+                        className="text-importonyperu-primary pl-3 text-3xl focus:outline-none"
                         onClick={closeMenu}
                         aria-label="Cerrar menú"
                     >
