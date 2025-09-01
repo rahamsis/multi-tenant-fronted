@@ -1,26 +1,59 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body{
+    background-color: #ffffff;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.black-btn{
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+    background-color: rgb(34 34 34/var(--tw-bg-opacity));
+    color: rgb(255 255 255/var(--tw-text-opacity));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.my-select-box .my-select-box-btn {
+    color: #999;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.my-select-box .my-select-box-btn span{
+    --tw-text-opacity: 1;
+    color: rgb(34 34 34/var(--tw-text-opacity));
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: capitalize;
+}
+
+.search-input {
+    color: rgb(107 114 128 / 1);
+    font-size: .75rem;
+    font-weight: 500;
+    height: 100%;
+    line-height: 1rem;
+    padding-left: 1.25rem;
+    width: 100%;
+    outline: 0;
+}
+
+.blue-btn, .yellow-btn {
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+    align-items: center;
+    display: flex;
+    font-size: 13px;
+    font-weight: 600;
+    height: 100%;
+    justify-content: center;
+    line-height: 0;
+    width: 100%;
+}
+
+.yellow-btn {
+    background-color: rgb(255 187 56/1);
+    color: rgb(29 29 29/1);
 }

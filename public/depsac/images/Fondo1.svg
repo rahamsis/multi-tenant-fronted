@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920.5" height="1209.282" viewBox="0 0 1920.5 1209.282">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.701" cy="0.897" r="0.441" gradientTransform="translate(0 -0.152) scale(1 1.169)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#FF5A5A" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#f4f6f8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="0.03" cy="0.671" r="0.29" gradientTransform="translate(0 -0.278) scale(1 1.382)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#FF5A5A" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#f4f6f8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-3" cx="0.896" cy="0" r="0.356" gradientTransform="translate(0 -0.021) scale(1 1.394)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#FF5A5A" stop-opacity="0.259"/>
+      <stop offset="1" stop-color="#f4f6f8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-4" cx="0.619" cy="0.719" r="0.263" gradientTransform="translate(0 -0.054) scale(1 1.055)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#DB3C3C" stop-opacity="0.102"/>
+      <stop offset="1" stop-color="#f4f6f8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="Group_233" data-name="Group 233" transform="translate(0 -2074.819)" opacity="0.81">
+    <rect id="Rectangle_5" data-name="Rectangle 5" width="1920" height="1209.282" transform="translate(0.5 2074.819)" fill="#f4f6f8" style="mix-blend-mode: multiply;isolation: isolate"/>
+    <rect id="Rectangle_153" data-name="Rectangle 153" width="1920" height="1209.282" transform="translate(0.5 2074.819)" fill="url(#radial-gradient)" style="mix-blend-mode: multiply;isolation: isolate"/>
+    <rect id="Rectangle_154" data-name="Rectangle 154" width="1920" height="1209.282" transform="translate(0 2074.819)" fill="url(#radial-gradient-2)" style="mix-blend-mode: multiply;isolation: isolate"/>
+    <rect id="Rectangle_155" data-name="Rectangle 155" width="1920" height="1209.282" transform="translate(0 2074.819)" fill="url(#radial-gradient-3)" style="mix-blend-mode: multiply;isolation: isolate"/>
+    <rect id="Rectangle_196" data-name="Rectangle 196" width="1920" height="1209.282" transform="translate(0 2074.819)" fill="url(#radial-gradient-4)" style="mix-blend-mode: multiply;isolation: isolate"/>
+  </g>
+</svg>
