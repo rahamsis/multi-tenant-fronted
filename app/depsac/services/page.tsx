@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 function Banner() {
   return (
@@ -54,8 +54,8 @@ function Banner() {
 
 interface Props {
   image: string
-  name: String
-  price: String
+  name: string
+  price: string
 }
 
 function Item(props: Props) {
@@ -97,7 +97,7 @@ function Item(props: Props) {
   }
 
   return (
-    <div className="w-full lg:w-1/4 mb-0 px-3 mt-11 lg:mt-0" onMouseEnter={(e) => window.innerWidth >= 480 ? addElementsProduct() : null} onMouseLeave={quitElementsProduct}>
+    <div className="w-full lg:w-1/4 mb-0 px-3 mt-11 lg:mt-0" onMouseEnter={() => window.innerWidth >= 480 ? addElementsProduct() : null} onMouseLeave={quitElementsProduct}>
       <button className="text-center block relative pb-[50px]  cursor-pointer bottom-0  after:absolute" >
         {/* fondo */}
         <span ref={background} className="w-full bottom-0 left-0 h-3/4 bg-depsac-products absolute rounded-[10px] transition-all duration-500 ease-in-out origin-bottom scale-y-0 opacity-0 "></span>

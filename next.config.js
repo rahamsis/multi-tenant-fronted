@@ -10,20 +10,6 @@ const nextConfig = {
             },
         ]
     },
-    // async rewrites() {
-    //     return [
-    //         {
-    //             source: '/:path*',
-    //             has: [
-    //                 {
-    //                     type: 'host',
-    //                     value: '(?<domains>importonyperu\\.local|depsac\\.local|lezcor\\.local|importonyperu\\.com\\.pe|depsac\\.com\\.pe|lezcor\\.com)',
-    //                 },
-    //             ],
-    //             destination: '/:domains/:path*',
-    //         },
-    //     ]
-    // },
 }
 
 module.exports = nextConfig

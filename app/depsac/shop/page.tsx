@@ -97,7 +97,7 @@ function Item(props: Props) {
     }
 
     return (
-        <div className="flex justify-center w-full lg:w-1/4 mb-0 px-3 mt-11 lg:mt-0" onMouseEnter={(e) => window.innerWidth >= 480 ? addElementsProduct() : null} onMouseLeave={quitElementsProduct}>
+        <div className="flex justify-center w-full lg:w-1/4 mb-0 px-3 mt-11 lg:mt-0" onMouseEnter={() => window.innerWidth >= 480 ? addElementsProduct() : null} onMouseLeave={quitElementsProduct}>
             <button className="text-center block relative pb-[50px]  cursor-pointer bottom-0  after:absolute" >
                 {/* fondo */}
                 <span ref={background} className="w-full bottom-0 left-0 h-3/4 bg-depsac-products absolute rounded-[10px] transition-all duration-500 ease-in-out origin-bottom scale-y-0 opacity-0 "></span>

@@ -8,6 +8,7 @@ export async function getFeaturesProduct(feature: number) {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                "X-Tenant-ID": "importonyperu",
                 'accept': '/'
             },
             next: { revalidate: 0 }
@@ -43,6 +44,7 @@ export async function getProductByCategory(category: string) {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                "X-Tenant-ID": "importonyperu",
                 'accept': '/'
             },
             next: { revalidate: 0 }
@@ -78,6 +80,7 @@ export async function getCatalogs() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                "X-Tenant-ID": "importonyperu",
                 'accept': '/'
             },
             next: { revalidate: 0 }
@@ -98,6 +101,7 @@ export async function getPortadaCatalogs() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                "X-Tenant-ID": "importonyperu",
                 'accept': '/'
             },
             next: { revalidate: 0 }
