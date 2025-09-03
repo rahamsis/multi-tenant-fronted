@@ -54,7 +54,6 @@ function Content() {
         const fetchCatalogs = async () => {
             try {
                 const response = await getCatalogs()
-                console.log("response: ", response)
                 setCatalogs(response);
             } catch (error) {
                 console.error(error);

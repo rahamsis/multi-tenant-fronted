@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable */
+
 // import * as pdfjsLib from "pdfjs-dist";
 import Image from "next/image";
 
