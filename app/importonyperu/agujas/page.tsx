@@ -21,11 +21,15 @@ function Banner() {
 
 interface Productos {
     idProducto: number;
+    idCategoria: string;
     categoria: string;
+    idSubCategoria: string;
     subCategoria: string;
+    idMarca: string;
     marca: string;
     nombre: string;
     precio: number;
+    idColor: string;
     color: string;
     decripcion: string;
     imagen: string;
@@ -91,7 +95,7 @@ function Content() {
 
 
             <div className={`lg:w-4/5 flex flex-col ${filterVisible ? "hidden lg:flex" : "block"}`}>
-                <Product products={products} filteredProducts={productsFiltered} setFilterVisible={setFilterVisible}/>
+                <Product products={products} filteredProducts={productsFiltered} setFilterVisible={setFilterVisible} />
             </div>
 
             {/* Menu de filtros solo para móbiles */}

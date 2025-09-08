@@ -8,12 +8,15 @@ import Image from "next/image";
 
 interface Productos {
     idProducto: number;
+    idCategoria: string;
     categoria: string;
+    idSubCategoria: string;
     subCategoria: string;
+    idMarca: string;
     marca: string;
     nombre: string;
     precio: number;
-    color: string
+    color: string;
     decripcion: string;
     imagen: string;
     destacado: boolean;
@@ -22,6 +25,7 @@ interface Productos {
     activo: boolean;
     fotos: string[];
 }
+
 
 interface SidebarProps {
     products: Productos[];
@@ -35,7 +39,8 @@ const Sidebar = ({ products, filteredProducts, selectedFilters, onFiltersChange 
     const atributos = products.length > 0
         ? Object.keys(products[0]).filter(k =>
             !["idProducto", "nombre", "precio", "descripcion", "imagen",
-                "fotos", "nuevo", "activo", "destacado", "masVendido", "categoria"].includes(k)
+                "fotos", "nuevo", "activo", "destacado", "masVendido", "idCategoria", "categoria", 
+                "idSubCategoria", "idMarca", "idColor"].includes(k)
         )
         : [];
 
@@ -97,7 +102,9 @@ const Sidebar = ({ products, filteredProducts, selectedFilters, onFiltersChange 
                     return (
                         (attr != "null" && attr != null && attr != "") &&
                         <div key={attr} className="mb-4">
-                            <h3 className="font-medium capitalize mb-1">{attr}</h3>
+                            <h3 className="font-medium capitalize mb-1">{
+                                attr === "subCategoria" ? "Sub Categoría" : attr
+                            }</h3>
                             {getOptions(attr).map(option => (
                                 (option.value != "null" && option.value != null && option.value !== "") &&
                                 <div key={option.value} className="space-y-1 flex items-center justify-between cursor-pointer">

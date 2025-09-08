@@ -18,11 +18,15 @@ export async function getFeaturesProduct(feature: number) {
 
         return data.map((row:any) =>({
             idProducto: row.idProducto,
+            idCategoria: row.idCategoria,
             categoria: row.categoria,
+            idSubCategoria: row.idSubCategoria,
             subCategoria: row.subCategoria,
+            idMarca: row.idMarca,
             marca: row.marca,
             nombre: row.nombre,
             precio: row.precio,
+            idColor: row.idColor,
             color: row.color,
             descripcion: row.descripcion,
             imagen: row.imagen,
@@ -54,11 +58,15 @@ export async function getProductByCategory(category: string) {
 
         return data.map((row:any) =>({
             idProducto: row.idProducto,
+            idCategoria: row.idCategoria,
             categoria: row.categoria,
+            idSubCategoria: row.idSubCategoria,
             subCategoria: row.subCategoria,
+            idMarca: row.idMarca,
             marca: row.marca,
             nombre: row.nombre,
             precio: row.precio,
+            idColor: row.idColor,
             color: row.color,
             descripcion: row.descripcion,
             imagen: row.imagen,

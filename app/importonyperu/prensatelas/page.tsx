@@ -21,11 +21,15 @@ function Banner() {
 
 interface Productos {
     idProducto: number;
+    idCategoria: string;
     categoria: string;
+    idSubCategoria: string;
     subCategoria: string;
+    idMarca: string;
     marca: string;
     nombre: string;
     precio: number;
+    idColor: string;
     color: string;
     decripcion: string;
     imagen: string;
