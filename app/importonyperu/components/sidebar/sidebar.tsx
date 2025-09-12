@@ -5,26 +5,7 @@
 
 import { useState, useEffect, } from "react";
 import Image from "next/image";
-
-interface Productos {
-    idProducto: number;
-    idCategoria: string;
-    categoria: string;
-    idSubCategoria: string;
-    subCategoria: string;
-    idMarca: string;
-    marca: string;
-    nombre: string;
-    precio: number;
-    color: string;
-    decripcion: string;
-    imagen: string;
-    destacado: boolean;
-    nuevo: boolean;
-    masVendido: boolean;
-    activo: boolean;
-    fotos: string[];
-}
+import { Productos } from "@/types/producto";
 
 
 interface SidebarProps {
@@ -132,7 +113,7 @@ const Sidebar = ({ products, filteredProducts, selectedFilters, onFiltersChange 
                         <div key={prod.idProducto} className="flex gap-4">
                             <div className="border-slate-300 border">
                                 <Image
-                                    src={prod.imagen}
+                                    src={prod.fotos[0]}
                                     alt={prod.nombre}
                                     width={150}
                                     height={150}

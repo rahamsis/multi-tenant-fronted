@@ -11,7 +11,6 @@ interface Productos {
     precio: number;
     color: string;
     decripcion: string;
-    imagen: string;
     destacado: boolean;
     nuevo: boolean;
     masVendido: boolean;
@@ -40,11 +39,11 @@ export const ModalDetailProduct = ({ producto, onClose }: ModalDetailProducts) =
     useEffect(() => {
         if (!producto) return;
 
-        if (producto.imagen) {
-            setPicture({ nombre: producto.nombre, url: producto.imagen });
+        if (producto.fotos[0]) {
+            setPicture({ nombre: producto.nombre, url: producto.fotos[0] });
         }
 
-        const fotosProductos = [producto.imagen, ...(producto.fotos || [])].filter(Boolean);;
+        const fotosProductos = producto.fotos.filter(Boolean);
         setFotos(fotosProductos);
     }, [producto]);
 

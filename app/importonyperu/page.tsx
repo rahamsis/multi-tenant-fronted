@@ -6,6 +6,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import { getFeaturesProduct } from "@/app/utils/actions";
 import { ModalDetailProduct } from "./components/modal/detailProducts";
+import { Productos } from "@/types/producto";
 
 const images = [
   "/importonyperu/images/banner/banner1.jpg",
@@ -137,23 +138,6 @@ function PostBanner() {
   );
 }
 
-interface Productos {
-  idProducto: number;
-  categoria: string;
-  subCategoria: string;
-  marca: string;
-  nombre: string;
-  precio: number;
-  color: string;
-  decripcion: string;
-  imagen: string;
-  destacado: boolean;
-  nuevo: boolean;
-  masVendido: boolean;
-  activo: boolean;
-  fotos: string[];
-}
-
 function Products() {
 
   const [featuresProduct, setFeaturesProducts] = useState<Productos[]>([]);
@@ -204,16 +188,16 @@ function Products() {
             <div className="border-slate-300 border">
               <div className="relative">
                 <Image
-                  src={product.imagen}
+                  src={product.fotos[0]}
                   alt={product.nombre}
                   width={300}
                   height={300}
                   className="my-6 object-cover"
                   priority={true}
                 />
-                {product.fotos?.[0] &&
+                {product.fotos?.[1] &&
                   <Image
-                    src={product.fotos[0]}
+                    src={product.fotos[1]}
                     alt={product.nombre}
                     width={300}
                     height={300}

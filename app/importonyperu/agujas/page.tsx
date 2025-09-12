@@ -7,7 +7,7 @@ import Sidebar from "../components/sidebar/sidebar";
 import { getProductByCategory } from "@/app/utils/actions";
 import Dropdown from "../components/dropDown/dropDown";
 import Product from "../components/product/product"
-
+import { Productos } from "@/types/producto";
 
 function Banner() {
     return (
@@ -17,27 +17,6 @@ function Banner() {
             </div>
         </div>
     );
-}
-
-interface Productos {
-    idProducto: number;
-    idCategoria: string;
-    categoria: string;
-    idSubCategoria: string;
-    subCategoria: string;
-    idMarca: string;
-    marca: string;
-    nombre: string;
-    precio: number;
-    idColor: string;
-    color: string;
-    decripcion: string;
-    imagen: string;
-    destacado: boolean;
-    nuevo: boolean;
-    masVendido: boolean;
-    activo: boolean;
-    fotos: string[];
 }
 
 function Content() {

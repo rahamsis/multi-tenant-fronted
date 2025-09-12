@@ -3,23 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { ChevronUp, ChevronDown } from "lucide-react";
-
-interface Productos {
-    idProducto: number;
-    categoria: string;
-    subCategoria: string;
-    marca: string;
-    nombre: string;
-    precio: number;
-    color: string
-    decripcion: string;
-    imagen: string;
-    destacado: boolean;
-    nuevo: boolean;
-    masVendido: boolean;
-    activo: boolean;
-    fotos: string[];
-}
+import { Productos } from "@/types/producto";
 
 interface DropdownProps {
     isVisible: boolean;
@@ -215,7 +199,7 @@ const Dropdown = ({ isVisible, products, filteredProducts, selectedFilters, onFi
                             <div key={prod.idProducto} className="flex gap-4">
                                 <div className="border-slate-300 border">
                                     <Image
-                                        src={prod.imagen}
+                                        src={prod.fotos[0]}
                                         alt={prod.nombre}
                                         width={150}
                                         height={150}

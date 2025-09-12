@@ -16,7 +16,6 @@ interface Productos {
     precio: number;
     color: string
     decripcion: string;
-    imagen: string;
     destacado: boolean;
     nuevo: boolean;
     masVendido: boolean;
@@ -140,16 +139,16 @@ const Product = ({
                         <div className="border-slate-300 border">
                             <div className="relative">
                                 <Image
-                                    src={product.imagen}
+                                    src={product.fotos[0]}
                                     alt={product.nombre}
                                     width={300}
                                     height={300}
                                     className="my-6 object-cover"
                                     priority={true}
                                 />
-                                {product.fotos?.[0] && (
+                                {product.fotos?.[1] && (
                                     <Image
-                                        src={product.fotos[0]}
+                                        src={product.fotos[1]}
                                         alt={product.nombre}
                                         width={300}
                                         height={300}
