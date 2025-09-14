@@ -61,7 +61,7 @@ export const ModalDetailProduct = ({ producto, onClose }: ModalDetailProducts) =
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="relative bg-white p-6 rounded-lg 2xl:max-w-4xl xl:max-w-2xl max-w-lg w-full mx-4 lg:mx-0 shadow-lg">
+            <div className="relative bg-white p-6 rounded-lg lg:max-w-xl max-w-lg w-full mx-4 lg:mx-0 shadow-lg">
                 {/* Botón Cerrar */}
                 <button
                     onClick={onClose}
