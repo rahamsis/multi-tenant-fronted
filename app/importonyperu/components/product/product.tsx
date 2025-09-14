@@ -137,24 +137,28 @@ const Product = ({
                 {currentProducts.map((product) => (
                     <div key={product.idProducto} className={`group ${order === 2 && !isMobile && "lg:flex"} overflow-hidden`}>
                         <div className="border-slate-300 border">
-                            <div className="relative">
+                            <div className="relative border border-zinc-300 max-w-[500px] max-h-[500px] flex items-center justify-center group">
+                                <i className="lg:hidden absolute top-0 right-2 text-gray-400 bi bi-eye" onClick={() => setShowDetailProduct(product)}></i>
+
+                                {/* Imagen principal */}
                                 <Image
                                     src={product.fotos[0]}
                                     alt={product.nombre}
-                                    width={300}
-                                    height={300}
-                                    className="my-6 object-cover"
-                                    priority={true}
+                                    width={800}
+                                    height={800}
+                                    className="my-6 object-contain transition-opacity duration-300 group-hover:opacity-0"
+                                    priority
                                 />
+
+                                {/* Imagen secundaria */}
                                 {product.fotos?.[1] && (
                                     <Image
                                         src={product.fotos[1]}
                                         alt={product.nombre}
-                                        width={300}
-                                        height={300}
-                                        priority={true}
-                                        className="object-cover absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-
+                                        width={800}
+                                        height={800}
+                                        className="absolute inset-0 my-6 object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                                        priority
                                     />
                                 )}
                             </div>
@@ -170,7 +174,7 @@ const Product = ({
                             {/* Botón: aparece desde abajo */}
                             <button
                                 onClick={() => setShowDetailProduct(product)}
-                                className={`bg-black text-white lg:text-base text-xs py-2 px-4 translate-y-12 
+                                className={`bg-black text-white lg:text-base text-xs py-2 px-4 translate-y-14 
                                         ${order === 1 && !isMobile ? "group-hover:opacity-100 group-hover:translate-y-0  transition-all duration-500" : ""}`}>
                                 VER DETALLE
                             </button>

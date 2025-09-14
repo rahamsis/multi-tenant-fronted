@@ -17,7 +17,7 @@ interface DropdownProps {
 const Dropdown = ({ isVisible, products, filteredProducts, selectedFilters, onFiltersChange, onClose }: DropdownProps) => {
     const [attributeOpenGroups, setAttributeOpenGroups] = useState<Record<string, boolean>>({});
     const [specialProductsOpen, setSpecialProductsOpen] = useState<boolean>(false)
-    const [leftBannerOpen, setLeftBannerOpen] = useState<boolean>(false)
+    const [leftBannerOpen, setLeftBannerOpen] = useState<boolean>(true)
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const hasActiveFilters = Object.values(selectedFilters).some(arr => arr.length > 0);
@@ -26,7 +26,7 @@ const Dropdown = ({ isVisible, products, filteredProducts, selectedFilters, onFi
     const atributos = products.length > 0
         ? Object.keys(products[0]).filter(k =>
             !["idProducto", "nombre", "precio", "descripcion", "imagen",
-                "fotos", "nuevo", "activo", "destacado", "masVendido", "categoria"].includes(k)
+                "fotos", "nuevo", "activo", "destacado", "masVendido", "idCategoria", "categoria", "idSubCategoria", "idMarca", "idColor"].includes(k)
         )
         : [];
 
