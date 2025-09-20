@@ -49,6 +49,14 @@ const config: Config = {
           primary: '#059669',
           secondary: '#10b981',
         },
+		'oishipop': {
+		  primary: '#FF69B4', // Rosa brillante
+		  secondary: '#FFB6C1', // Rosa claro
+		  accent: '#800080', // Púrpura
+		  background: '#FFF0F5', // Lavanda claro
+		  foreground: '#4B0082', // Índigo
+		  muted: '#D8BFD8', // Thistle
+		}
       },
       gridTemplateColumns: {
         // para depsac

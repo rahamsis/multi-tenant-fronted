@@ -14,9 +14,13 @@ export function middleware(req: NextRequest) {
     return NextResponse.rewrite(new URL('/lezcor' + req.nextUrl.pathname, req.url))
   }
 
+  if (host.includes('oishipop')) {
+    return NextResponse.rewrite(new URL('/oishipop' + req.nextUrl.pathname, req.url))
+  }
+
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|pdfjs|importonyperu/|depsac/).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|pdfjs|importonyperu/|depsac/|oishipop/).*)'],
 }
