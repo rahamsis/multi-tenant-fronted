@@ -13,3 +13,9 @@ export interface Productos {
     activo: boolean;
     fotos: string[];
 }
+
+export interface Categoria {
+    idCategoria: string;
+    categoria: string;
+    activo: boolean;
+}

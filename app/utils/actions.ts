@@ -1,22 +1,77 @@
 'use server';
 
+import { Menu, OtherMenu } from "@/types/menu";
+
 /* eslint-disable */
 
-export async function getFeaturesProduct(feature: number) {
+export async function getMenus(tenant: string) {
     try {
-        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/features-products?feature=${feature}`, {
+        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/menus`, {
             method: 'GET',
+            cache: "no-store", // evita cache estático de Next.js
             headers: {
                 'Content-Type': 'application/json',
-                "X-Tenant-ID": "importonyperu",
+                "X-Tenant-ID": tenant,
                 'accept': '/'
             },
-            next: { revalidate: 0 }
         });
 
         const data = await response.json();
 
-        return data.map((row:any) =>({
+        // return data.map((item: any) => ({
+        //     idMenu: String(item.idMenu),
+        //     urlMenu: String(item.urlMenu),
+        //     titulo: String(item.titulo),
+        //     idCategoria: String(item.idCategoria),
+        //     userId: String(item.userId),
+        //     orden: Number(item.orden),
+        //     estado: Boolean(item.estado),
+        //     subMenu: item.subMenu ? item.subMenu.split(",") : [],
+        // }));
+
+        const menus: Menu[] = data.menus.map((item: any) => ({
+            idMenu: String(item.idMenu),
+            urlMenu: String(item.urlMenu),
+            titulo: String(item.titulo),
+            idCategoria: String(item.idCategoria),
+            userId: String(item.userId),
+            orden: Number(item.orden),
+            estado: Boolean(item.estado),
+            subMenu: item.subMenu ? item.subMenu.split(",") : [],
+        }));
+
+        const categorias: OtherMenu[] = data.categorias.map((item: any) => ({
+            idCategoria: String(item.idCategoria),
+            categoria: String(item.categoria),
+            activo: Boolean(item.activo),
+            subMenu: item.subMenu ? item.subMenu.split(",") : [],
+        }));
+
+        return { menus, categorias };
+    } catch (error) {
+        console.error('Error cargando menús:', error);
+        throw new Error("Error cargando menús");
+    }
+}
+
+
+
+export async function getFeaturesProduct(tenant: string, feature: number) {
+    try {
+        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/features-products?feature=${feature}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-Tenant-ID": tenant,
+                    Accept: "application/json",
+                },
+                next: { revalidate: 0 }
+            });
+
+        const data = await response.json();
+
+        return data.map((row: any) => ({
             idProducto: row.idProducto,
             idCategoria: row.idCategoria,
             categoria: row.categoria,
@@ -41,13 +96,13 @@ export async function getFeaturesProduct(feature: number) {
     }
 }
 
-export async function getProductByCategory(category: string) {
+export async function getProductByCategory(tenant: string, category: string) {
     try {
         const response = await fetch(`${process.env.APP_BACK_END}/backendApi/product-by-category?category=${category}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                "X-Tenant-ID": "importonyperu",
+                "X-Tenant-ID": tenant,
                 'accept': '/'
             },
             next: { revalidate: 0 }
@@ -55,7 +110,7 @@ export async function getProductByCategory(category: string) {
 
         const data = await response.json();
 
-        return data.map((row:any) =>({
+        return data.map((row: any) => ({
             idProducto: row.idProducto,
             idCategoria: row.idCategoria,
             categoria: row.categoria,

@@ -137,30 +137,31 @@ const Product = ({
                 {currentProducts.map((product) => (
                     <div key={product.idProducto} className={`group ${order === 2 && !isMobile && "lg:flex"} overflow-hidden`}>
                         <div className="border-slate-300 border">
-                            <div className="relative border border-zinc-300 max-w-[500px] max-h-[500px] flex items-center justify-center group">
-                                <i className="lg:hidden absolute top-0 right-2 text-gray-400 bi bi-eye" onClick={() => setShowDetailProduct(product)}></i>
-
-                                {/* Imagen principal */}
-                                <Image
-                                    src={product.fotos[0]}
-                                    alt={product.nombre}
-                                    width={800}
-                                    height={800}
-                                    className="my-6 object-contain transition-opacity duration-300 group-hover:opacity-0"
-                                    priority
-                                />
-
-                                {/* Imagen secundaria */}
-                                {product.fotos?.[1] && (
+                            <div className="relative">
+                                <i className="lg:hidden absolute top-0 right-2 z-30 text-gray-400 bi bi-eye" onClick={() => setShowDetailProduct(product)}></i>
+                                <div className="group">
+                                    {/* Imagen principal */}
                                     <Image
-                                        src={product.fotos[1]}
+                                        src={product.fotos[0]}
                                         alt={product.nombre}
-                                        width={800}
-                                        height={800}
-                                        className="absolute inset-0 my-6 object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                                        priority
+                                        width={500}
+                                        height={500}
+                                        className="my-6 object-cover"
+                                        priority={true}
                                     />
-                                )}
+
+                                    {/* Imagen secundaria */}
+                                    {product.fotos?.[1] && (
+                                        <Image
+                                            src={product.fotos[1]}
+                                            alt={product.nombre}
+                                            width={500}
+                                            height={500}
+                                            className="object-cover absolute top-0 left-0 opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+                                            priority={true}
+                                        />
+                                    )}
+                                </div>
                             </div>
                         </div>
                         <div className="text-center relative items-center justify-center mx-auto mt-2 w-full">
@@ -183,7 +184,7 @@ const Product = ({
                 ))}
             </div>
 
-            {currentProducts.length > 11 && (
+            {products.length > 11 && (
                 <div className="flex flex-row mt-6 justify-between">
                     <div className="text-zinc-600 flex lg:text-base text-xs items-center">
                         <span>Mostrando {productsFiltered.length === 0 ? 0 : startIndex + 1} - {Math.min(endIndex, productsFiltered.length)} de {products.length} producto(s)</span>
@@ -216,9 +217,6 @@ const Product = ({
                     </div>
                 </div>
             )}
-
-
-
 
             {/* Modal de detalle del producto */}
             {showDetailProduct && (

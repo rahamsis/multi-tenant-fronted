@@ -25,16 +25,16 @@ export const metadata: Metadata = {
     description: "Descripción de Oishipop xd",
     keywords: ["Oishipop", "Kawai", "oishi", "pop"],
     icons: {
-        icon: "/importonyperu/images/importonyIcon.ico"
+        icon: "/oishipop/images/oishipop.ico"
     },
     openGraph: {
         title: 'Oishipop',
         description: 'Descripción de Oishipop xd',
         url: 'https://oishipop.com.pe',
-        siteName: "Importonyperu",
+        siteName: "Oishipop",
         images: [
             {
-                url: 'https://importonyperu.com.pe/importonyperu/images/importony_miniatura.png',
+                url: 'https://oishipop.com.pe/oishipop/images/oishipop_miniatura.png',
                 width: 1200,
                 height: 630,
                 alt: 'Imagen de vista previa',

@@ -1,45 +1,20 @@
-'use client';
+"use client";
 
-/* eslint-disable */
-
-import { useState, useEffect, } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "../components/sidebar/sidebar";
-import { getProductByCategory } from "@/app/utils/actions";
 import Dropdown from "../components/dropDown/dropDown";
-import Product from "../components/product/product"
+import Product from "../components/product/product";
 import { Productos } from "@/types/producto";
 
-function Banner() {
-    return (
-        <div className="relative w-full lg:h-full overflow-hidden pt-3 lg:pt-6">
-            <div className="bg-importonyperu-Gray w-full text-center lg:py-16 py-8 text-zinc-800 text-2xl font-semibold">
-                <h3>AGUJAS</h3>
-            </div>
-        </div>
-    );
-}
-
-function Content() {
-
-    const [products, setProducts] = useState<Productos[]>([]);
-    const [productsFiltered, setProductsFiltered] = useState<Productos[]>([]);
+export default function Content({
+    initialProducts,
+}: {
+    initialProducts: Productos[];
+}) {
+    const [products, setProducts] = useState<Productos[]>(initialProducts);
+    const [productsFiltered, setProductsFiltered] = useState<Productos[]>(initialProducts);
     const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
-
     const [filterVisible, setFilterVisible] = useState(false);
-
-    // cargamos la data desde la base de datos
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const data = await getProductByCategory("AGUJAS");
-                setProducts(data);
-                setProductsFiltered(data);
-            } catch (error) {
-                console.error("Error obteniendo los productos por categoria:", error);
-            }
-        }
-        fetchData();
-    }, []);
 
     // Se llama cada vez que el Sidebar cambia filtros
     const handleFiltersChange = (filters: Record<string, string[]>) => {
@@ -48,8 +23,6 @@ function Content() {
 
     // Filtrar productos según los filtros seleccionados
     useEffect(() => {
-        if (!products.length) return;
-
         let result = [...products];
         Object.keys(selectedFilters).forEach(attr => {
             const selected = selectedFilters[attr];
@@ -60,7 +33,6 @@ function Content() {
         setProductsFiltered(result);
     }, [selectedFilters, products]);
 
-
     return (
         <div className="lg:flex w-full lg:pt-6 pt-4 gap-6">
             {/* Sidebar de Categorías */}
@@ -69,15 +41,19 @@ function Content() {
                     products={products}
                     selectedFilters={selectedFilters}
                     onFiltersChange={handleFiltersChange}
-                    filteredProducts={productsFiltered} />
+                    filteredProducts={productsFiltered}
+                />
             </div>
-
 
             <div className={`lg:w-4/5 flex flex-col ${filterVisible ? "hidden lg:flex" : "block"}`}>
-                <Product products={products} filteredProducts={productsFiltered} setFilterVisible={setFilterVisible} />
+                <Product
+                    products={products}
+                    filteredProducts={productsFiltered}
+                    setFilterVisible={setFilterVisible}
+                />
             </div>
 
-            {/* Menu de filtros solo para móbiles */}
+            {/* Menu de filtros solo para móviles */}
             <div className={`w-full flex flex-col gap-4 ${filterVisible ? "block lg:hidden" : "hidden"}`}>
                 <div className="w-full">
                     <Dropdown
@@ -86,22 +62,10 @@ function Content() {
                         selectedFilters={selectedFilters}
                         onFiltersChange={handleFiltersChange}
                         filteredProducts={productsFiltered}
-                        onClose={() => setFilterVisible(false)} />
+                        onClose={() => setFilterVisible(false)}
+                    />
                 </div>
             </div>
-
-
-        </div>
-    );
-}
-
-export default function Agujas() {
-    return (
-        <div className="mx-auto justify-between items-center xl:w-8/12 2xl:w-8/12 w-11/12 mb-8">
-
-            <Banner />
-
-            <Content />
         </div>
     );
 }

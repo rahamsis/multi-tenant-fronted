@@ -3,9 +3,13 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+import { headers } from "next/headers";
 import Header from "@/components/importonyperu/header/header-importonyperu";
 import Footer from "@/components/importonyperu/footer/footer";
 import Whatsapp from "./components/whatsapp/whatsapp";
+import { PreHeader } from "@/components/importonyperu/preHeader/pre-header";
+
+import { getMenus } from "../utils/actions";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,12 +46,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+export default async function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+  const headersList = await headers();
+  const host = headersList.get("host") || "";
+  const tenant = host.split(".")[0]; // "importonyperu", "oishipop", etc.
+
+  const result = await getMenus(tenant);
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Header />
-        <main>
+        <PreHeader />
+        <Header menu={result.menus} otherMenus={result.categorias} />
+        <main className="mt-16 lg:mt-0">
           {children}
         </main>
         <Footer />

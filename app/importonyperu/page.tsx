@@ -139,25 +139,33 @@ function PostBanner() {
 }
 
 function Products() {
-
+  const [tenant, setTenant] = useState<string | null>(null);
   const [featuresProduct, setFeaturesProducts] = useState<Productos[]>([]);
   const [activeButton, setActiveButton] = useState<number>(1);
   const [feature, setFeature] = useState<number>(1); // 1: nuevos, 2: destacados, 3: mas vendidos
 
   const [showDetailProduct, setShowDetailProduct] = useState<Productos | null>(null)
 
+  useEffect(() => {
+    const host = window.location.hostname; // ej: importonyperu.com.pe
+    const t = host.split(".")[0]; // -> "importonyperu"
+    setTenant(t);
+  }, []);
+
   // llenar los productos
   useEffect(() => {
+    if (!tenant) return; // evita llamada vac
+
     async function fetchData() {
       try {
-        const data = await getFeaturesProduct(feature);
+        const data = await getFeaturesProduct(tenant || "", feature);
         setFeaturesProducts(data);
       } catch (error) {
         console.error("Error obteniendo los productos destacados o nuevos o más vendidos:", error);
       }
     }
     fetchData();
-  }, [feature]);
+  }, [tenant, feature]);
 
   return (
     <div className="relative w-full lg:pt-12 pt-9">
@@ -187,25 +195,28 @@ function Products() {
           <div key={index} className="group overflow-hidden">
             <div className="border-slate-300 border">
               <div className="relative">
-                <Image
-                  src={product.fotos[0]}
-                  alt={product.nombre}
-                  width={300}
-                  height={300}
-                  className="my-6 object-cover"
-                  priority={true}
-                />
-                {product.fotos?.[1] &&
+                <i className="lg:hidden absolute top-0 right-2 z-30 text-gray-400 bi bi-eye" onClick={() => setShowDetailProduct(product)}></i>
+                <div className="group">
                   <Image
-                    src={product.fotos[1]}
+                    src={product.fotos[0]}
                     alt={product.nombre}
-                    width={300}
-                    height={300}
+                    width={500}
+                    height={500}
+                    className="my-6 object-cover"
                     priority={true}
-                    className="object-cover absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-
                   />
-                }
+                  {product.fotos?.[1] &&
+                    <Image
+                      src={product.fotos[1]}
+                      alt={product.nombre}
+                      width={500}
+                      height={500}
+                      priority={true}
+                      className="object-cover absolute top-0 left-0 opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                  }
+                </div>
+
               </div>
             </div>
 
