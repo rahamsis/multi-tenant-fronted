@@ -1,12 +1,6 @@
 "use client";
 
-/* eslint-disable */
-
-// import * as pdfjsLib from "pdfjs-dist";
 import Image from "next/image";
-
-// // Configurar el worker manualmente
-// pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.min.js";
 
 interface PdfCardProps {
     url: string;

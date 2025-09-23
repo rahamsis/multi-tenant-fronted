@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable */
+
 import { useState, useEffect } from "react";
 import Sidebar from "../components/sidebar/sidebar";
 import Dropdown from "../components/dropDown/dropDown";
@@ -11,7 +13,7 @@ export default function Content({
 }: {
     initialProducts: Productos[];
 }) {
-    const [products, setProducts] = useState<Productos[]>(initialProducts);
+    const [products] = useState<Productos[]>(initialProducts);
     const [productsFiltered, setProductsFiltered] = useState<Productos[]>(initialProducts);
     const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
     const [filterVisible, setFilterVisible] = useState(false);

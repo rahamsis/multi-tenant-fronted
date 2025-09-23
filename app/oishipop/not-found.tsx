@@ -1,10 +1,15 @@
+import Image from "next/image";
+
 export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center py-20">
-      <img
+      <Image
         src="/images/not-found.png"
         alt="Página no encontrada"
-        className="w-60 mb-6"
+        className="mb-6"
+        width={500}
+        height={500}
+        priority={true}
       />
       <h2 className="text-2xl font-bold mb-2">Página no encontrada</h2>
       <p className="text-gray-600 mb-4">

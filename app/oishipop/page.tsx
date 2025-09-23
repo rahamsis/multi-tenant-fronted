@@ -1,6 +1,7 @@
 'use client'
 
 import { Heart, ShoppingCart, Star } from "lucide-react"
+import Image from "next/image";
 
 function HeroBanner() {
   return (
@@ -25,10 +26,13 @@ function HeroBanner() {
 
         {/* Imagen del banner */}
         <div className="mt-12">
-          <img
+          <Image
             src="/oishipop/images/placeholder-hi2mp.png"
             alt="Colección de peluches adorables"
             className="mx-auto rounded-lg shadow-lg max-w-full h-auto"
+            width={1000}
+            height={1000}
+            priority={true}
           />
         </div>
       </div>
@@ -117,10 +121,13 @@ export function ProductGrid() {
             <div key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <div className="p-4">
                 <div className="relative mb-4">
-                  <img
+                  <Image
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
                     className="w-full h-64 object-cover rounded-lg"
+                    width={500}
+                    height={500}
+                    priority={true}
                   />
                   <div className="absolute top-2 left-2 flex gap-2">
                     {product.isNew && <a className="bg-secondary text-secondary-foreground">Nuevo</a>}

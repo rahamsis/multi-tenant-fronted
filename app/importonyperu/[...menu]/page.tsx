@@ -1,7 +1,5 @@
 // 'use client';
 
-/* eslint-disable */
-
 import * as React from "react";
 import { getMenus, getProductByCategory } from "@/app/utils/actions";
 import { headers } from "next/headers";
