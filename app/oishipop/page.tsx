@@ -105,7 +105,7 @@ const products = [
   },
 ]
 
-export function ProductGrid() {
+function ProductGrid() {
   return (
     <section className="py-16 px-4">
       <div className="container mx-auto">
@@ -185,7 +185,7 @@ export function ProductGrid() {
   )
 }
 
-export function BottomBanner() {
+function BottomBanner() {
   return (
     <section className="bg-oishipop-primary text-primary-foreground py-12 px-4">
       <div className="container mx-auto text-center">
