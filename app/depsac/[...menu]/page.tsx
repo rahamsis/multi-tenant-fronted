@@ -88,40 +88,32 @@ export default async function DinamicPage({ params }: Props) {
         nombre: m.urlMenu.replace("/", "").toUpperCase()
     }));
 
+    // ✅ Normalizamos submenús
+    const subMenus = menusFromDb.menus.flatMap((m: Menu) =>
+        (m.subMenu || []).map((s: string) => ({
+            key: `${m.urlMenu}/${s.toLowerCase().replace(/\s+/g, "-")}`,
+            nombre: s.toUpperCase()
+        }))
+    );
+
     // Combinamos en un solo array
-    const combined = [...menus, ...categorias];
+    const combined = [...menus, ...categorias, ...subMenus];
 
     // ✅ Validamos categoría
     const categoriaKey = "/" + categoriaFromParam;
     const foundCategoria = combined.find(item => item.key === categoriaKey);
-
     if (!foundCategoria) {
         notFound();
     }
 
     // ✅ Validamos subcategoría si existe
     if (subCategoriaFromParam) {
-        const categoria = categoriaFromParam
-            ? categoriaFromParam.toUpperCase().replace(/-/g, " ")
-            : "";
+        const subCategoriaKey = `/${categoriaFromParam}/${subCategoriaFromParam}`;
+        const foundSubCategoria = combined.find((item) => item.key === subCategoriaKey);
 
-        const subCategoria = subCategoriaFromParam
-            ? subCategoriaFromParam.toUpperCase().replace(/-/g, " ")
-            : null;
-
-        // Chequeamos en BD si hay productos para esa subcategoría
-        const productsCheck = await getProductByCategory(tenant, categoria, subCategoria);
-
-        if (!productsCheck || productsCheck.length === 0) {
+        if (!foundSubCategoria) {
             notFound();
         }
-
-        return (
-            <div>
-                <Banner titulo={categoria} subTitulo={subCategoria || ""} />
-                <Content initialProducts={productsCheck} />
-            </div>
-        );
     }
 
     const categoria = categoriaFromParam ? categoriaFromParam.toUpperCase().replace(/-/g, " ") : "";
