@@ -3,41 +3,6 @@ import { useState, useRef, useEffect } from "react"
 import { ChevronDown } from "lucide-react" // Icono flecha hacia abajo
 import { Menu, OtherMenu } from "@/types/menu";
 
-const menuItems = [
-  {
-    title: "Nuevos Arrivals",
-    items: ["Esta Semana", "Este Mes", "Próximamente", "Edición Limitada"],
-  },
-  {
-    title: "Por Edad",
-    items: ["0-2 años", "3-5 años", "6-8 años", "9+ años"],
-  },
-  {
-    title: "Personajes",
-    items: ["Disney", "Pokémon", "Hello Kitty", "Anime"],
-  },
-  {
-    title: "Animales",
-    items: ["Osos", "Gatos", "Perros", "Animales Salvajes"],
-  },
-  {
-    title: "Tamaños",
-    items: ["Mini (15cm)", "Mediano (30cm)", "Grande (50cm)", "Gigante (80cm+)"],
-  },
-  {
-    title: "Ocasiones",
-    items: ["Cumpleaños", "San Valentín", "Navidad", "Graduación"],
-  },
-  {
-    title: "Colecciones",
-    items: ["Exclusivas", "Vintage", "Artesanales", "Eco-Friendly"],
-  },
-  {
-    title: "Ofertas",
-    items: ["Descuentos", "Liquidación", "Paquetes", "Membresía"],
-  },
-]
-
 type HeaderProps = {
   menu: Menu[];
   otherMenus: OtherMenu[];

@@ -1,14 +1,11 @@
 'use client';
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, } from "react";
 import Image from "next/image";
-import { LayoutList, LayoutGrid, ChevronLeft, ChevronRight, Plus, Minus } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ModalDetailProduct } from "../modal/detailProducts";
-// import CustomSelect from "../selector/select";
-
-// import { ModalDetailProduct } from "../modal/detailProducts";
 
 interface Productos {
     idProducto: number;
@@ -33,18 +30,9 @@ interface ProductProps {
     setFilterVisible: (visible: boolean) => void;
 }
 
-const options = [
-    { value: "default", label: "Predeterminado" },
-    { value: "priceLowHigh", label: "Precio: bajo a alto" },
-    { value: "priceHighLow", label: "Precio: alto a bajo" },
-    { value: "nameAZ", label: "Nombre: A a Z" },
-    { value: "nameZA", label: "Nombre: Z a A" },
-];
-
 const Product = ({ products, filteredProducts, setFilterVisible }: ProductProps) => {
     const router = useRouter();
 
-    const [order, setOrder] = useState(1);
     const [productsFiltered, setProductsFiltered] = useState<Productos[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [showDetailProduct, setShowDetailProduct] = useState<Productos | null>(null)
@@ -65,33 +53,6 @@ const Product = ({ products, filteredProducts, setFilterVisible }: ProductProps)
     useEffect(() => {
         setProductsFiltered(filteredProducts.length ? filteredProducts : products);
     }, [products, filteredProducts]);
-
-
-    // Ordena los productos según el orden seleccionado
-    const handleSelectChange = (value: string) => {
-        const productosOrdenados = [...products]; // clonamos el array para no mutar el original
-
-        switch (value) {
-            case "priceLowHigh":
-                productosOrdenados.sort((a, b) => a.precio - b.precio);
-                break;
-            case "priceHighLow":
-                productosOrdenados.sort((a, b) => b.precio - a.precio);
-                break;
-            case "nameAZ":
-                productosOrdenados.sort((a, b) => a.nombre.localeCompare(b.nombre));
-                break;
-            case "nameZA":
-                productosOrdenados.sort((a, b) => b.nombre.localeCompare(a.nombre));
-                break;
-            case "default":
-            default:
-                productosOrdenados.sort((a, b) => a.idProducto - b.idProducto);
-                break;
-        }
-
-        setProductsFiltered(productosOrdenados);
-    };
 
     return (
         <>
