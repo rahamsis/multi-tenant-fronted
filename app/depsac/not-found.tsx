@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center py-20">
+    <div className="flex flex-col items-center justify-center py-52">
       <Image
-        src="/importonyperu/images/not-found.png"
+        src="/depsac/images/not-found.png"
         alt="Página no encontrada"
         className="mb-6"
         width={500}
@@ -17,7 +17,7 @@ export default function NotFound() {
       </p>
       <a
         href="/"
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        className="px-4 py-2 bg-depsac-primary text-white rounded-lg hover:bg-blue-500 transition"
       >
         Volver al inicio
       </a>

@@ -1,6 +1,7 @@
 'use server';
 
 import { Menu, OtherMenu } from "@/types/menu";
+import { WebSite } from "@/types/webSite";
 
 /* eslint-disable */
 
@@ -54,7 +55,34 @@ export async function getMenus(tenant: string) {
     }
 }
 
+export async function getWebSite(tenant: string) {
+    try {
+        const response = await fetch(`${process.env.APP_BACK_END}/get-website`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "X-Tenant-ID": tenant,
+                "accept": "application/json"
+            },
+            next: { revalidate: 0 }
+        });
 
+        const data = await response.json();
+
+        return data.map((row: WebSite) => ({
+            idEmpresa: row.idEmpresa,
+            nombre: row.nombre,
+            telefonoPrincipal: row.telefonoPrincipal,
+            telefonoSecundario: row.telefonoSecundario,
+            direccionPrincipal: row.direccionPrincipal,
+            direccionSecundaria: row.direccionSecundaria,
+            correo: row.correo
+        }));
+    } catch (error) {
+        console.error("Error al traer los datos de la compañia", error);
+        throw new Error("Error al traer los datos de la compañia")
+    }
+}
 
 export async function getFeaturesProduct(tenant: string, feature: number) {
     try {
@@ -96,9 +124,9 @@ export async function getFeaturesProduct(tenant: string, feature: number) {
     }
 }
 
-export async function getProductByCategory(tenant: string, category: string) {
+export async function getProductByCategory(tenant: string, category: string, subCategory: string|null) {
     try {
-        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/product-by-category?category=${category}`, {
+        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/product-by-category?category=${category}&subcategory=${subCategory}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

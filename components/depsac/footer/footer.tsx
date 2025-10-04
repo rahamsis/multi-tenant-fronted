@@ -33,10 +33,10 @@ export default function Footer() {
               </h3>
 
               <form action="#" className="flex flex-wrap mt-0 -mx-3">
-                <div className="w-auto px-2">
+                <div className="w-full lg:w-auto px-2">
                   <input type="text" className="h-[50px] rounded-[10px] font-serif block w-full py-[0.375rem] px-[0.75rem] text-base font-normal leading-[1.5] text-depsac-imputFootr bg-white bg-clip-padding border border-solid border-depsac-borderInputFooter appearance-none m-0" placeholder="Ingresa tu nombre" />
                 </div>
-                <div className="w-auto  px-2 xxs:pt-3 ss:pt-0">
+                <div className="w-3/4 lg:w-auto px-2 xxs:pt-3 ss:pt-0">
                   <input type="email" className="h-[50px] rounded-[10px] font-serif block w-full py-[0.375rem] px-[0.75rem] text-base font-normal leading-[1.5] text-depsac-imputFootr bg-white bg-clip-padding border border-solid border-depsac-borderInputFooter appearance-none m-0" placeholder="Ingresa tu correo" />
                 </div>
                 <div className="w-auto  px-2 xxs:pt-3 ss:pt-0">

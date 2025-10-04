@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react"
 import { MapPin, Phone } from "lucide-react"
+import { WebSite } from "@/types/webSite"
 
-export function PreHeader() {
+export function PreHeader({dataWebsite} : {dataWebsite: WebSite}) {
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
@@ -26,11 +27,11 @@ export function PreHeader() {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <MapPin className="h-4 w-4" />
-            <span>{"Av. Principal 123, Ciudad de Peluches"}</span>
+            <span>{dataWebsite.direccionPrincipal}</span>
           </div>
           <div className="flex items-center gap-2">
             <Phone className="h-4 w-4" />
-            <span>+1 (555) 123-4567</span>
+            <span>{dataWebsite.telefonoPrincipal}</span>
           </div>
         </div>
         <div className="text-xs">{"🚚 Envío gratis en compras mayores a $50"}</div>

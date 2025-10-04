@@ -15,7 +15,7 @@ interface Productos {
     nombre: string;
     precio: number;
     color: string
-    decripcion: string;
+    descripcion: string;
     destacado: boolean;
     nuevo: boolean;
     masVendido: boolean;

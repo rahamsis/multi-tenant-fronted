@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
   const headersList = await headers();
   const host = headersList.get("host") || "";
-  const tenant = host.split(".")[0]; // "importonyperu", "oishipop", etc.
+  const tenant = host.split(".")[0]; // "depsac", "importonyperu", "oishipop", etc.
 
   const result = await getMenus(tenant);
 

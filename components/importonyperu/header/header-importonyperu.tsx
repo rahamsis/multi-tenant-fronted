@@ -208,7 +208,7 @@ const HeaderDesktop = ({ menu, otherMenus }: HeaderProps) => {
 };
 
 const HeaderMobile = ({ menu, otherMenus }: HeaderProps) => {
-    const [sidebarOpen, setMenuOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -229,9 +229,9 @@ const HeaderMobile = ({ menu, otherMenus }: HeaderProps) => {
         }))
     ];
 
-    const toggleMenu = () => setMenuOpen(!sidebarOpen);
+    const toggleMenu = () => setSidebarOpen(!sidebarOpen);
 
-    const closeMenu = () => setMenuOpen(false);
+    const closeMenu = () => setSidebarOpen(false);
 
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {

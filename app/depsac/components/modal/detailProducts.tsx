@@ -61,7 +61,7 @@ export const ModalDetailProduct = ({ producto, onClose }: ModalDetailProducts) =
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="relative bg-white p-6 rounded-lg lg:max-w-xl max-w-lg w-full mx-4 lg:mx-0 shadow-lg">
+            <div className="relative bg-white p-6 rounded-lg lg:max-w-xl max-w-lg w-full mx-4 lg:mx-0 shadow-lg overflow-auto max-h-[800px]">
                 {/* Botón Cerrar */}
                 <button
                     onClick={onClose}
@@ -73,7 +73,7 @@ export const ModalDetailProduct = ({ producto, onClose }: ModalDetailProducts) =
                 {/* Contenido del Modal */}
                 <div className="m-2">
                     {picture?.url && (
-                        <div>
+                        <div className="">
                             {/* <div className="grid grid-cols-2 gap-8"> */}
                             <div className="">
                                 <div className="flex flex-col items-center">
@@ -81,15 +81,15 @@ export const ModalDetailProduct = ({ producto, onClose }: ModalDetailProducts) =
                                         <Image
                                             src={picture?.url || ""}
                                             alt={picture?.nombre || ""}
-                                            width={500}
-                                            height={500}
+                                            width={400}
+                                            height={400}
                                             className="object-contain"
                                             priority={true}
                                         />
                                     </div>
 
                                     {/* Carrusel de previews */}
-                                    <div className="relative w-full max-w-2xl mt-4">
+                                    <div className="relative w-full max-w-2xl my-4">
                                         {/* Flecha izquierda */}
                                         {fotos.length > 3 && <button onClick={() => scroll("left")}
                                             className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-2 shadow hover:bg-white z-10"
@@ -111,8 +111,8 @@ export const ModalDetailProduct = ({ producto, onClose }: ModalDetailProducts) =
                                                     <Image
                                                         src={foto}
                                                         alt={foto}
-                                                        width={100}
-                                                        height={100}
+                                                        width={50}
+                                                        height={50}
                                                         className={`object-contain py-2 ${foto === picture?.url && "opacity-35"}`}
                                                     />
                                                 </div>
@@ -127,13 +127,11 @@ export const ModalDetailProduct = ({ producto, onClose }: ModalDetailProducts) =
                                             <ChevronRight size={24} />
                                         </button>}
                                     </div>
-                                </div>
 
-                                {/* <div className="">
-                                    <h3 className="text-2xl font-medium mb-3">{producto.nombre}</h3>
-                                    <h3 className="text-3xl font-bold">S/ {producto.precio}</h3>
-                                    <h4 className="text-zinc-600 ">Impuestos excluidos</h4>
-                                </div> */}
+                                    <div className="text-depsac-gray_dark text-justify text-sm">
+                                        {producto.descripcion}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )}

@@ -56,7 +56,7 @@ export default async function DinamicPage({ params }: Props) {
         notFound();
     }
 
-    const products = await getProductByCategory(tenant, categoria.toUpperCase().replace(/-/g, " "));
+    const products = await getProductByCategory(tenant, categoria.toUpperCase().replace(/-/g, " "), subCategoria.toUpperCase().replace(/-/g, " "));
 
     return (
         <div className="mx-auto justify-between items-center xl:w-8/12 2xl:w-8/12 w-11/12 mb-8">
