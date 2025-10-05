@@ -10,6 +10,9 @@ export function middleware(req: NextRequest) {
   if (host.includes('depsac')) {
     return NextResponse.rewrite(new URL('/depsac' + req.nextUrl.pathname, req.url))
   }
+  if (host.includes('cygrefrisac')) {
+    return NextResponse.rewrite(new URL('/cygrefrisac' + req.nextUrl.pathname, req.url))
+  }
   if (host.includes('lezcor')) {
     return NextResponse.rewrite(new URL('/lezcor' + req.nextUrl.pathname, req.url))
   }
@@ -22,5 +25,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|pdfjs|importonyperu/|depsac/|oishipop/).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|pdfjs|importonyperu/|depsac/|cygrefrisac/|oishipop/).*)'],
 }

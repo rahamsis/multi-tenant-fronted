@@ -12,13 +12,13 @@ import { Footer } from "@/components/oishipop/footer/footer"
 import { getMenus, getWebSite } from "../utils/actions";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
 
@@ -54,12 +54,12 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
 
     const dataWebSite = await getWebSite(tenant);
     const result = await getMenus(tenant);
-    
+
     return (
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}>
-                <PreHeader dataWebsite={dataWebSite[0]}/>
-                <Header/>
+                <PreHeader dataWebsite={dataWebSite[0]} />
+                <Header />
                 <Navbar menu={result.menus} otherMenus={result.categorias} />
                 <main>
                     {children}

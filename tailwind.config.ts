@@ -45,18 +45,22 @@ const config: Config = {
           whatsapp: '#0df053',
           paragraph: "rgba(255, 255, 255, 0.5)",
         },
+        'cygrefrisac': {
+          preHeader: '#000000',
+          header: '#398E9E',
+        },
         'lezcor': {
           primary: '#059669',
           secondary: '#10b981',
         },
-		'oishipop': {
-		  primary: '#FF69B4', // Rosa brillante
-		  secondary: '#FFB6C1', // Rosa claro
-		  accent: '#800080', // Púrpura
-		  background: '#FFF0F5', // Lavanda claro
-		  foreground: '#4B0082', // Índigo
-		  muted: '#D8BFD8', // Thistle
-		}
+        'oishipop': {
+          primary: '#FF69B4', // Rosa brillante
+          secondary: '#FFB6C1', // Rosa claro
+          accent: '#800080', // Púrpura
+          background: '#FFF0F5', // Lavanda claro
+          foreground: '#4B0082', // Índigo
+          muted: '#D8BFD8', // Thistle
+        }
       },
       gridTemplateColumns: {
         // para depsac

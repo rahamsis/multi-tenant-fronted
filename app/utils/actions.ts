@@ -1,6 +1,7 @@
 'use server';
 
 import { Menu, OtherMenu } from "@/types/menu";
+import { Marca } from "@/types/producto";
 import { WebSite } from "@/types/webSite";
 
 /* eslint-disable */
@@ -124,7 +125,47 @@ export async function getFeaturesProduct(tenant: string, feature: number) {
     }
 }
 
-export async function getProductByCategory(tenant: string, category: string, subCategory: string|null) {
+export async function getAllProduct(tenant: string) {
+    try {
+        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/all-products`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-Tenant-ID": tenant,
+                    Accept: "application/json",
+                },
+                next: { revalidate: 0 }
+            });
+
+        const data = await response.json();
+
+        return data.map((row: any) => ({
+            idProducto: row.idProducto,
+            idCategoria: row.idCategoria,
+            categoria: row.categoria,
+            idSubCategoria: row.idSubCategoria,
+            subCategoria: row.subCategoria,
+            idMarca: row.idMarca,
+            marca: row.marca,
+            nombre: row.nombre,
+            precio: row.precio,
+            idColor: row.idColor,
+            color: row.color,
+            descripcion: row.descripcion,
+            destacado: row.destacado,
+            nuevo: row.nuevo,
+            masVendido: row.masVendido,
+            activo: row.activo,
+            fotos: row.fotosAdicionales?.split(',') ?? []
+        }));
+    } catch (error) {
+        console.error('Error al obtener todos los productos:', error);
+        throw new Error("Error al obtener todos los productos");
+    }
+}
+
+export async function getProductByCategory(tenant: string, category: string, subCategory: string | null) {
     try {
         const response = await fetch(`${process.env.APP_BACK_END}/backendApi/product-by-category?category=${category}&subcategory=${subCategory}`, {
             method: 'GET',
@@ -202,5 +243,32 @@ export async function getPortadaCatalogs() {
     } catch (error) {
         console.error('Error al obtener los catalogos:', error);
         throw new Error("Error al obtener los catalogos");
+    }
+}
+
+export async function getAllBrands(tenant: string) {
+    try {
+        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/all-brands`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-Tenant-ID": tenant,
+                    Accept: "application/json",
+                },
+                next: { revalidate: 0 }
+            });
+
+        const data = await response.json();
+
+        return data.map((row: Marca) => ({
+            idMarca: row.idMarca,
+            marca: row.marca,
+            urlFoto: row.urlFoto,
+            activo: row.activo
+        }));
+    } catch (error) {
+        console.error('Error al obtener todas las marcas:', error);
+        throw new Error("Error al obtener todas las marcas");
     }
 }

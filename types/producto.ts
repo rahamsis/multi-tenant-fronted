@@ -19,3 +19,10 @@ export interface Categoria {
     categoria: string;
     activo: boolean;
 }
+
+export interface Marca {
+    idMarca: string;
+    marca: string;
+    urlFoto: string;
+    activo: boolean;
+}

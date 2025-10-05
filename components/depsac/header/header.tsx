@@ -82,7 +82,7 @@ const NavbarDesktop = ({ menu, otherMenus }: HeaderProps) => {
                             <Link className={`font-medium text-white relative pr-2 pl-2 hover:opacity-100 ${pathName === '/' ? 'border-b-4 border-b-depsac-acento' : 'opacity-50'}`} href="/">Inicio</Link>
                         </li>
                         {menu.map((m: Menu) => (
-                            <li key={m.idMenu} className="relative ml-4 mr-4">
+                            <li key={m.idMenu} className="relative mx-2">
                                 <div className={`flex flex-row hover:opacity-100
                                     ${pathName === m.urlMenu
                                         || m.subMenu?.some((sub) => pathName === `${m.urlMenu}/${sub.toLowerCase().replace(/\s+/g, "-")}`) ? 'border-b-4 border-b-depsac-acento' : 'opacity-50'}`}>
@@ -94,10 +94,9 @@ const NavbarDesktop = ({ menu, otherMenus }: HeaderProps) => {
                                             setOpenMenu(null);
                                             setOpenMoreMenus(false);
                                         }}>
-                                        {m.titulo.length > 16
-                                            ? capitalize(m.titulo.substring(0, 16).toUpperCase())
-                                            : capitalize(m.titulo.toUpperCase())}
+                                        {capitalize(m.titulo)}
                                     </Link>
+
                                     {m.subMenu?.length > 0 && (
                                         <button
                                             className="flex items-center text-white font-medium"
@@ -113,7 +112,7 @@ const NavbarDesktop = ({ menu, otherMenus }: HeaderProps) => {
                                     )}
                                 </div>
 
-                                {openMenu === m.idMenu && (
+                                {openMenu === m.idMenu && m.subMenu?.length > 0 && (
                                     <ul className="absolute text-left left-0 mt-2 w-48 bg-depsac-primary border border-depsac-secondary shadow-lg z-50">
                                         {m.subMenu?.map((sm, index) => (
                                             <div
@@ -128,9 +127,7 @@ const NavbarDesktop = ({ menu, otherMenus }: HeaderProps) => {
                                                             setOpenMoreMenus(false);
                                                         }}
                                                     >
-                                                        {sm.length > 12
-                                                            ? capitalize(sm.substring(0, 16).toUpperCase())
-                                                            : capitalize(sm.toUpperCase())}
+                                                        {capitalize(sm.toUpperCase())}
                                                     </Link>
                                                 </li>
                                             </div>
@@ -184,9 +181,7 @@ const NavbarDesktop = ({ menu, otherMenus }: HeaderProps) => {
                                                         className="block px-4 py-2 text-white font-normal"
                                                         onClick={() => setOpenMoreMenus(false)}
                                                     >
-                                                        {sm.categoria.length > 16
-                                                            ? capitalize(sm.categoria.substring(0, 16).toUpperCase())
-                                                            : capitalize(sm.categoria.toUpperCase())}
+                                                        {capitalize(sm.categoria.toUpperCase())}
                                                     </Link>
 
                                                     {sm.subMenu?.length > 0 && (
@@ -230,9 +225,7 @@ const NavbarDesktop = ({ menu, otherMenus }: HeaderProps) => {
                                                                             setOpenOtherMenu(null);
                                                                         }}
                                                                     >
-                                                                        {ssm.length > 16
-                                                                            ? capitalize(ssm.substring(0, 16).toUpperCase())
-                                                                            : capitalize(ssm.toUpperCase())}
+                                                                        {capitalize(ssm.toUpperCase())}
                                                                     </Link>
                                                                 </li>
                                                             </div>
