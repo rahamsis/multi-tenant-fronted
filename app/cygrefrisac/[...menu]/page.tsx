@@ -1,13 +1,11 @@
 import * as React from "react";
-import Image from "next/image";
 import { getAllBrands, getMenus, getProductByCategory } from "@/app/utils/actions";
 import { headers } from "next/headers";
 import Content from "./content";
 
 import { notFound } from "next/navigation";
 import { Menu } from "@/types/menu";
-import { Categoria, Marca } from "@/types/producto";
-import { useTenant } from "@/app/context/TenantContext";
+import { Categoria } from "@/types/producto";
 
 interface Props {
     params: Promise<{ menu: string[] }>;

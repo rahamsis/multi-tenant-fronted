@@ -1,9 +1,8 @@
 'use client';
 import { getWebSite } from "@/app/utils/actions";
-import Image from "next/image";
 import { useTenant } from "@/app/context/TenantContext";
 import { WebSite } from "@/types/webSite";
-import { useState, useRef, useEffect } from "react"
+import { useState, useEffect } from "react"
 
 function Content({ dataWebsite }: { dataWebsite: WebSite }) {
 

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useTenant } from "@/app/context/TenantContext";
 import { ModalDetailProduct } from "../components/modal/detailProducts";
