@@ -39,7 +39,7 @@ function Banner({ titulo, subTitulo }: { titulo: string, subTitulo: string }) {
                                 width={780}
                                 height={500}
                                 className="x:absolute lg:relative left-0 x:max-w-[780px] xl:max-w-[680px] 2xl:max-w-[780px] lg:max-w-[650px] h-auto align-middle box-border z-[2] x:top-[-100px] lg:top-[-50px] lg:right-[-100px]"
-                                priority
+                                priority={true}
                             />
                         </div>
 
@@ -50,7 +50,7 @@ function Banner({ titulo, subTitulo }: { titulo: string, subTitulo: string }) {
                                 width={300}
                                 height={200}
                                 className="relative left-0 xs:max-w-[500px] h-full align-middle box-border z-[1] xs:top-[0px] xs:right-[0px]"
-                                priority
+                                priority={true}
                             />
                         </div>
                     </div>

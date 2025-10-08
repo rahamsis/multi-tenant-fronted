@@ -38,7 +38,7 @@ export function WrapperHeader({ dataWebsite, menu, otherMenus }: WrapperHeader) 
                 <PreHeader dataWebsite={dataWebsite} />
             </div>
             <div className=" sticky top-0 z-50">
-                <Header />
+                <Header dataWebsite={dataWebsite}/>
                 <Navbar menu={menu} otherMenus={otherMenus} />
             </div>
         </>

@@ -62,7 +62,7 @@ function WhyChoose() {
                                 width={600}
                                 height={600}
                                 className="rounded-[20px] h-auto align-middle"
-                                priority
+                                priority={true}
                             />
                         </div>
                     </div>

@@ -1,13 +1,13 @@
 "use client"
 
+import { WebSite } from "@/types/webSite";
 import { Search, Facebook, Mail, MapPin, Phone, Twitter } from "lucide-react"
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const HeaderDesktop = () => {
+const HeaderDesktop = ({ dataWebsite }: { dataWebsite: WebSite }) => {
   const pathName = usePathname();
-
   return (
     <header className={`hidden lg:flex w-full bg-white border-b transition-all duration-100 `}>
       <div className="container mx-auto px-4 py-4">
@@ -40,12 +40,12 @@ const HeaderDesktop = () => {
           <div className="flex-shrink-0">
             <Link href="/" className="">
               <Image
-                src="/cygrefrisac/images/cyglogo.jpg"
+                src={dataWebsite.logo}
                 alt="Logo de la empresa"
-                width={300}
+                width={250}
                 height={150}
-                className="rounded-lg"
-                priority
+                className="rounded-lg w-auto h-auto"
+                priority={true}
               />
             </Link>
           </div>
@@ -66,10 +66,10 @@ const HeaderDesktop = () => {
   )
 }
 
-const Header = () => {
+const Header = ({ dataWebsite }: { dataWebsite: WebSite }) => {
   return (
     <div>
-      <HeaderDesktop />
+      <HeaderDesktop dataWebsite={dataWebsite} />
     </div>
   );
 }

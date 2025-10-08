@@ -77,7 +77,7 @@ const Productos = () => {
                       ${product.fotos[1] ? "group-hover:opacity-0" : "group-hover:scale-110"}`}
                     width={500}
                     height={500}
-                    priority
+                    priority={true}
                   />
 
                   {/* Imagen secundaria solo si existe */}

@@ -4,9 +4,10 @@
 
 import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
-import { getFeaturesProduct } from "@/app/utils/actions";
+import { getAllBrands, getFeaturesProduct } from "@/app/utils/actions";
 import { ModalDetailProduct } from "./components/modal/detailProducts";
-import { Productos } from "@/types/producto";
+import { Marca, Productos } from "@/types/producto";
+import { useTenant } from "../context/TenantContext";
 
 const images = [
   "/importonyperu/images/banner/banner1.jpg",
@@ -424,26 +425,11 @@ function Servicios() {
   );
 }
 
-const marcas = [
-  "/importonyperu/images/marcas/brother.png",
-  "/importonyperu/images/marcas/durkop.png",
-  "/importonyperu/images/marcas/hirose.png",
-  "/importonyperu/images/marcas/juki.png",
-  "/importonyperu/images/marcas/kansai.png",
-  "/importonyperu/images/marcas/kingtex.png",
-  "/importonyperu/images/marcas/Koban.png",
-  "/importonyperu/images/marcas/merrow.png",
-  "/importonyperu/images/marcas/paff.png",
-  "/importonyperu/images/marcas/pegasus.png",
-  "/importonyperu/images/marcas/reece.png",
-  "/importonyperu/images/marcas/rimoldi.png",
-  "/importonyperu/images/marcas/singer.png",
-  "/importonyperu/images/marcas/siruba.png",
-  "/importonyperu/images/marcas/union.png",
-  "/importonyperu/images/marcas/yamato.png",
-];
+interface MarcasProps {
+  marcas: Marca[];
+}
 
-function Marcas() {
+const Marcas = ({ marcas }: MarcasProps) => {
   const [current, setCurrent] = useState(0);
   const [visible, setVisible] = useState(2); // 2 en móvil, 6 en desktop
   const [isHovered, setIsHovered] = useState(false);
@@ -503,7 +489,7 @@ function Marcas() {
             <div key={idx} style={itemStyle} className="shrink-0">
               <div className="mx-auto flex h-14 w-32 items-center justify-center">
                 <Image
-                  src={src}
+                  src={src.urlFoto}
                   alt={`Marca ${idx + 1}`}
                   width={140}
                   height={50}
@@ -559,6 +545,24 @@ function Marcas() {
 }
 
 export default function Home() {
+  const { tenant } = useTenant();
+  const [marcas, setMarcas] = useState<Marca[]>([]);
+
+  // llenar las marcas
+  useEffect(() => {
+    if (!tenant) return; // evita llamada vac
+
+    async function fetchData() {
+      try {
+        const data = await getAllBrands(tenant);
+        setMarcas(data);
+      } catch (error) {
+        console.error("Error obteniendo todas las marcas:", error);
+      }
+    }
+    fetchData();
+  }, [tenant]);
+
   return (
     <div className="mx-auto justify-between items-center xl:w-8/12 2xl:w-8/12 w-11/12">
       <Banner />
@@ -571,7 +575,7 @@ export default function Home() {
 
       <Servicios />
 
-      <Marcas />
+      <Marcas marcas={marcas} />
     </div>
   )
 }

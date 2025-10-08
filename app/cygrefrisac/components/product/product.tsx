@@ -63,10 +63,10 @@ const Product = ({ products, filteredProducts, setFilterVisible }: ProductProps)
                 src={product.fotos[0] || "/placeholder.svg"}
                 alt={product.nombre}
                 className={`w-full h-64 object-cover transition-transform duration-[2000ms] ease-in-out 
-                                      ${product.fotos[1] ? "group-hover:opacity-0" : "group-hover:scale-110"}`}
+                  ${product.fotos[1] ? "group-hover:opacity-0" : "group-hover:scale-110"}`}
                 width={500}
                 height={500}
-                priority
+                priority={true}
               />
 
               {/* Imagen secundaria solo si existe */}

@@ -75,7 +75,7 @@ const Product = ({ products, filteredProducts, setFilterVisible }: ProductProps)
                             src={product.fotos[0]}
                             className={`max-w-full h-auto align-middle mb-[30px] top-0 relative transform transition-all duration-500 ease-in-out
                                 lg:group-hover:opacity-100 lg:group-hover:-translate-y-10`}
-                            priority
+                            priority={true}
                         />
 
                         {/* texto */}

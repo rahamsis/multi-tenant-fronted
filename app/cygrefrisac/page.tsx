@@ -68,7 +68,7 @@ function HeroBanner() {
             alt={slides[current].title}
             className="object-cover w-full h-full transition-all duration-700"
             fill
-            priority
+            priority={true}
           />
           <div className="absolute inset-0 bg-black/30 pointer-events-none" />
         </div>
@@ -159,7 +159,7 @@ const ProductDestacados = ({ products }: ProductDestacadosProps) => {
                       ${product.fotos[1] ? "group-hover:opacity-0" : "group-hover:scale-110"}`}
                     width={500}
                     height={500}
-                    priority
+                    priority={true}
                   />
 
                   {/* Imagen secundaria solo si existe */}
@@ -261,7 +261,7 @@ const ProductNuevos = ({ products }: ProductDestacadosProps) => {
                       ${product.fotos[1] ? "group-hover:opacity-0" : "group-hover:scale-110"}`}
                     width={500}
                     height={500}
-                    priority
+                    priority={true}
                   />
 
                   {/* Imagen secundaria solo si existe */}
@@ -385,6 +385,7 @@ const BottomBanner = () => {
               src="/cygrefrisac/images/postbanner1.jpg"
               alt="Banner 1"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-500 ease-in-out"
             />
           </div>
@@ -393,6 +394,7 @@ const BottomBanner = () => {
               src="/cygrefrisac/images/postbanner2.jpg"
               alt="Banner 2"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-500 ease-in-out"
             />
           </div>
@@ -401,6 +403,7 @@ const BottomBanner = () => {
               src="/cygrefrisac/images/postbanner3.jpg"
               alt="Banner 3"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-500 ease-in-out"
             />
           </div>
@@ -413,6 +416,7 @@ const BottomBanner = () => {
               src="/cygrefrisac/images/postbanner1.jpg"
               alt="Banner 1"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-500 ease-in-out"
             />
           </div>
@@ -421,6 +425,7 @@ const BottomBanner = () => {
               src="/cygrefrisac/images/postbanner2.jpg"
               alt="Banner 2"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-500 ease-in-out"
             />
           </div>
@@ -429,6 +434,7 @@ const BottomBanner = () => {
               src="/cygrefrisac/images/postbanner3.jpg"
               alt="Banner 3"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-500 ease-in-out"
             />
           </div>

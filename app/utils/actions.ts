@@ -77,7 +77,8 @@ export async function getWebSite(tenant: string) {
             telefonoSecundario: row.telefonoSecundario,
             direccionPrincipal: row.direccionPrincipal,
             direccionSecundaria: row.direccionSecundaria,
-            correo: row.correo
+            correo: row.correo,
+            logo: row.logo
         }));
     } catch (error) {
         console.error("Error al traer los datos de la compañia", error);
@@ -260,7 +261,6 @@ export async function getAllBrands(tenant: string) {
             });
 
         const data = await response.json();
-
         return data.map((row: Marca) => ({
             idMarca: row.idMarca,
             marca: row.marca,

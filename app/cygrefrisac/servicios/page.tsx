@@ -51,7 +51,7 @@ const Service = () => {
               width={500}
               height={500}
               className="rounded-lg"
-              priority
+              priority={true}
             />
           </div>
 
@@ -62,7 +62,7 @@ const Service = () => {
               width={500}
               height={500}
               className="rounded-lg"
-              priority
+              priority={true}
             />
           </div>
 
@@ -73,7 +73,7 @@ const Service = () => {
               width={500}
               height={500}
               className="rounded-lg"
-              priority
+              priority={true}
             />
           </div>
 
@@ -84,7 +84,7 @@ const Service = () => {
               width={500}
               height={500}
               className="rounded-lg w-full h-full object-cover"
-              priority
+              priority={true}
             />
           </div>
 
@@ -95,7 +95,7 @@ const Service = () => {
               width={500}
               height={500}
               className="rounded-lg w-full h-full object-cover"
-              priority
+              priority={true}
             />
           </div>
         </div>
@@ -174,7 +174,7 @@ const Service = () => {
                     width={600}
                     height={600}
                     className="rounded-[20px] max-w-screen-xxs lg:max-w-full h-auto align-middle ml-10 lg:ml-0"
-                    priority
+                    priority={true}
                   />
                 </div>
               </div>

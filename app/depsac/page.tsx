@@ -112,7 +112,7 @@ function Item(props: Props) {
           width={300} height={300}
           src={props.image}
           className="max-w-full h-auto align-middle mb-[30px] top-0 relative transform transition-all duration-500 ease-in-out"
-          priority
+          priority={true}
         />
         {/* texto */}
         <h3 ref={nameProduct} className="text-depsac-primary font-semibold text-base leading-5 mb-2 mt-0 relative">{props.name}</h3>
@@ -132,7 +132,7 @@ function Item(props: Props) {
             width={30} height={30}
             src="/depsac/assets/cross.svg"
             className="w-4 h-4 max-w-full mx-auto"
-            priority
+            priority={true}
           />
         </span>
         {/* </a> */}
@@ -249,7 +249,7 @@ function WhyChoose() {
                 width={600}
                 height={45}
                 className="rounded-[20px] max-w-screen-xxs lg:max-w-full h-auto align-middle ml-10 lg:ml-0"
-                priority
+                priority={true}
               />
             </div>
           </div>

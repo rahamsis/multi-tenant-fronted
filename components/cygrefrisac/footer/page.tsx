@@ -13,12 +13,12 @@ export default function Footer({ dataWebsite }: { dataWebsite: WebSite }) {
                     <div className="text-2xl font-bold text-white mb-4">
                         <Link href="/" className="">
                             <Image
-                                src="/cygrefrisac/images/cyglogo.jpg"
+                                src={dataWebsite.logo}
                                 alt="Logo de la empresa"
                                 width={300}
                                 height={150}
                                 className="rounded-lg"
-                                priority
+                                priority={true}
                             />
                         </Link>
                     </div>

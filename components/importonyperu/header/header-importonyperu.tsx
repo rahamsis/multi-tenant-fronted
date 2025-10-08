@@ -288,7 +288,7 @@ const HeaderMobile = ({ menu, otherMenus }: HeaderProps) => {
                                 width={150}
                                 height={150}
                                 className="rounded-lg"
-                                priority
+                                priority={true}
                             />
                         </Link>
                     </div>

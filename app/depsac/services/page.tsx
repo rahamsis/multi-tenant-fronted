@@ -30,7 +30,7 @@ function Banner() {
                 width={780}
                 height={500}
                 className="x:absolute lg:relative left-0 x:max-w-[780px] xl:max-w-[680px] 2xl:max-w-[780px] lg:max-w-[650px] h-auto align-middle box-border z-[2] x:top-[-100px] lg:top-[-10px] lg:right-[-100px]"
-                priority
+                priority={true}
               />
             </div>
 
@@ -41,7 +41,7 @@ function Banner() {
                 width={300}
                 height={200}
                 className="relative left-0 xs:max-w-[500px] h-full align-middle box-border z-[1] xs:top-[0px] xs:right-[0px]"
-                priority
+                priority={true}
               />
             </div>
           </div>
@@ -108,7 +108,7 @@ function Item(props: Props) {
           width={300} height={300}
           src={props.image}
           className="max-w-full h-auto align-middle mb-[30px] top-0 relative transform transition-all duration-500 ease-in-out"
-          priority
+          priority={true}
         />
         {/* texto */}
         <h3 ref={nameProduct} className="text-depsac-primary font-semibold text-base leading-5 mb-2 mt-0 relative">{props.name}</h3>
@@ -128,7 +128,7 @@ function Item(props: Props) {
               width={30} height={30}
               src="/depsac/assets/cross.svg"
               className="w-4 h-4 max-w-full mx-auto"
-              priority
+              priority={true}
             />
           </span>
         </a>
@@ -146,7 +146,7 @@ function Content() {
           <div className="w-1/2 lgw-1/4 mb-6">
             <div className="mb-[30px]">
               <div className="inline-block relative mb-5 after:w-[33px] after:h-[33px] after:absolute after:bg-depsac-nosotros after:rounded-[50%] after:right-[-8px] after:bottom-0">
-                <Image src="/depsac/assets/truck.svg" alt="truck" width={45} height={45} className="align-middle" priority />
+                <Image src="/depsac/assets/truck.svg" alt="truck" width={45} height={45} className="align-middle" priority={true} />
               </div>
               <h3 className="text-sm text-depsac-primary mt-0 mb-2 font-medium leading-5">Entrega Rápida</h3>
               <p className="text-sm leading-[22px] text-depsac-wychoose mt-0 mb-4 mx-1">Disfruta de la comodidad de recibir tus muebles de alta calidad de manera rápida y eficiente. Nuestro servicio de envío rápido
@@ -157,7 +157,7 @@ function Content() {
           <div className="w-1/2 lgw-1/4 mb-62">
             <div className="mb-[30px]">
               <div className="inline-block relative mb-5 after:w-[33px] after:h-[33px] after:absolute after:bg-depsac-nosotros after:rounded-[50%] after:right-[-8px] after:bottom-0">
-                <Image src="/depsac/assets/bag.svg" alt="bag" width={45} height={45} className="align-middle" priority />
+                <Image src="/depsac/assets/bag.svg" alt="bag" width={45} height={45} className="align-middle" priority={true} />
               </div>
               <h3 className="text-sm text-depsac-primary mt-0 mb-2 font-medium leading-5">Cotización Sencilla</h3>
               <p className="text-sm leading-[22px] text-depsac-wychoose mt-0 mb-4 mx-1">Simplificamos el proceso de cotización para que puedas obtener rápidamente un presupuesto personalizado. Nuestro sistema fácil de usar
@@ -168,7 +168,7 @@ function Content() {
           <div className="w-1/2 lgw-1/4 mb-62">
             <div className="mb-[30px]">
               <div className="inline-block relative mb-5 after:w-[33px] after:h-[33px] after:absolute after:bg-depsac-nosotros after:rounded-[50%] after:right-[-8px] after:bottom-0">
-                <Image src="/depsac/assets/support.svg" alt="support" width={45} height={45} className="align-middle" priority />
+                <Image src="/depsac/assets/support.svg" alt="support" width={45} height={45} className="align-middle" priority={true} />
               </div>
               <h3 className="text-sm text-depsac-primary mt-0 mb-2 font-medium leading-5">Atención Ininterrumpida</h3>
               <p className="text-sm leading-[22px] text-depsac-wychoose mt-0 mb-4 mx-1">Estamos aquí para ti las 24 horas del día, los 7 días de la semana. Nuestro equipo de atención al cliente está disponible para responder tus
@@ -179,7 +179,7 @@ function Content() {
           <div className="w-1/2 lgw-1/4 mb-62">
             <div className="mb-[30px]">
               <div className="inline-block relative mb-5 after:w-[33px] after:h-[33px] after:absolute after:bg-depsac-nosotros after:rounded-[50%] after:right-[-8px] after:bottom-0">
-                <Image src="/depsac/assets/return.svg" alt="return" width={45} height={45} className="align-middle" priority />
+                <Image src="/depsac/assets/return.svg" alt="return" width={45} height={45} className="align-middle" priority={true} />
               </div>
               <h3 className="text-sm text-depsac-primary mt-0 mb-2 font-medium leading-5">Servicio de Armado Incluido</h3>
               <p className="text-sm leading-[22px] text-depsac-wychoose mt-0 mb-4 mx-1">Simplificamos tu experiencia de compra al ofrecer servicio de armado profesional de muebles de forma gratuita. Con nosotros, no te

@@ -314,10 +314,10 @@ const NavbarMobile = ({ menu, otherMenus }: HeaderProps) => {
                         <Image
                             src="/cygrefrisac/images/cyglogo.jpg"
                             alt="Logo de la empresa"
-                            width={150}
-                            height={150}
-                            className="rounded-lg"
-                            priority
+                            width={130}
+                            height={80}
+                            className="rounded-lg w-auto h-auto"
+                            priority={true}
                         />
                     </div>
                 </Link>

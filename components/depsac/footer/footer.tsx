@@ -26,7 +26,7 @@ export default function Footer() {
                     width={30}
                     height={20}
                     className="max-w-[380px] h-auto align-middle"
-                    priority
+                    priority={true}
                   />
                 </span>
                 <span>Subscríbete a las últimas noticias</span>

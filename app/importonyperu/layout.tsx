@@ -11,6 +11,8 @@ import { PreHeader } from "@/components/importonyperu/preHeader/pre-header";
 
 import { getMenus } from "../utils/actions";
 
+import { TenantProvider } from '../context/TenantContext';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -58,9 +60,11 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <PreHeader />
         <Header menu={result.menus} otherMenus={result.categorias} />
-        <main className="mt-16 lg:mt-0">
-          {children}
-        </main>
+        <TenantProvider tenant={tenant}>
+          <main className="mt-16 lg:mt-0">
+            {children}
+          </main>
+        </TenantProvider>
         <Footer />
         <Whatsapp />
       </body>
