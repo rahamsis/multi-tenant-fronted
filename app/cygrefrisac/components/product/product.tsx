@@ -25,11 +25,9 @@ interface Productos {
 interface ProductProps {
   products: Productos[];
   filteredProducts: Productos[];
-
-  setFilterVisible: (visible: boolean) => void;
 }
 
-const Product = ({ products, filteredProducts, setFilterVisible }: ProductProps) => {
+const Product = ({ products, filteredProducts }: ProductProps) => {
 
   const [productsFiltered, setProductsFiltered] = useState<Productos[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -51,7 +49,7 @@ const Product = ({ products, filteredProducts, setFilterVisible }: ProductProps)
   return (
     <>
       {/* Lista de productos */}
-      {currentProducts.map((product, index) => (
+      {currentProducts.map(product => (
         <div
           key={product.idProducto}
           className="flex flex-col justify-between group hover:shadow-lg transition-all duration-[2000ms] h-full"

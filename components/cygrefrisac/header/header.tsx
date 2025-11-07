@@ -1,7 +1,7 @@
 "use client"
 
 import { WebSite } from "@/types/webSite";
-import { Search, Facebook, Mail, MapPin, Phone, Twitter } from "lucide-react"
+import { Search } from "lucide-react"
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

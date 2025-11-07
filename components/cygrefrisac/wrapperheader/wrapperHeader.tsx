@@ -6,7 +6,7 @@ import Navbar from "../navbar/navbar";
 import { WebSite } from "@/types/webSite";
 import { Menu, OtherMenu } from "@/types/menu";
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 
 interface WrapperHeader {
     dataWebsite: WebSite
