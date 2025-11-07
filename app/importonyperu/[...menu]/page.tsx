@@ -9,8 +9,70 @@ import { notFound } from "next/navigation";
 import { Menu } from "@/types/menu";
 import { Categoria } from "@/types/producto";
 
+import { Metadata } from "next";
+
 interface Props {
     params: Promise<{ menu: string[] }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { menu } = await params;
+
+    const categoriaFromParam = menu?.[0];
+    const subCategoriaFromParam = menu?.[1];
+
+    const headersList = await headers();
+    const host = headersList.get("host") || "";
+    const tenant = host.split(".")[0];
+
+    await getMenus(tenant); // opcional: podrías usar esto para validar la categoría
+
+    const categoria = categoriaFromParam
+        ? categoriaFromParam.replace(/-/g, " ")
+        : "";
+    const subCategoria = subCategoriaFromParam
+        ? subCategoriaFromParam.replace(/-/g, " ")
+        : "";
+
+    const title = subCategoria
+        ? `${subCategoria.toUpperCase()} | ${categoria.toUpperCase()}`
+        : `${categoria.toUpperCase()} | Importony Perú`;
+
+    const description = subCategoria
+        ? `Compra productos de ${subCategoria} en la categoría ${categoria}. Envíos a todo el país con Importony Perú.`
+        : `Explora nuestra categoría de ${categoria}. Productos originales, entrega rápida y garantía.`;
+
+    const url = subCategoria
+        ? `https://tuweb.com/${categoriaFromParam}/${subCategoriaFromParam}`
+        : `https://tuweb.com/${categoriaFromParam}`;
+
+    // 👉 cambia por tus imágenes reales (o dinámicas)
+    const imageUrl = `https://tuweb.com/images/${categoriaFromParam}.jpg`;
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url,
+            type: "website",
+            images: [
+                {
+                    url: imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: `${categoria} ${subCategoria}`,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: [imageUrl],
+        },
+    };
 }
 
 function Banner({ titulo, subTitulo }: { titulo: string, subTitulo: string }) {
@@ -18,11 +80,11 @@ function Banner({ titulo, subTitulo }: { titulo: string, subTitulo: string }) {
         <div className="relative w-full lg:h-full overflow-hidden pt-3 lg:pt-6">
             <div className="bg-importonyperu-Gray w-full lg:py-16 py-8 flex justify-center items-center">
                 <label className="flex items-end">
-                    <h3 className={`${subTitulo ? "text-base font-semibold text-zinc-400" : "text-2xl font-semibold text-zinc-800"}`}>
+                    <h1 className={`${subTitulo ? "text-base font-semibold text-zinc-400" : "text-2xl font-semibold text-zinc-800"}`}>
                         {titulo.toUpperCase().replace(/-/g, " ")}
-                    </h3>
+                    </h1>
                     {subTitulo &&
-                        <h3 className="text-xl lg:text-2xl font-semibold text-zinc-800">/{subTitulo.toUpperCase().replace(/-/g, " ")}</h3>
+                        <h2 className="text-xl lg:text-2xl font-semibold text-zinc-800">/{subTitulo.toUpperCase().replace(/-/g, " ")}</h2>
                     }
                 </label>
             </div>

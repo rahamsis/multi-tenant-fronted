@@ -26,3 +26,9 @@ export interface Marca {
     urlFoto: string;
     activo: boolean;
 }
+
+export interface Banner {
+    idBanner: string;
+    urlBanner: string;
+    posicion: string;
+}

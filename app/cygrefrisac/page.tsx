@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useState, useEffect, useRef, useMemo } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useTenant } from "../context/TenantContext";
-import { Marca, Productos } from "@/types/producto";
-import { getAllBrands, getAllProduct } from "../utils/actions";
+import { Banner, Marca, Productos } from "@/types/producto";
+import { getAllBrands, getAllProduct, getAllBanners } from "../utils/actions";
 import { ModalDetailProduct } from "./components/modal/detailProducts";
 
 const slides = [
@@ -32,17 +32,17 @@ const slides = [
   },
 ]
 
-function HeroBanner() {
+function HeroBanner({ banners }: { banners: Banner[] }) {
   const [current, setCurrent] = useState(0)
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     // Función para avanzar al siguiente slide
-    const next = () => setCurrent((prev) => (prev + 1) % slides.length)
+    const next = () => setCurrent((prev) => (prev + 1) % banners.length)
 
     const interval = setInterval(next, 5000)
     return () => clearInterval(interval) // Limpia el intervalo al actualizar current
-  }, [current]) // <- Al cambiar current, se reinicia el intervalo
+  }, [current, banners]) // <- Al cambiar current, se reinicia el intervalo
 
   const prevSlide = () => {
     setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1))
@@ -52,20 +52,22 @@ function HeroBanner() {
     setCurrent((prev) => (prev + 1) % slides.length)
   }
 
+  if (banners.length === 0) {
+    return <div>Cargando banner...</div>;
+  }
+
   return (
-    <section className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+    <section className="relative w-full h-[400px] md:h-[500px] overflow-hidden content-center">
       <div className="overflow-hidden group"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}>
 
 
         {/* Imagen de fondo */}
-        <div className="absolute inset-0 "
-
-        >
+        <div className="absolute inset-0 ">
           <Image
-            src={slides[current].image}
-            alt={slides[current].title}
+            src={banners[current].urlBanner}
+            alt={banners[current].idBanner}
             className="object-cover w-full h-full transition-all duration-700"
             fill
             priority={true}
@@ -548,8 +550,24 @@ const Marcas = ({ marcas }: MarcasProps) => {
 export default function Home() {
   const { tenant } = useTenant();
 
+  const [banners, setBanners] = useState<Banner[]>([]);
   const [products, setProducts] = useState<Productos[]>([]);
   const [marcas, setMarcas] = useState<Marca[]>([]);
+
+  // llenar los banners
+  useEffect(() => {
+    if (!tenant) return; // evita llamada vac
+
+    async function fetchData() {
+      try {
+        const data = await getAllBanners(tenant);
+        setBanners(data);
+      } catch (error) {
+        console.error("Error obteniendo todos los banners:", error);
+      }
+    }
+    fetchData();
+  }, [tenant]);
 
   // llenar los productos
   useEffect(() => {
@@ -584,7 +602,7 @@ export default function Home() {
 
   return (
     <div className="">
-      <HeroBanner />
+      <HeroBanner banners={banners} />
 
       <ProductDestacados products={products} />
 

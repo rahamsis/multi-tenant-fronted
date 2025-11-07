@@ -1,7 +1,7 @@
 'use server';
 
 import { Menu, OtherMenu } from "@/types/menu";
-import { Marca } from "@/types/producto";
+import { Banner, Marca } from "@/types/producto";
 import { WebSite } from "@/types/webSite";
 
 /* eslint-disable */
@@ -270,5 +270,30 @@ export async function getAllBrands(tenant: string) {
     } catch (error) {
         console.error('Error al obtener todas las marcas:', error);
         throw new Error("Error al obtener todas las marcas");
+    }
+}
+
+export async function getAllBanners(tenant: string) {
+    try {
+        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/all-banners`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "X-Tenant-ID": tenant,
+                "accept": "application/json"
+            },
+            next: { revalidate: 0 }
+        });
+
+        const data = await response.json();
+
+        return data.map((row: Banner) => ({
+            idBanner: row.idBanner,
+            urlBanner: row.urlBanner,
+            posicion: row.posicion,
+        }));
+    } catch (error) {
+        console.error("Error al traer los banners", error);
+        throw new Error("Error al traer los banners")
     }
 }
