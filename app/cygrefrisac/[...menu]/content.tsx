@@ -116,7 +116,6 @@ const Products = ({ initialProducts, }: { initialProducts: Productos[]; }) => {
     const [products] = useState<Productos[]>(initialProducts);
     const [productsFiltered, setProductsFiltered] = useState<Productos[]>(initialProducts);
     const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
-    const [filterVisible, setFilterVisible] = useState(false);
 
     // Se llama cada vez que el Sidebar cambia filtros
     const handleFiltersChange = (filters: Record<string, string[]>) => {
@@ -143,7 +142,6 @@ const Products = ({ initialProducts, }: { initialProducts: Productos[]; }) => {
                         <Product
                             products={products}
                             filteredProducts={productsFiltered}
-                            setFilterVisible={setFilterVisible}
                         />
                     </div>) : (
                     <div className="w-full text-center pt-20">
