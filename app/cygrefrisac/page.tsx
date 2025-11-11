@@ -504,14 +504,14 @@ const Marcas = ({ marcas }: MarcasProps) => {
         >
           {marcas.map((m, idx) => (
             <div key={idx} style={itemStyle} className="shrink-0">
-              <div className="mx-auto flex h-14 w-32 items-center justify-center">
+              <div className="mx-auto flex h-28 w-44 items-center justify-center">
                 <Image
                   src={m.urlFoto}
                   alt={`Marca ${idx + 1}`}
                   width={140}
-                  height={50}
-                  style={{ height: "auto", width: "auto" }}
-                  className="object-contain h-auto transition duration-300 "
+                  height={70}
+                  style={{ height: "100%", width: "100%" }}
+                  className="object-contain h-auto transition duration-300"
                   priority={idx < visible}
                 />
               </div>
