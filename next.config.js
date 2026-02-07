@@ -10,6 +10,7 @@ const nextConfig = {
             },
         ]
     },
+    allowedDevOrigins: ['http://importonyperu.local'],
 }
 
 module.exports = nextConfig

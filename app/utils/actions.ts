@@ -242,8 +242,8 @@ export async function getPortadaCatalogs() {
 
         return data;
     } catch (error) {
-        console.error('Error al obtener los catalogos:', error);
-        throw new Error("Error al obtener los catalogos");
+        console.error('Error al obtener las portadas de catalogos:', error);
+        throw new Error("Error al obtener las portadas de catalogos");
     }
 }
 
@@ -295,5 +295,29 @@ export async function getAllBanners(tenant: string) {
     } catch (error) {
         console.error("Error al traer los banners", error);
         throw new Error("Error al traer los banners")
+    }
+}
+
+export async function fetchUserLogin(tenant: string, email: string, password: string) {
+    try {
+        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "X-Tenant-ID": tenant,
+                'accept': '/'
+            },
+            body: JSON.stringify({
+                email,
+                password
+            }),
+            next: { revalidate: 0 }
+        });
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        return null;
     }
 }

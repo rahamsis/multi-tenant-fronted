@@ -2,12 +2,16 @@ function MainFooter() {
     return (
         <footer className="w-full bg-zinc-900 text-zinc-400">
             <div className="mx-auto max-w-[1202px]  px-3">
-                <div className="flex flex-wrap mt-0 gx-5 pb-10 pt-[52px]">
-                    <div className="px-6 w-full mt-12 md:w-1/2 lg:w-1/4 ">
+                <div className="flex flex-wrap mt-0 pb-10 pt-[52px]">
+                    <div className="px-6 w-full mt-12 md:w-1/2 lg:w-1/4 flex flex-col">
                         <h6 className="mb-8 text-lg text-zinc-200 font-semibold">PRODUCTOS</h6>
-                        <p className="text-sm text-gray-500">Catalógos</p>
-                        <p className="text-sm text-gray-500 my-3">Novedades</p>
-                        <p className="text-sm text-gray-500">Los Más Vendidos</p>
+                        <div className="flex flex-col gap-3">
+                            <a className="text-sm text-gray-500" href="http://importonyperu.local/catalogos">Catalógos</a>
+                            <a className="text-sm text-gray-500" href="http://importonyperu.local/automatizacion">Máquinas automatizadas</a>
+                            <p className="text-sm text-gray-500">Novedades</p>
+                            <p className="text-sm text-gray-500">Los Más Vendidos</p>
+                        </div>
+
                     </div>
                     <div className="px-6 w-full mt-12 md:w-1/2 lg:w-1/4">
                         <h6 className="mb-8 text-lg text-zinc-200 font-semibold">NUESTRA EMPRESA</h6>
