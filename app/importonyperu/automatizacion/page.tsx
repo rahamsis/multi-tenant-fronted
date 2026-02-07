@@ -55,6 +55,8 @@ function ContentAutomatizacion() {
     const [isPdfViewerOpen, setIsPdfViewerOpen] = useState(false);
     const [selectedManual, setSelectedManual] = useState<string>("");
 
+    const [loadingManual, setLoadingManual] = useState<string | null>(null);
+
     useEffect(() => {
         async function fetchBancos() {
             const res = await fetch("api/manuals?bucket=manuales-importony");
@@ -168,9 +170,10 @@ function ContentAutomatizacion() {
                                 <button
                                     onClick={async () => {
                                         try {
+                                            setLoadingManual(manual.name);
                                             // Pedimos el PDF como blob desde tu endpoint protegido
                                             const res = await fetch(manual.url, {
-                                                headers: {'x-request-source': 'internal-app'}, // este header autoriza la petición}
+                                                headers: { 'x-request-source': 'internal-app' }, // este header autoriza la petición}
                                                 credentials: 'include', // o token si usas auth
                                             });
 
@@ -186,15 +189,49 @@ function ContentAutomatizacion() {
                                             // Lo pasamos al visor
                                             setSelectedManual(blobUrl);
                                             setIsPdfViewerOpen(true);
+                                            // setLoading(false);
 
                                         } catch (error) {
                                             console.error('❌ Error cargando PDF:', error);
+                                            setLoadingManual(null); // ocultar spinner si hay error
+                                        } finally {
+                                            setLoadingManual(null); // ocultar spinner sin importar si hubo error
                                         }
                                     }}
                                     className="w-3/4 h-10 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500 transition text-sm whitespace-nowrap overflow-hidden text-ellipsis"
                                 >
-                                    <span className="hidden lg:block">Leer ahora</span>
-                                    <span className="lg:hidden block">Leer</span>
+                                    {loadingManual === manual.name ? (
+                                        <div className="flex justify-center items-center space-x-2">
+                                            <svg
+                                                className="animate-spin h-5 w-5 text-white"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <circle
+                                                    className="opacity-25"
+                                                    cx="12"
+                                                    cy="12"
+                                                    r="10"
+                                                    stroke="currentColor"
+                                                    strokeWidth="4"
+                                                ></circle>
+                                                <path
+                                                    className="opacity-75"
+                                                    fill="currentColor"
+                                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                                                ></path>
+                                            </svg>
+                                            <span>Cargando ...</span>
+                                        </div>) :
+                                        (
+                                            <>
+                                                <span className="hidden lg:block">Leer ahora</span>
+                                                <span className="lg:hidden block">Leer</span>
+                                            </>
+                                        )
+                                    }
+
                                 </button>
                             </div>
                         </div>
@@ -210,6 +247,7 @@ function ContentAutomatizacion() {
                         // Liberamos el blob para no saturar memoria
                         URL.revokeObjectURL(selectedManual);
                         setIsPdfViewerOpen(false);
+                        setLoadingManual(null); // ocultar spinner
                     }}
                 />
             )}
