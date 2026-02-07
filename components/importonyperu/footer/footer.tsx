@@ -6,8 +6,8 @@ function MainFooter() {
                     <div className="px-6 w-full mt-12 md:w-1/2 lg:w-1/4 flex flex-col">
                         <h6 className="mb-8 text-lg text-zinc-200 font-semibold">PRODUCTOS</h6>
                         <div className="flex flex-col gap-3">
-                            <a className="text-sm text-gray-500" href="http://importonyperu.local/catalogos">Catalógos</a>
-                            <a className="text-sm text-gray-500" href="http://importonyperu.local/automatizacion">Máquinas automatizadas</a>
+                            <a className="text-sm text-gray-500" href="https://importonyperu.com.pe/catalogos">Catalógos</a>
+                            <a className="text-sm text-gray-500" href="https://importonyperu.com.pe/automatizacion">Máquinas automatizadas</a>
                             <p className="text-sm text-gray-500">Novedades</p>
                             <p className="text-sm text-gray-500">Los Más Vendidos</p>
                         </div>
