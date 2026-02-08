@@ -24,6 +24,18 @@ export function LoginForm({ onLoginSuccess }: LoginFormProps) {
         setError('');
         setIsLoading(true);
 
+        // 📌 Obtener el User-Agent (dispositivo)
+        const device = navigator.userAgent;
+        // 📌 Obtener la IP pública desde una API externa
+        let ipAdress = "Unknown";
+        try {
+            const res = await fetch("https://api64.ipify.org?format=json");
+            const data = await res.json();
+            ipAdress = data.ip;
+        } catch (error) {
+            console.error("Error obteniendo la IP:", error);
+        }
+
         try {
             // Simular llamada API
             await new Promise(resolve => setTimeout(resolve, 1000));
@@ -33,7 +45,7 @@ export function LoginForm({ onLoginSuccess }: LoginFormProps) {
                 return;
             }
 
-            const user = await fetchUserLogin(tenant, email, password);
+            const user = await fetchUserLogin(tenant, email, password, device, ipAdress);
 
             if (!user?.user) {
                 console.log('Error de login:', user.message);

@@ -298,7 +298,7 @@ export async function getAllBanners(tenant: string) {
     }
 }
 
-export async function fetchUserLogin(tenant: string, email: string, password: string) {
+export async function fetchUserLogin(tenant: string, email: string, password: string, device: string, ipAdress: string) {
     try {
         const response = await fetch(`${process.env.APP_BACK_END}/backendApi/login`, {
             method: 'POST',
@@ -309,7 +309,9 @@ export async function fetchUserLogin(tenant: string, email: string, password: st
             },
             body: JSON.stringify({
                 email,
-                password
+                password,
+                device,
+                ipAdress
             }),
             next: { revalidate: 0 }
         });
