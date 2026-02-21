@@ -143,9 +143,8 @@ const MyPDFViewer: React.FC<PDFViewerProps> = ({ fileUrl, onClose }) => {
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 overflow-y-auto overscroll-contain">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-3xl max-h-full p-4 flex flex-col">
-
         {/* // <div className="flex min-h-screen flex-col bg-background mt-11 items-center border-2 border-red-500"> */}
         {/* Controles */}
         <div className="  sticky z-10 flex items-center justify-between border-b pb-3 bg-background/95 px-4  backdrop-blur">
