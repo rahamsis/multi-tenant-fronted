@@ -1,7 +1,9 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useTenant } from "@/app/context/TenantContext";
+import { useEffect, useRef, useState } from "react";
+import { getAllProduct } from "../utils/actions";
 
 function Banner() {
   return (
@@ -142,7 +144,54 @@ function Item(props: Props) {
   );
 }
 
+interface Productos {
+  idProducto: number;
+  categoria: string;
+  subCategoria: string;
+  marca: string;
+  nombre: string;
+  precio: number;
+  color: string
+  descripcion: string;
+  destacado: boolean;
+  nuevo: boolean;
+  masVendido: boolean;
+  activo: boolean;
+  fotos: string[];
+}
+
 function Products() {
+
+  const { tenant } = useTenant();
+
+  const [products, setProducts] = useState<Productos[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const productsPerPage = 3;
+
+  // llenar los productos
+  useEffect(() => {
+    if (!tenant) return; // evita llamada varias veces
+
+    async function fetchData() {
+      try {
+        const data = await getAllProduct(tenant);
+        setProducts(data);
+      } catch (error) {
+        console.error("Error obteniendo todos los productos desde /productos:", error);
+      }
+    }
+    fetchData();
+  }, [tenant]);
+
+  // paginación
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
+
+  // productos paginados (separado de la vista)
+  const paginatedProducts = products
+    .sort(() => Math.random() - 0.5)
+    .slice(startIndex, endIndex);
 
   return (
     <div className="pt-28 lg:pb-28 pb-0 px-3">
@@ -162,17 +211,9 @@ function Products() {
           </div>
           {/* <!-- End Column 1 --> */}
 
-          {/* <!-- Start Column 2 --> */}
-          <Item image={"/depsac/images/productos/maneurop.png"} name={"Cmpresor hermetico Danfoss"} price={"00.00"} description={"Esta es una pequeña descripción del producto"} />
-          {/* <!-- End Column 2 --> */}
-
-          {/* <!-- Start Column 3 --> */}
-          <Item image={"/depsac/images/productos/scroll-copeland.png"} name={"Compresor hermetico Scroll"} price={"00.00"} description={""} />
-          {/* <!-- End Column 3 --> */}
-
-          {/* <!-- Start Column 4 --> */}
-          <Item image={"/depsac/images/productos/tornillo-bitzer.png"} name={"Compresor semi hermetico Tornillo"} price={"00.00"} description={""} />
-          {/* <!-- End Column 4 --> */}
+          {paginatedProducts.map((product) => (
+            <Item key={product.idProducto} image={product.fotos[0]} name={product.nombre} price={product.precio.toString()} description={product.descripcion} />
+          ))}
 
         </div>
       </div>
@@ -268,13 +309,13 @@ function WeHelp() {
           <div className="lg:w-[58.3%] xs:w-full lg:mb-0 mb-10 ml-3 lg:ml-0">
             <div className="grid grid-cols-depsac-weHelp relative after:absolute after:w-[255px] after:h-[217px] after:bg-depsac-weHelp after:bg-contain after:bg-no-repeat after:z-[-1] after:top-[-85px] lg:after:left-[-70px] after:left-[-110px]">
               <div className="relative col-start-1 col-end-[18] row-start-1 row-end-[27]">
-                <Image src="/depsac/images/proyectos/proyecto1.png" alt="image" width={500} height={45} className="rounded-[20px] max-w-full align-middle" priority />
+                <Image src="/depsac/images/proyectos/proyecto10.jpg" alt="image" width={500} height={45} className="rounded-[20px] max-w-full align-middle" priority />
               </div>
               <div className="relative col-start-[19] col-end-[27] row-start-1 row-end-[5]">
-                <Image src="/depsac/images/proyectos/proyecto3.png" alt="image" width={500} height={45} className="rounded-[20px] max-w-full align-middle" priority />
+                <Image src="/depsac/images/proyectos/proyecto30.jpg" alt="image" width={500} height={45} className="rounded-[20px] max-w-full align-middle" priority />
               </div>
               <div className="relative col-start-[14] col-end-[27] row-start-6 row-end-[27] pt-5">
-                <Image src="/depsac/images/proyectos/proyecto2.png" alt="image" width={500} height={45} className="rounded-[20px] max-w-full align-middle" priority />
+                <Image src="/depsac/images/proyectos/proyecto20.jpg" alt="image" width={500} height={45} className="rounded-[20px] max-w-full align-middle" priority />
               </div>
             </div>
           </div>
@@ -313,12 +354,12 @@ function PopularProduct() {
   return (
     <div className="pt-0 pr-0 pb-28 pl-0">
       <div className="max-w-[1320px] ml-auto mr-auto">
-        <div className="flex flex-wrap mt-0 mr-[-0.75px] ml-[-0.75] xs:mx-4 ss:mx-0">
+        <div className="flex flex-wrap mt-0 xs:mx-4 ss:mx-0">
 
           <div className="w-full lg:w-[33.33%] mb-0 lg:px-3 py-3 lg:py-0">
             <div className="flex">
-              <div className="mr-10px relative basis-[120px] grow-0 shrink-0 after:absolute after:rounded-[20px] after:bg-depsac-popularProducts after:w-24 after:h-24 after:top-[50%] after:left-[50%] after:translate-x-[-50%] after:translate-y-[-50%] after:z-[-1]">
-                <Image src="/depsac/images/productos/unidadCondensadoraDanfoss.png" alt="image" width={300} height={45} className="max-w-full h-auto align-middle" priority />
+              <div className="mr-10px relative basis-[100px] grow-0 shrink-0 after:absolute after:rounded-[20px] after:bg-depsac-popularProducts after:w-24 after:h-24 after:top-[50%] after:left-[50%] after:translate-x-[-50%] after:translate-y-[-50%] after:z-[-1]">
+                <Image src="/depsac/images/productos/unidadCondensadoraDanfoss.png" alt="image" width={300} height={45} className="mt-6 max-w-full h-auto align-middle" priority />
               </div>
               <div className="pt-4">
                 <h3 className="text-sm font-bold text-depsac-primary mt-0 mb-2 leading-[1.2]">Unidades condensadoras indoor</h3>
@@ -348,7 +389,7 @@ function PopularProduct() {
           <div className="w-full lg:w-[33.33%] mb-0 lg:px-3 py-3 lg:py-0">
             <div className="flex">
               <div className="mr-10px relative basis-[120px] grow-0 shrink-0 after:absolute after:rounded-[20px] after:bg-depsac-popularProducts after:w-24 after:h-24 after:top-[50%] after:left-[50%] after:translate-x-[-50%] after:translate-y-[-50%] after:z-[-1]">
-                <Image src="/depsac/images/productos/unidadCondensadoraRussell.png" alt="image" width={300} height={45} className="max-w-full h-auto align-middle" priority />
+                <Image src="/depsac/images/productos/unidadCondensadoraRussell.png" alt="image" width={300} height={45} className="mt-3 max-w-full h-auto align-middle" priority />
               </div>
               <div className="pt-4">
                 <h3 className="text-sm font-bold text-depsac-primary mt-0 mb-2 leading-[1.2]">unidades condensadoras Outdoor</h3>

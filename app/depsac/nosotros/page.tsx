@@ -66,37 +66,37 @@ function WhyChoose() {
                             <div className="w-1/2 pr-2 lg:pr-0">
                                 <div className="mb-8">
                                     <div className="inline-block relative mb-5">
-                                        <Image src="/depsac/assets/truck.svg" alt="truck" width={45} height={45} className="align-middle" priority />
+                                         <i className="bi bi-crosshair text-4xl"></i>
                                     </div>
-                                    <h3 className="text-sm text-depsac-primary mt-0 mb-2 font-medium leading-[1.2]">Entrega Rápida</h3>
-                                    <p className="text-sm leading-6 text-depsac-wychoose mt-0 mb-4 mx-1">Recibie tus muebles de alta calidad de manera rápida y eficiente. Nuestro servicio de envío rápido
-                                        garantiza que tus piezas seleccionadas lleguen a tu puerta en el menor tiempo posible.</p>
+                                    <h3 className="text-sm text-depsac-primary mt-0 mb-2 font-medium leading-[1.2]">Misión</h3>
+                                    <p className="text-sm leading-6 text-depsac-wychoose mt-0 mb-4 mx-1">Brindar productos y servicios de calidad, ofreciendo equipos y accesorios 
+                                        de las marcas mas reconocidas del rubro de la refrigeración.</p>
                                 </div>
                             </div>
 
                             <div className="w-1/2 pl-2 lg:pl-0">
                                 <div className="mb-8">
                                     <div className="inline-block relative mb-5">
-                                        <Image src="/depsac/assets/bag.svg" alt="bag" width={45} height={45} className="align-middle" priority />
+                                        <i className="bi bi-lightbulb text-4xl"></i>
                                     </div>
-                                    <h3 className="text-sm text-depsac-primary mt-0 mb-2 font-medium leading-[1.2]">Cotización Sencilla</h3>
-                                    <p className="text-sm leading-6 text-depsac-wychoose mt-0 mb-4 mx-1">Simplificamos el proceso de cotización para que puedas obtener rápidamente un presupuesto personalizado. Obtén precios transparentes y descubre
-                                        cómo hacer realidad tus proyectos de decoración nunca fue tan sencillo.</p>
+                                    <h3 className="text-sm text-depsac-primary mt-0 mb-2 font-medium leading-[1.2]">Visión</h3>
+                                    <p className="text-sm leading-6 text-depsac-wychoose mt-0 mb-4 mx-1">Ser una empresa líder en el rubro de la refrigeración, desarrollando y brindando 
+                                        servicio de calidad de acuerdo a las innovaciones y exigencias del mercado.</p>
                                 </div>
                             </div>
 
                             <div className="w-1/2 pr-2 lg:pr-0">
                                 <div className="mb-8">
                                     <div className="inline-block relative mb-5">
-                                        <Image src="/depsac/assets/support.svg" alt="bag" width={45} height={45} className="align-middle" priority />
+                                        <i className="bi bi-buildings text-4xl"></i>
                                     </div>
-                                    <h3 className="text-sm text-depsac-primary mt-0 mb-2 font-medium leading-[1.2]">Atención Ininterrumpida</h3>
-                                    <p className="text-sm leading-6 text-depsac-wychoose mt-0 mb-4 mx-1">Nuestro equipo de atención al cliente está disponible para responder tus
-                                        preguntas, brindarte asesoramiento experto y garantizar una experiencia de compra sin contratiempos</p>
+                                    <h3 className="text-sm text-depsac-primary mt-0 mb-2 font-medium leading-[1.2]">Cultura de la Empresa</h3>
+                                    <p className="text-sm leading-6 text-depsac-wychoose mt-0 mb-4 mx-1">En nuestra empresa fomentamos un ambiente de respeto, innovación y colaboración. Creemos 
+                                        en el trabajo en equipo, el aprendizaje constante y el compromiso con nuestros clientes. Valoramos la creatividad y la responsabilidad, construyendo juntos un futuro sostenible y lleno de oportunidades.</p>
                                 </div>
                             </div>
 
-                            <div className="w-1/2 pl-2 lg:pl-0">
+                            {/* <div className="w-1/2 pl-2 lg:pl-0">
                                 <div className="mb-8">
                                     <div className="inline-block relative mb-5">
                                         <Image src="/depsac/assets/return.svg" alt="return" width={45} height={45} className="align-middle" priority />
@@ -104,7 +104,7 @@ function WhyChoose() {
                                     <h3 className="text-sm text-depsac-primary mt-0 mb-2 font-medium leading-[1.2]">Servicio de Armado Incluido</h3>
                                     <p className="text-sm leading-6 text-depsac-wychoose mt-0 mb-4 mx-1">Con nosotros, no te preocuparás por ensamblar tus nuevos muebles, ya que nuestro equipo capacitado se encargará de todo. </p>
                                 </div>
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>
@@ -112,7 +112,7 @@ function WhyChoose() {
                     <div className="lg:w-[41.67%] w-full mt-10 lg:mt-0">
                         <div className="relative after:absolute after:w-[300px] lg:after:w-[500px] after:h-[200px] after:bg-depsac-whychoose after:bg-no-repeat after:bg-contain after:content-normal after:top-[-80px] after:left-[-95px] after:z-[-1]">
                             <Image
-                                src="/depsac/images/proyectos/proyecto1.png"
+                                src="/depsac/images/nosotros/nosotros.jpg"
                                 alt="ropero2"
                                 width={600}
                                 height={600}

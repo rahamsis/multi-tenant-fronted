@@ -1,7 +1,9 @@
 'use client'
+import { getAllProduct } from "@/app/utils/actions";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useTenant } from "@/app/context/TenantContext";
+import { useEffect, useRef, useState } from "react";
 
 function Banner() {
   return (
@@ -97,7 +99,7 @@ function Item(props: Props) {
   }
 
   return (
-    <div className="w-full lg:w-1/4 mb-0 px-3 mt-11 lg:mt-0" onMouseEnter={() => window.innerWidth >= 480 ? addElementsProduct() : null} onMouseLeave={quitElementsProduct}>
+    <div className="flex justify-center w-full lg:w-1/4 mb-0 px-3 mt-11 lg:mt-0" onMouseEnter={() => window.innerWidth >= 480 ? addElementsProduct() : null} onMouseLeave={quitElementsProduct}>
       <button className="text-center block relative pb-[50px]  cursor-pointer bottom-0  after:absolute" >
         {/* fondo */}
         <span ref={background} className="w-full bottom-0 left-0 h-3/4 bg-depsac-products absolute rounded-[10px] transition-all duration-500 ease-in-out origin-bottom scale-y-0 opacity-0 "></span>
@@ -112,26 +114,26 @@ function Item(props: Props) {
         />
         {/* texto */}
         <h3 ref={nameProduct} className="text-depsac-primary font-semibold text-base leading-5 mb-2 mt-0 relative">{props.name}</h3>
+        {/* description */}
         <h3 ref={description} className="hidden text-depsac-primary h-[70px] -mt-[15px] text-center text-base leading-5 mb-2 relative">
-          {props.name}
+          {props.description}
         </h3>
 
         {/* <strong className="text-depsac-primary font-extrabold text-lg relative">S/ {props.price}</strong> */}
         <p ref={btnCotizar} className="text-center relative pt-3" onClick={goToContact}><Link href="/contact" className="font-extrabold pt-3 pr-[30px] pb-3 pl-[30px] rounded-[30px] text-depsac-fondo_claro bg-depsac-primary border-depsac-primary">Cotizar</Link></p>
 
-
         {/* boton plus */}
-        <a href="/shop">
-          <span ref={btnPlus} onMouseEnter={showDescription} onMouseLeave={hideDescription} className="flex absolute w-9 h-9 left-[46%] bg-depsac-primary bottom-4 mb-[-17.5px] text-center items-center rounded-[50%] transition-depsac-products opacity-0">
-            <Image
-              alt={"product"}
-              width={30} height={30}
-              src="/depsac/assets/cross.svg"
-              className="w-4 h-4 max-w-full mx-auto"
-              priority={true}
-            />
-          </span>
-        </a>
+        {/* <a href=""> */}
+        <span ref={btnPlus} onMouseEnter={showDescription} onMouseLeave={hideDescription} className="flex absolute w-9 h-9 left-[46%] bg-depsac-primary bottom-4 mb-[-17.5px] text-center items-center rounded-[50%] transition-products opacity-0">
+          <Image
+            alt={"product"}
+            width={30} height={30}
+            src="/depsac/assets/cross.svg"
+            className="w-4 h-4 max-w-full mx-auto"
+            priority={true}
+          />
+        </span>
+        {/* </a> */}
 
       </button>
     </div>
@@ -193,7 +195,55 @@ function Content() {
   );
 }
 
+interface Productos {
+  idProducto: number;
+  categoria: string;
+  subCategoria: string;
+  marca: string;
+  nombre: string;
+  precio: number;
+  color: string
+  descripcion: string;
+  destacado: boolean;
+  nuevo: boolean;
+  masVendido: boolean;
+  activo: boolean;
+  fotos: string[];
+}
+
 function Products() {
+
+  const { tenant } = useTenant();
+
+  const [products, setProducts] = useState<Productos[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const productsPerPage = 3;
+
+  // llenar los productos
+  useEffect(() => {
+    if (!tenant) return; // evita llamada varias veces
+
+    async function fetchData() {
+      try {
+        const data = await getAllProduct(tenant);
+        setProducts(data);
+      } catch (error) {
+        console.error("Error obteniendo todos los productos desde /productos:", error);
+      }
+    }
+    fetchData();
+  }, [tenant]);
+
+  // paginación
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
+
+  // productos paginados (separado de la vista)
+  const paginatedProducts = products
+    .sort(() => Math.random() - 0.5)
+    .slice(startIndex, endIndex);
+
   return (
     <div className="pt-0 pb-28">
       <div className="max-w-[1320px] mx-auto">
@@ -209,17 +259,9 @@ function Products() {
           </div>
           {/* <!-- End Column 1 --> */}
 
-          {/* <!-- Start Column 2 --> */}
-          <Item image={"/depsac/images/productos/valvula-expansion-electronica.png"} name={"Mesa de Noche"} price={"00.00"} />
-          {/* <!-- End Column 2 --> */}
-
-          {/* <!-- Start Column 3 --> */}
-          <Item image={"/depsac/images/productos/valvula-expansion-termostatica.png"} name={"Cama 2 plz"} price={"00.00"} />
-          {/* <!-- End Column 3 --> */}
-
-          {/* <!-- Start Column 4 --> */}
-          <Item image={"/depsac/images/productos/tiro-forzado-mipal.png"} name={"Ropero 3 Puertas"} price={"00.00"} />
-          {/* <!-- End Column 4 --> */}
+          {paginatedProducts.map((product) => (
+            <Item key={product.idProducto} image={product.fotos[0]} name={product.nombre} price={product.precio.toString()} />
+          ))}
 
         </div>
       </div>

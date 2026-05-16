@@ -384,7 +384,7 @@ const BottomBanner = () => {
         <div className="hidden md:grid md:grid-cols-3 gap-4">
           <div className="relative w-full h-64">
             <Image
-              src="/cygrefrisac/images/postbanner1.jpg"
+              src="/cygrefrisac/images/postbanner10.jpg"
               alt="Banner 1"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -393,7 +393,7 @@ const BottomBanner = () => {
           </div>
           <div className="relative w-full h-64">
             <Image
-              src="/cygrefrisac/images/postbanner2.jpg"
+              src="/cygrefrisac/images/postbanner20.jpg"
               alt="Banner 2"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -402,7 +402,7 @@ const BottomBanner = () => {
           </div>
           <div className="relative w-full h-64">
             <Image
-              src="/cygrefrisac/images/postbanner3.jpg"
+              src="/cygrefrisac/images/postbanner30.jpg"
               alt="Banner 3"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"

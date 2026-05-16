@@ -6,6 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { headers } from "next/headers";
 import Footer from '@/components/depsac/footer/footer';
 import Header from '@/components/depsac/header/header';
+import { TenantProvider } from '../context/TenantContext';
 import Whatsapp from '../../components/depsac/whatsapp/whatsapp';
 
 import { getMenus } from "../utils/actions";
@@ -46,9 +47,11 @@ export default async function RootLayout({ children, }: { children: React.ReactN
     <html lang="en">
       <body className={inter.className}>
         <Header menu={result.menus} otherMenus={result.categorias} />
-        <main>
+        <TenantProvider tenant={tenant}>
+          <main>
           {children}
         </main>
+        </TenantProvider>        
         <Footer />
         <Whatsapp />
       </body>

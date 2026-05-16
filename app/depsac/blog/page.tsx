@@ -59,7 +59,7 @@ function BlogSection() {
                         <div className="post-entry">
                             <a href="#" className="block mb-5 text-depsac-primary ">
                                 <Image
-                                    src="/depsac/images/proyectos/proyecto1.png"
+                                    src="/depsac/images/proyectos/proyecto10.jpg"
                                     alt="image"
                                     width={600}
                                     height={200}
@@ -80,7 +80,7 @@ function BlogSection() {
                         <div className="post-entry">
                             <a href="#" className="block mb-5 text-depsac-primary ">
                                 <Image
-                                    src="/depsac/images/proyectos/proyecto2.png"
+                                    src="/depsac/images/proyectos/proyecto20.jpg"
                                     alt="image"
                                     width={600}
                                     height={200}
@@ -101,7 +101,7 @@ function BlogSection() {
                         <div className="post-entry">
                             <a href="#" className="block mb-5 text-depsac-primary ">
                                 <Image
-                                    src="/depsac/images/proyectos/proyecto3.png"
+                                    src="/depsac/images/proyectos/proyecto30.jpg"
                                     alt="image"
                                     width={600}
                                     height={200}
