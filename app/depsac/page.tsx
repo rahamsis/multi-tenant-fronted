@@ -71,6 +71,7 @@ function Item(props: Props) {
   const description = useRef<HTMLHeadingElement>(null);
   const nameProduct = useRef<HTMLHeadingElement>(null);
   const btnCotizar = useRef<HTMLParagraphElement>(null);
+  const descriptionContainer = useRef<HTMLDivElement>(null);
 
   const addElementsProduct = () => {
     imgProduct.current?.classList.remove('translate-y-0')
@@ -91,12 +92,18 @@ function Item(props: Props) {
   }
 
   function showDescription() {
+    descriptionContainer.current?.classList.add('-translate-y-10')
+    imgProduct.current?.classList.remove('mb-7')
+
     nameProduct.current?.classList.add('hidden')
     btnCotizar.current?.classList.add('hidden')
     description.current?.classList.remove('hidden')
   }
 
   const hideDescription = () => {
+    descriptionContainer.current?.classList.remove('-translate-y-10')
+    imgProduct.current?.classList.add('mb-7')
+
     nameProduct.current?.classList.remove('hidden')
     btnCotizar.current?.classList.remove('hidden')
     description.current?.classList.add('hidden')
@@ -104,31 +111,50 @@ function Item(props: Props) {
 
   return (
     <div className="flex justify-center w-full lg:w-1/4 mb-0 px-3 mt-11 lg:mt-0" onMouseEnter={() => window.innerWidth >= 480 ? addElementsProduct() : null} onMouseLeave={quitElementsProduct}>
-      <button className="text-center block relative pb-[50px]  cursor-pointer bottom-0  after:absolute" >
+      <button className="text-center relative pb-[50px] cursor-pointer flex flex-col h-full w-full">
         {/* fondo */}
-        <span ref={background} className="w-full bottom-0 left-0 h-3/4 bg-depsac-products absolute rounded-[10px] transition-all duration-500 ease-in-out origin-bottom scale-y-0 opacity-0 "></span>
-        {/* imagen */}
+        <span
+          ref={background}
+          className="w-full bottom-0 left-0 h-3/4 bg-depsac-products absolute rounded-[10px] transition-all duration-500 ease-in-out origin-bottom scale-y-0 opacity-0 z-0"
+        ></span>
         <Image
           ref={imgProduct}
           alt={"product"}
-          width={300} height={300}
+          width={300}
+          height={300}
           src={props.image}
-          className="max-w-full h-auto align-middle mb-[30px] top-0 relative transform transition-all duration-500 ease-in-out"
+          className="max-w-full h-[300px] object-contain align-middle mb-7 top-0 relative transform transition-all duration-500 ease-in-out"
           priority={true}
         />
-        {/* texto */}
-        <h3 ref={nameProduct} className="text-depsac-primary font-semibold text-base leading-5 mb-2 mt-0 relative">{props.name}</h3>
-        {/* description */}
-        <h3 ref={description} className="hidden text-depsac-primary h-[70px] -mt-[15px] text-center text-base leading-5 mb-2 relative">
-          {props.description}
-        </h3>
+        {/* contenedor texto */}
+        <div ref={descriptionContainer}
+          className="flex flex-col justify-center items-center h-[120px] mt-auto relative overflow-hidden mx-2">
 
-        {/* <strong className="text-depsac-primary font-extrabold text-lg relative">S/ {props.price}</strong> */}
-        <p ref={btnCotizar} className="text-center relative pt-3" onClick={goToContact}><Link href="/contact" className="font-extrabold pt-3 pr-[30px] pb-3 pl-[30px] rounded-[30px] text-depsac-fondo_claro bg-depsac-primary border-depsac-primary">Cotizar</Link></p>
+          {/* nombre */}
+          <h3 ref={nameProduct} className="text-depsac-primary font-semibold text-base leading-5 mb-2"> {props.name}</h3>
+
+          {/* descripción */}
+          <h3 ref={description}
+            className="hidden text-depsac-primary text-justify text-base leading-5 max-h-[200px] overflow-hidden">{props.description}</h3>
+
+          {/* botón */}
+          <p ref={btnCotizar} className="text-center pt-3" onClick={goToContact}>
+            <Link href="/contact" className="font-extrabold pt-3 pr-[30px] pb-3 pl-[30px] rounded-[30px] text-depsac-fondo_claro bg-depsac-primary border-depsac-primary">
+              Cotizar
+            </Link>
+          </p>
+        </div>
 
         {/* boton plus */}
         {/* <a href=""> */}
-        <span ref={btnPlus} onMouseEnter={showDescription} onMouseLeave={hideDescription} className="flex absolute w-9 h-9 left-[46%] bg-depsac-primary bottom-4 mb-[-17.5px] text-center items-center rounded-[50%] transition-products opacity-0">
+        <span
+          ref={btnPlus}
+          // onMouseEnter={showDescription}
+          onClick={showDescription}
+          onMouseLeave={hideDescription}
+          className="flex absolute z-50 w-9 h-9 left-[46%] bg-depsac-primary bottom-4 mb-[-17.5px] text-center items-center rounded-[50%] transition-products opacity-0"
+        >
+          {/* <span ref={btnPlus} onMouseEnter={showDescription} onMouseLeave={hideDescription} className="flex absolute w-9 h-9 left-[46%] bg-depsac-primary bottom-4 mb-[-17.5px] text-center items-center rounded-[50%] transition-products opacity-0"> */}
           <Image
             alt={"product"}
             width={30} height={30}
@@ -165,7 +191,6 @@ function Products() {
   const { tenant } = useTenant();
 
   const [products, setProducts] = useState<Productos[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
 
   const productsPerPage = 3;
 
@@ -185,7 +210,7 @@ function Products() {
   }, [tenant]);
 
   // paginación
-  const startIndex = (currentPage - 1) * productsPerPage;
+  const startIndex = (1 - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
 
   // productos paginados (separado de la vista)

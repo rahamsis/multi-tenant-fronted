@@ -57,6 +57,7 @@ export function LoginForm({ onLoginSuccess }: LoginFormProps) {
             onLoginSuccess();
 
         } catch (err) {
+            console.error('Error al iniciar sesión:', err);
             setError('Error al iniciar sesión');
         } finally {
             setIsLoading(false);

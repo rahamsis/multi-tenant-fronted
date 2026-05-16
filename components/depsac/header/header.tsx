@@ -283,7 +283,7 @@ const NavbarMobile = ({ menu, otherMenus }: HeaderProps) => {
             setOpenMenu(null);
         }
 
-    }, [pathName]);
+    }, [pathName, menuComplete]);
 
     const toggleMenu = () => {
         setSidebarOpen(!sidebarOpen)

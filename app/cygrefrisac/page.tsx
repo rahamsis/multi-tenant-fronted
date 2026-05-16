@@ -469,7 +469,9 @@ const Marcas = ({ marcas }: MarcasProps) => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [current, visible]);
+  }, [current
+    // , visible
+  ]);
 
   const stepPercent = useMemo(() => 100 / visible, [visible]);
   const total = marcas.length;
