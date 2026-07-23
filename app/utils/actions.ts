@@ -291,6 +291,8 @@ export async function getAllBanners(tenant: string) {
             idBanner: row.idBanner,
             urlBanner: row.urlBanner,
             posicion: row.posicion,
+            titulo: row.titulo,
+            descripcion: row.descripcion
         }));
     } catch (error) {
         console.error("Error al traer los banners", error);

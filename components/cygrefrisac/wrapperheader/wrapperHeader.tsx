@@ -11,10 +11,11 @@ import { useState, useEffect } from "react"
 interface WrapperHeader {
     dataWebsite: WebSite
     menu: Menu[]
-    otherMenus: OtherMenu[]
+    otherMenus: OtherMenu[],
+    tenant: string
 }
 
-export function WrapperHeader({ dataWebsite, menu, otherMenus }: WrapperHeader) {
+export function WrapperHeader({ dataWebsite, menu, otherMenus, tenant }: WrapperHeader) {
     const [isVisible, setIsVisible] = useState(true)
 
     //controla visibilidad del top bar
@@ -38,7 +39,7 @@ export function WrapperHeader({ dataWebsite, menu, otherMenus }: WrapperHeader) 
                 <PreHeader dataWebsite={dataWebsite} />
             </div>
             <div className=" sticky top-0 z-50">
-                <Header dataWebsite={dataWebsite}/>
+                <Header dataWebsite={dataWebsite} tenant={tenant} />
                 <Navbar menu={menu} otherMenus={otherMenus} />
             </div>
         </>

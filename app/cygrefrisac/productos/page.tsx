@@ -4,6 +4,7 @@ import { useState, useEffect, } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useTenant } from "@/app/context/TenantContext";
 import { ModalDetailProduct } from "../components/modal/detailProducts";
 import { getAllProduct } from "@/app/utils/actions";
@@ -26,6 +27,8 @@ interface Productos {
 
 const Productos = () => {
   const { tenant } = useTenant();
+  const searchParams = useSearchParams();
+  const marcaFiltro = searchParams.get("marca")?.trim().toLowerCase();
 
   const [products, setProducts] = useState<Productos[]>([]);
 
@@ -49,13 +52,17 @@ const Productos = () => {
     fetchData();
   }, [tenant]);
 
+  const productosFiltrados = marcaFiltro
+    ? products.filter((product) => product.marca?.toLowerCase().includes(marcaFiltro))
+    : products;
+
   // paginación
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  const totalPages = Math.ceil(productosFiltrados.length / productsPerPage);
 
   // productos paginados (separado de la vista)
-  const paginatedProducts = products.slice(startIndex, endIndex);
+  const paginatedProducts = productosFiltrados.slice(startIndex, endIndex);
 
   return (
     <div className="py-10 lg:py-28 px-4 lg:px-20 x:px-16 2xl:px-0">
@@ -108,8 +115,9 @@ const Productos = () => {
                   >
                     <button
                       onClick={() => setShowDetailProduct(product)}
-                      className="text-gray-700">
-                      <i className="bi bi-search  text-lg"></i>
+                      className="text-gray-700 hover:text-cyan-700 hover:font-semibold">
+                      {/* <i className="bi bi-search  text-lg"></i> */}
+                      mas información
                     </button>
                   </div>
                 </div>
@@ -129,10 +137,10 @@ const Productos = () => {
 
         </div>
         {/* paginación */}
-        {products.length > 11 && (
+        {productosFiltrados.length > 11 && (
           <div className="flex flex-row mt-6 justify-between">
             <div className="text-zinc-600 flex lg:text-base text-xs items-center">
-              <span>Mostrando {products.length === 0 ? 0 : startIndex + 1} - {Math.min(endIndex, products.length)} de {products.length} producto(s)</span>
+              <span>Mostrando {productosFiltrados.length === 0 ? 0 : startIndex + 1} - {Math.min(endIndex, productosFiltrados.length)} de {productosFiltrados.length} producto(s)</span>
             </div>
 
             <div className="flex justify-center gap-1">

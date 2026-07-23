@@ -96,8 +96,9 @@ const Product = ({ products, filteredProducts }: ProductProps) => {
               >
                 <button
                   onClick={() => setShowDetailProduct(product)}
-                  className="text-gray-700">
-                  <i className="bi bi-search  text-lg"></i>
+                  className="text-gray-700 hover:text-cyan-700 hover:font-semibold">
+                  {/* <i className="bi bi-search  text-lg"></i> */}
+                  mas información
                 </button>
               </div>
             </div>

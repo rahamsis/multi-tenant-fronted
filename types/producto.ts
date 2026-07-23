@@ -31,4 +31,6 @@ export interface Banner {
     idBanner: string;
     urlBanner: string;
     posicion: string;
+    titulo: string;
+    descripcion: string;
 }

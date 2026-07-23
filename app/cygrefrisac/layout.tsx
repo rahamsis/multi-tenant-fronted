@@ -47,7 +47,7 @@ export default async function RootLayout({ children, }: { children: React.ReactN
   return (
     <html lang="en">
       <body className={inter.className} >
-        <WrapperHeader dataWebsite={dataWebSite[0]} menu={result.menus} otherMenus={result.categorias} />
+        <WrapperHeader dataWebsite={dataWebSite[0]} menu={result.menus} otherMenus={result.categorias} tenant={tenant} />
         <TenantProvider tenant={tenant}>
           <main>{children}</main>
         </TenantProvider>

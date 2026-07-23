@@ -9,29 +9,6 @@ import { Banner, Marca, Productos } from "@/types/producto";
 import { getAllBrands, getAllProduct, getAllBanners } from "../utils/actions";
 import { ModalDetailProduct } from "./components/modal/detailProducts";
 
-const slides = [
-  {
-    title: "Diseño de equipos y proyectos",
-    subtitle: "Diseñamos y desarrollamos proyectos integrales de acuerdo a las exigencias y necesidad de nuestros clientes.",
-    image: "/cygrefrisac/images/slide1.jpg",
-  },
-  {
-    title: "Personal capacitado",
-    subtitle: "Contamos con personal altamente calificado lo cual nos permite ofrecer productos y servicios con los mas altos estándares de calidad para su empresa.",
-    image: "/cygrefrisac/images/slide2.jpg",
-  },
-  {
-    title: "Diseño de equipos y proyectos",
-    subtitle: "Diseñamos y desarrollamos proyectos integrales de acuerdo a las exigencias y necesidad de nuestros clientes.",
-    image: "/cygrefrisac/images/slide3.jpg",
-  },
-  {
-    title: "Personal capacitado",
-    subtitle: "Contamos con personal altamente calificado lo cual nos permite ofrecer productos y servicios con los mas altos estándares de calidad para su empresa.",
-    image: "/cygrefrisac/images/slide4.jpg",
-  },
-]
-
 function HeroBanner({ banners }: { banners: Banner[] }) {
   const [current, setCurrent] = useState(0)
   const [isHovered, setIsHovered] = useState(false);
@@ -45,15 +22,15 @@ function HeroBanner({ banners }: { banners: Banner[] }) {
   }, [current, banners]) // <- Al cambiar current, se reinicia el intervalo
 
   const prevSlide = () => {
-    setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1))
+    setCurrent((prev) => (prev === 0 ? banners.length - 1 : prev - 1))
   }
 
   const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % slides.length)
+    setCurrent((prev) => (prev + 1) % banners.length)
   }
 
   if (banners.length === 0) {
-    return <div>Cargando banner...</div>;
+    return <div></div>;
   }
 
   return (
@@ -78,10 +55,10 @@ function HeroBanner({ banners }: { banners: Banner[] }) {
         {/* Contenido del slide */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 md:px-8">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-3">
-            {slides[current].title}
+            {banners[current].titulo}
           </h2>
           <p className="text-base md:text-lg text-white/90 mb-6 max-w-3xl">
-            {slides[current].subtitle}
+            {banners[current].descripcion}
           </p>
           <div className="flex gap-4 flex-wrap justify-center">
             <button className="bg-white text-black px-6 py-2 md:px-8 md:py-3 rounded-lg font-semibold hover:bg-gray-200 transition">
@@ -99,8 +76,9 @@ function HeroBanner({ banners }: { banners: Banner[] }) {
         </div>
 
         {/* Botones flotantes */}
-        {isHovered && (
+        {isHovered && banners.length > 1 && (
           <>
+            <div>banners.length: {banners.length}</div>
             <button
               onClick={prevSlide}
               className="hidden lg:flex absolute cursor-pointer top-1/2 left-2 md:left-10 -translate-y-1/2 bg-black/40 text-white p-2 md:p-3 rounded-full hover:bg-black/60 transition z-20"
@@ -193,8 +171,9 @@ const ProductDestacados = ({ products }: ProductDestacadosProps) => {
                   >
                     <button
                       onClick={() => setShowDetailProduct(product)}
-                      className="text-gray-700">
-                      <i className="bi bi-search  text-lg"></i>
+                      className="text-gray-700 hover:text-cyan-700 hover:font-semibold">
+                      {/* <i className="bi bi-search  text-lg"></i> */}
+                      mas información
                     </button>
                   </div>
                 </div>
@@ -295,8 +274,9 @@ const ProductNuevos = ({ products }: ProductDestacadosProps) => {
                   >
                     <button
                       onClick={() => setShowDetailProduct(product)}
-                      className="text-gray-700">
-                      <i className="bi bi-search  text-lg"></i>
+                      className="text-gray-700 hover:text-cyan-700 hover:font-semibold">
+                      {/* <i className="bi bi-search  text-lg"></i> */}
+                      mas información
                     </button>
                   </div>
                 </div>
