@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useState, useEffect, useRef, useMemo } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useTenant } from "../context/TenantContext";
-import { Banner, Marca, Productos } from "@/types/producto";
-import { getAllBrands, getAllProduct, getAllBanners } from "../utils/actions";
+import { Banner, Marca, Productos, Video } from "@/types/producto";
+import { getAllBrands, getAllProduct, getAllBanners, getVideoPrincipal } from "../utils/actions";
 import { ModalDetailProduct } from "./components/modal/detailProducts";
 
 function HeroBanner({ banners }: { banners: Banner[] }) {
@@ -131,6 +131,9 @@ const ProductDestacados = ({ products }: ProductDestacadosProps) => {
             >
               <div className="p-4 flex-1 flex flex-col">
                 <div className="group relative mb-4 overflow-hidden rounded-lg">
+                  <div className="text-lg text-center text-cyan-800 font-semibold text-foreground pb-3 ">
+                    {product.nombre}
+                  </div>
                   {/* Imagen principal */}
                   <Image
                     src={product.fotos[0] || "/placeholder.svg"}
@@ -181,8 +184,10 @@ const ProductDestacados = ({ products }: ProductDestacadosProps) => {
 
               <div className="p-4 pt-0">
                 <button className="flex flex-row justify-center items-center w-full gap-2 bg-cygrefrisac-header py-2 rounded-lg text-white">
-                  <i className="bi bi-pencil-square"></i>
-                  Cotizar Ahora
+                  <Link href={"/contacto"}>
+                    <i className="bi bi-pencil-square"></i>
+                    Cotizar Ahora
+                  </Link>
                 </button>
               </div>
             </div>
@@ -233,6 +238,10 @@ const ProductNuevos = ({ products }: ProductDestacadosProps) => {
               className="flex flex-col justify-between group hover:shadow-lg transition-all duration-[2000ms] h-full"
             >
               <div className="p-4 flex-1 flex flex-col">
+                <div className="text-lg text-center font-semibold text-foreground pb-3 ">
+                  {product.nombre}
+                </div>
+
                 <div className="group relative mb-4 overflow-hidden rounded-lg">
                   {/* Imagen principal */}
                   <Image
@@ -284,8 +293,10 @@ const ProductNuevos = ({ products }: ProductDestacadosProps) => {
 
               <div className="p-4 pt-0">
                 <button className="flex flex-row justify-center items-center w-full gap-2 bg-cygrefrisac-header py-2 rounded-lg text-white">
-                  <i className="bi bi-pencil-square"></i>
-                  Cotizar Ahora
+                  <Link href={"/contacto"}>
+                    <i className="bi bi-pencil-square"></i>
+                    Cotizar Ahora
+                  </Link>
                 </button>
               </div>
             </div>
@@ -309,12 +320,49 @@ const ProductNuevos = ({ products }: ProductDestacadosProps) => {
   )
 }
 
-// const BottomBanner = () => {
+const Videos = ({ videoPrincipal }: { videoPrincipal: Video | null }) => {
+  return (
+    <>
+      {
+        videoPrincipal?.urlVideo && (
+          <section className="bg-cyan-700 text-primary-foreground py-12 px-4">
+            <div className="container mx-auto">
+              <div className="max-w-6xl mx-auto text-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Titulo de algo
+                </h2>
+
+                <p className="text-lg md:text-xl mb-8 opacity-90">
+                  Alguna descripción si se desea
+                </p>
+
+                <div className="w-full aspect-video">
+                  <iframe
+                    className="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/qup66Zwe02o?si=ds2BxBuJWp8Yv80E"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+        )
+      }
+    </>
+  )
+}
+
+// const postBanner2 = () => {
 //   return (
-//     <section className="bg-oishipop-primary text-primary-foreground py-12 px-4">
+//     <section className="bg-cyan-700 text-primary-foreground py-12 px-4">
 //       <div className="container mx-auto text-center">
 //         <div className="max-w-4xl mx-auto">
-//           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">{"¡Únete a Nuestra Familia PlushWorld!"}</h2>
+//           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
+//             {"¡Únete a Nuestra Familia PlushWorld!"}</h2>
 //           <p className="text-lg md:text-xl mb-8 text-pretty opacity-90">
 //             {
 //               "Suscríbete y recibe ofertas exclusivas, nuevos lanzamientos y contenido especial directamente en tu correo."
@@ -535,6 +583,7 @@ export default function Home() {
   const [banners, setBanners] = useState<Banner[]>([]);
   const [products, setProducts] = useState<Productos[]>([]);
   const [marcas, setMarcas] = useState<Marca[]>([]);
+  const [videoPrincipal, setVideoPrincipal] = useState<Video | null>(null);
 
   // llenar los banners
   useEffect(() => {
@@ -582,6 +631,21 @@ export default function Home() {
     fetchData();
   }, [tenant]);
 
+  // llenar el video
+  useEffect(() => {
+    if (!tenant) return; // evita llamada vac
+
+    async function fetchData() {
+      try {
+        const data = await getVideoPrincipal(tenant);
+
+        setVideoPrincipal(data[0]);
+      } catch (error) {
+        console.error("Error obteniendo el video principal:", error);
+      }
+    }
+    fetchData();
+  }, [tenant]);
   return (
     <div className="">
       <HeroBanner banners={banners} />
@@ -589,6 +653,8 @@ export default function Home() {
       <ProductDestacados products={products} />
 
       <ProductNuevos products={products} />
+
+      <Videos videoPrincipal={videoPrincipal} />
 
       <BottomBanner />
 

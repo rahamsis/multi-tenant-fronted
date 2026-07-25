@@ -34,3 +34,10 @@ export interface Banner {
     titulo: string;
     descripcion: string;
 }
+
+export interface Video {
+    idVideo: string;
+    urlVideo: string;
+    titulo: string;
+    descripcion: string;
+}

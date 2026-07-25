@@ -1,7 +1,7 @@
 'use server';
 
 import { Menu, OtherMenu } from "@/types/menu";
-import { Banner, Marca } from "@/types/producto";
+import { Banner, Marca, Video } from "@/types/producto";
 import { WebSite } from "@/types/webSite";
 
 /* eslint-disable */
@@ -323,5 +323,31 @@ export async function fetchUserLogin(tenant: string, email: string, password: st
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
         return null;
+    }
+}
+
+export async function getVideoPrincipal(tenant: string) {
+    try {
+        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/video-principal`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-Tenant-ID": tenant,
+                    Accept: "application/json",
+                },
+                next: { revalidate: 0 }
+            });
+
+        const data = await response.json();
+        return data.map((row: Video) => ({
+            idVideo: row.idVideo,
+            urlVideo: row.urlVideo,
+            titulo: row.titulo,
+            descripcion: row.descripcion
+        }));
+    } catch (error) {
+        console.error('Error al obtener todas las marcas:', error);
+        throw new Error("Error al obtener todas las marcas");
     }
 }

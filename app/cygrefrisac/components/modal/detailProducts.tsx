@@ -77,6 +77,9 @@ export const ModalDetailProduct = ({ producto, onClose }: ModalDetailProducts) =
                             {/* <div className="grid grid-cols-2 gap-8"> */}
                             <div className="">
                                 <div className="flex flex-col items-center">
+                                    <div className="text-lg text-center text-cyan-800 font-semibold text-foreground pb-3 ">
+                                        {picture?.nombre}
+                                    </div>
                                     <div className="px-6 border py-12 border-zinc-300 max-w-[500px] max-h-[500px] flex items-center justify-center">
                                         <Image
                                             src={picture?.url || ""}
