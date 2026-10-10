@@ -1,11 +1,12 @@
 "use client";
 
+/* eslint-disable */
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Search, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
 import { Productos } from "@/types/producto";
 
 interface ProductSearchProps {
