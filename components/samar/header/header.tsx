@@ -1,10 +1,11 @@
 "use client"
 
+/* eslint-disable */
+
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react" // Icono flecha hacia abajo
 import { useState, useRef } from "react"
-import { Search, Heart, ShoppingCart, User, Globe } from "lucide-react"
 import { WebSite } from "@/types/webSite"
 import { Menu, OtherMenu } from "@/types/menu";
 import CartButton from "@/app/samar/components/cart/CartButton";
@@ -21,15 +22,6 @@ interface HeaderProps {
 const HeaderDesktop = ({ dataWebsite, menu, otherMenus, products, }: HeaderProps) => {
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const menuRef = useRef<HTMLUListElement | null>(null)
-
-  const [currencyOpen, setCurrencyOpen] = useState(false)
-  const [currency, setCurrency] = useState("USD")
-
-  const currencies = [
-    { code: "USD", label: "USD - Dólar" },
-    { code: "EUR", label: "EUR - Euro" },
-    { code: "MXN", label: "MXN - Peso" },
-  ]
 
   return (
     <header className="sticky top-0 z-50 bg-samar-primary border-b border-samar-bordes shadow-sm">

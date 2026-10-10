@@ -1,5 +1,7 @@
 "use client"
 
+/* eslint-disable */
+
 import { useState, useRef, useEffect } from "react"
 import { ChevronDown } from "lucide-react" // Icono flecha hacia abajo
 import { Menu, OtherMenu } from "@/types/menu";

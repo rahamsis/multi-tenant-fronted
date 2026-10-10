@@ -7,7 +7,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { headers } from "next/headers";
 import { PreHeader } from "@/components/samar/preHeader/pre-header";
 import Header from "@/components/samar/header/header";
-import { Navbar } from "@/components/samar/navbar/navbar"
 import { Footer } from "@/components/samar/footer/footer"
 import { getMenus, getWebSite } from "../utils/actions";
 import { TenantProvider } from '../context/TenantContext';

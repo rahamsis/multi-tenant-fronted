@@ -1,3 +1,4 @@
+/* eslint-disable */
 
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";

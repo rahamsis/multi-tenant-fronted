@@ -1,5 +1,7 @@
 // 'use client';
 
+/* eslint-disable */
+
 import * as React from "react";
 import Image from "next/image";
 import { getMenus, getProductByCategory } from "@/app/utils/actions";

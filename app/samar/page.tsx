@@ -1,12 +1,10 @@
 'use client'
 
-import { Heart, ShoppingCart, Star } from "lucide-react"
 import Image from "next/image";
-import { useState, useEffect, useRef, useMemo } from "react"
-
+import { useState, useEffect, } from "react"
 import { useTenant } from "../context/TenantContext";
-import { Banner, Marca, Productos, Video } from "@/types/producto";
-import { getAllBrands, getAllProduct, getAllBanners, getVideoPrincipal } from "../utils/actions";
+import { Productos, } from "@/types/producto";
+import { getAllProduct, } from "../utils/actions";
 import ProductCard from "./components/product/ProductCard";
 import Link from "next/link";
 
@@ -51,71 +49,6 @@ function HeroBanner() {
     </section>
   )
 }
-
-const products = [
-  {
-    id: 1,
-    name: "Oso Teddy Clásico",
-    price: 29.99,
-    originalPrice: 39.99,
-    image: "/samar/images/placeholder-yk8rb.png",
-    rating: 4.8,
-    reviews: 124,
-    isNew: false,
-    isOnSale: true,
-  },
-  {
-    id: 2,
-    name: "Unicornio Arcoíris",
-    price: 34.99,
-    image: "/samar/images/rainbow-unicorn-plush-toy-colorful.jpg",
-    rating: 4.9,
-    reviews: 89,
-    isNew: true,
-    isOnSale: false,
-  },
-  {
-    id: 3,
-    name: "Gato Kawaii",
-    price: 24.99,
-    image: "/samar/images/placeholder-n9gei.png",
-    rating: 4.7,
-    reviews: 156,
-    isNew: false,
-    isOnSale: false,
-  },
-  {
-    id: 4,
-    name: "Dragón Amigable",
-    price: 42.99,
-    originalPrice: 52.99,
-    image: "/samar/images/friendly-dragon-plush-toy-green-cute.jpg",
-    rating: 4.6,
-    reviews: 73,
-    isNew: false,
-    isOnSale: true,
-  },
-  {
-    id: 5,
-    name: "Panda Gigante",
-    price: 59.99,
-    image: "/samar/images/giant-panda-plush-toy-black-white-large.jpg",
-    rating: 4.9,
-    reviews: 201,
-    isNew: true,
-    isOnSale: false,
-  },
-  {
-    id: 6,
-    name: "Conejo Suave",
-    price: 19.99,
-    image: "/samar/images/soft-bunny-rabbit-plush-toy-white-fluffy.jpg",
-    rating: 4.5,
-    reviews: 98,
-    isNew: false,
-    isOnSale: false,
-  },
-]
 
 interface ProductDestacadosProps {
   products: Productos[];

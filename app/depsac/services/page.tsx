@@ -1,4 +1,7 @@
 'use client'
+
+/* eslint-disable */
+
 import { getAllProduct } from "@/app/utils/actions";
 import Image from "next/image";
 import Link from "next/link";

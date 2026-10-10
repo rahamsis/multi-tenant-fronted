@@ -1,15 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
-  Facebook,
-  Instagram,
+  // Facebook,
+  // Instagram,
   Mail,
   MapPin,
   Phone,
   ArrowRight,
   Heart,
   MessageCircle,
-  Leaf,
 } from "lucide-react";
 import type { WebSite } from "@/types/webSite";
 
@@ -17,19 +16,19 @@ interface FooterProps {
   dataWebsite: WebSite;
 }
 
-const socialLinks = [
-  // Agrega aquí únicamente las redes sociales reales.
-  {
-    name: "Instagram",
-    href: "#",
-    icon: Instagram,
-  },
-  {
-    name: "Facebook",
-    href: "#",
-    icon: Facebook,
-  },
-];
+// const socialLinks = [
+//   // Agrega aquí únicamente las redes sociales reales.
+//   {
+//     name: "Instagram",
+//     href: "#",
+//     icon: Instagram,
+//   },
+//   {
+//     name: "Facebook",
+//     href: "#",
+//     icon: Facebook,
+//   },
+// ];
 
 const navigationLinks = [
   { name: "Todos los productos", href: "/productos" },

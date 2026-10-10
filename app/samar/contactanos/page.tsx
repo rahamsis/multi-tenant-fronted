@@ -4,7 +4,6 @@ import {
   MapPin,
   MessageCircle,
   Phone,
-  Clock,
 } from "lucide-react";
 
 import { getWebSite } from "@/app/utils/actions";
