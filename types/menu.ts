@@ -1,5 +1,6 @@
 export interface Menu {
     idMenu: string;
+    idCategoria?: string;
     urlMenu: string;
     titulo: string;
     descripcion?: string;

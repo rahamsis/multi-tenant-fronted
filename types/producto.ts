@@ -1,11 +1,15 @@
 export interface Productos {
-    idProducto: number;
+    idProducto: string;
+    idCategoria: string;
     categoria: string;
-    subCategoria: string;
-    marca: string;
+    idSubCategoria: string | null;
+    subCategoria: string | null;
+    idMarca: string | null;
+    marca: string | null;
     nombre: string;
     precio: number;
-    color: string
+    idColor: string | null;
+    color: string | null;
     descripcion: string;
     destacado: boolean;
     nuevo: boolean;

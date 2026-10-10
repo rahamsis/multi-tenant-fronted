@@ -53,13 +53,19 @@ const config: Config = {
           primary: '#059669',
           secondary: '#10b981',
         },
-        'oishipop': {
-          primary: '#FF69B4', // Rosa brillante
-          secondary: '#FFB6C1', // Rosa claro
-          accent: '#800080', // Púrpura
-          background: '#FFF0F5', // Lavanda claro
-          foreground: '#4B0082', // Índigo
-          muted: '#D8BFD8', // Thistle
+        'samar': {
+          primary: '#FAF7F2', // 🤍 Marfil
+          secondary: '#EEF2E8', // 🌿 Verde salvia muy claro
+          primarytwo: '#8A9A7B', // 🌿 Verde salvia
+          secondarytwo: '#68755B', // 🪴 Verde oliva suave
+          acento: '#D8C3A5', // 🧴 Beige cálido
+          acentofemenino: '#D9B8B0', // 🌸 Rosa empolvado
+          textoprincipal: '#343633', // 🖤 Gris carbón
+          textosecundario: '#77766F', // 🩶 Gris cálido
+          bordes: '#DDD8CE', // 🤎 Beige grisáceo
+          botonprincipal: '#59684E', // 🌿 Verde profundo
+          hoverboton: '#46543D', // 🌿 Verde oscuro
+          blanco: '#FFFFFF', // 🤍 Blanco
         }
       },
       gridTemplateColumns: {

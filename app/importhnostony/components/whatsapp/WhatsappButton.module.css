@@ -1,0 +1,47 @@
+.btn {
+  border: 1px solid #d4d4d8; /* zinc-400 */
+  cursor: pointer;
+  display: block;
+  position: fixed;
+  width: 3.5rem; /* w-14 */
+  height: 3.5rem; /* h-14 */
+  line-height: 55px; /* leading-[55px] */
+  bottom: 2rem; /* bottom-8 */
+  right: 2rem; /* right-8 */
+  background-color: #25d366; /* bg-whatsapp */
+  color: #fff; /* text-white */
+  border-radius: 9999px; /* rounded-full */
+  text-align: center;
+  font-size: 1.875rem; /* text-3xl */
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* shadow-lg */
+  z-index: 50;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(37, 211, 102, 0.7);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  animation: pulse 1s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+}

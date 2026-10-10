@@ -154,11 +154,14 @@ export async function getAllProduct(tenant: string) {
             idColor: row.idColor,
             color: row.color,
             descripcion: row.descripcion,
-            destacado: row.destacado,
-            nuevo: row.nuevo,
-            masVendido: row.masVendido,
-            activo: row.activo,
-            fotos: row.fotosAdicionales?.split(',') ?? []
+            destacado: Boolean(row.destacado),
+            nuevo: Boolean(row.nuevo),
+            masVendido: Boolean(row.masVendido),
+            activo: Boolean(row.activo),
+            fotos: row.fotosAdicionales
+                ?.split(",")
+                .map((foto: string) => foto.trim())
+                .filter(Boolean) ?? [],
         }));
     } catch (error) {
         console.error('Error al obtener todos los productos:', error);
