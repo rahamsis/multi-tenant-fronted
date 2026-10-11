@@ -5,22 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { ModalDetailProduct } from "../modal/detailProducts";
-
-interface Productos {
-  idProducto: number;
-  categoria: string;
-  subCategoria: string;
-  marca: string;
-  nombre: string;
-  precio: number;
-  color: string
-  descripcion: string;
-  destacado: boolean;
-  nuevo: boolean;
-  masVendido: boolean;
-  activo: boolean;
-  fotos: string[];
-}
+import type { Productos } from "@/types/producto";
 
 interface ProductProps {
   products: Productos[];

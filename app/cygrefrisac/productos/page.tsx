@@ -8,32 +8,17 @@ import { useSearchParams } from "next/navigation";
 import { useTenant } from "@/app/context/TenantContext";
 import { ModalDetailProduct } from "../components/modal/detailProducts";
 import { getAllProduct } from "@/app/utils/actions";
-
-interface Productos {
-  idProducto: number;
-  categoria: string;
-  subCategoria: string;
-  marca: string;
-  nombre: string;
-  precio: number;
-  color: string
-  descripcion: string;
-  destacado: boolean;
-  nuevo: boolean;
-  masVendido: boolean;
-  activo: boolean;
-  fotos: string[];
-}
+import type { Productos as Producto } from "@/types/producto";
 
 const Productos = () => {
   const { tenant } = useTenant();
   const searchParams = useSearchParams();
   const marcaFiltro = searchParams.get("marca")?.trim().toLowerCase();
 
-  const [products, setProducts] = useState<Productos[]>([]);
+  const [products, setProducts] = useState<Producto[]>([]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [showDetailProduct, setShowDetailProduct] = useState<Productos | null>(null)
+  const [showDetailProduct, setShowDetailProduct] = useState<Producto | null>(null)
 
   const productsPerPage = 15;
 
