@@ -5,14 +5,12 @@ import "../globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import { headers } from "next/headers";
-import { PreHeader } from "@/components/samar/preHeader/pre-header";
-import Header from "@/components/samar/header/header";
-import { Footer } from "@/components/samar/footer/footer"
+import { Footer } from "@/components/samarnature/footer/footer"
 import { getMenus, getWebSite } from "../utils/actions";
 import { TenantProvider } from '../context/TenantContext';
 import { CartProvider } from "../context/CartContext";
 import { getAllProduct } from "@/app/utils/actions";
-import { WrapperHeader } from "@/components/samar/wrapperheader/wrapperHeader";
+import { WrapperHeader } from "@/components/samarnature/wrapperheader/wrapperHeader";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -26,15 +24,15 @@ const geistMono = Geist_Mono({
 
 
 export const metadata: Metadata = {
-    title: "Samar",
-    description: "Descripción de Samar xd",
+    title: "SamarNature",
+    description: "Samar es una marca de productos naturales para el cuidado personal, que ofrece jabones, aceites esenciales y cosméticos elaborados con ingredientes de alta calidad y respetuosos con el medio ambiente.",
     keywords: ["Samar", "Jabones", "cuidado personal", "aceites esenciales", "cosmeticos", "productos naturales"],
     icons: {
-        icon: "/samar/images/samar.ico"
+        icon: "/samar/images/samarnature.ico",
     },
     openGraph: {
         title: 'Samar',
-        description: 'Descripción de Samar xd',
+        description: 'Samar es una marca de productos naturales para el cuidado personal, que ofrece jabones, aceites esenciales y cosméticos elaborados con ingredientes de alta calidad y respetuosos con el medio ambiente.',
         url: 'https://samarnature.com.pe',
         siteName: "Samar",
         images: [

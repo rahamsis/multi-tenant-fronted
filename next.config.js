@@ -8,6 +8,7 @@ const nextConfig = {
             'depsac.com.pe',
             'cygrefrisac.com.pe',
             'lezcor.com',
+            'samarnature.local',
             'samarnature.com'],
         remotePatterns: [
             {
@@ -22,7 +23,7 @@ const nextConfig = {
             },
         ]
     },
-    allowedDevOrigins: ['http://importonyperu.local'],
+    allowedDevOrigins: ['http://importonyperu.local', 'http://samarnature.local'],
 }
 
 module.exports = nextConfig

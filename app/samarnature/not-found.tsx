@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center py-20">
       <Image
-        src="/images/not-found.png"
+        src="samarnature/images/not-found.png"
         alt="Página no encontrada"
         className="mb-6"
         width={500}
@@ -17,7 +17,7 @@ export default function NotFound() {
       </p>
       <a
         href="/"
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        className="px-4 py-2 bg-samar-primarytwo text-white rounded-lg hover:bg-blue-700 transition"
       >
         Volver al inicio
       </a>

@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Sidebar, {
     initialFilters,
     ProductFilters,
-} from "@/components/samar/sidebar/Sidebar";
+} from "@/components/samarnature/sidebar/Sidebar";
 import { Productos } from "@/types/producto";
 import ProductCard from "./ProductCard";
 
