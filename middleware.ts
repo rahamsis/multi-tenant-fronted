@@ -19,7 +19,7 @@ export function middleware(req: NextRequest) {
   if (host.includes('lezcor')) {
     return NextResponse.rewrite(new URL('/lezcor' + req.nextUrl.pathname, req.url))
   }
-  if (host.includes('samar')) {
+  if (host.includes('samarnature')) {
     return NextResponse.rewrite(new URL('/samarnature' + req.nextUrl.pathname, req.url))
   }
 

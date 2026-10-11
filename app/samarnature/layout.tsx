@@ -34,11 +34,11 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Samar',
         description: 'Descripción de Samar xd',
-        url: 'https://samar.com.pe',
+        url: 'https://samarnature.com.pe',
         siteName: "Samar",
         images: [
             {
-                url: 'https://samar.com.pe/samar/images/samar_miniatura.png',
+                url: 'https://samarnature.com.pe/samar/images/samar_miniatura.png',
                 width: 1200,
                 height: 630,
                 alt: 'Imagen de vista previa',
