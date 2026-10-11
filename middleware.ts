@@ -20,12 +20,12 @@ export function middleware(req: NextRequest) {
     return NextResponse.rewrite(new URL('/lezcor' + req.nextUrl.pathname, req.url))
   }
   if (host.includes('samar')) {
-    return NextResponse.rewrite(new URL('/samar' + req.nextUrl.pathname, req.url))
+    return NextResponse.rewrite(new URL('/samarnature' + req.nextUrl.pathname, req.url))
   }
 
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|pdfjs|importonyperu/|importhnostony/|depsac/|cygrefrisac/|samar/).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|pdfjs|importonyperu/|importhnostony/|depsac/|cygrefrisac/|samarnature/).*)'],
 }

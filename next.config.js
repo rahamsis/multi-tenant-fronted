@@ -8,7 +8,7 @@ const nextConfig = {
             'depsac.com.pe',
             'cygrefrisac.com.pe',
             'lezcor.com',
-            'samar.com'],
+            'samarnature.com'],
         remotePatterns: [
             {
                 protocol: "https",

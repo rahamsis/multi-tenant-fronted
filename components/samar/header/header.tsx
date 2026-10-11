@@ -8,7 +8,7 @@ import { ChevronDown } from "lucide-react" // Icono flecha hacia abajo
 import { useState, useRef } from "react"
 import { WebSite } from "@/types/webSite"
 import { Menu, OtherMenu } from "@/types/menu";
-import CartButton from "@/app/samar/components/cart/CartButton";
+import CartButton from "@/app/samarnature/components/cart/CartButton";
 import { Productos } from "@/types/producto";
 import ProductSearch from "./productSearch";
 
