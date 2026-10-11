@@ -12,6 +12,7 @@ import { getMenus, getWebSite } from "../utils/actions";
 import { TenantProvider } from '../context/TenantContext';
 import { CartProvider } from "../context/CartContext";
 import { getAllProduct } from "@/app/utils/actions";
+import { WrapperHeader } from "@/components/samar/wrapperheader/wrapperHeader";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -65,14 +66,15 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
             >
                 <TenantProvider tenant={tenant}>
                     <CartProvider>
-                        <PreHeader dataWebsite={dataWebSite[0]} />
+                        {/* <PreHeader dataWebsite={dataWebSite[0]} /> */}
+                        <WrapperHeader dataWebsite={dataWebSite[0]} menu={result.menus} otherMenus={result.categorias} products={products} tenant={tenant} />
 
-                        <Header
+                        {/* <Header
                             dataWebsite={dataWebSite[0]}
                             menu={result.menus}
                             otherMenus={result.categorias}
                             products={products}
-                        />
+                        /> */}
 
                         <main>{children}</main>
 
