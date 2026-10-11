@@ -6,22 +6,7 @@ import { LayoutList, LayoutGrid, ChevronLeft, ChevronRight } from "lucide-react"
 import CustomSelect from "../selector/select";
 
 import { ModalDetailProduct } from "../modal/detailProducts";
-
-interface Productos {
-    idProducto: number;
-    categoria: string;
-    subCategoria: string;
-    marca: string;
-    nombre: string;
-    precio: number;
-    color: string
-    descripcion: string;
-    destacado: boolean;
-    nuevo: boolean;
-    masVendido: boolean;
-    activo: boolean;
-    fotos: string[];
-}
+import type { Productos } from "@/types/producto";
 
 interface ProductProps {
     products: Productos[];
@@ -92,7 +77,9 @@ const Product = ({
                 break;
             case "default":
             default:
-                productosOrdenados.sort((a, b) => a.idProducto - b.idProducto);
+                productosOrdenados.sort((a, b) =>
+                    a.idProducto.localeCompare(b.idProducto, undefined, { numeric: true })
+                );
                 break;
         }
 
