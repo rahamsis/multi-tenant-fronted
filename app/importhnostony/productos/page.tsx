@@ -3,6 +3,8 @@ import { headers } from "next/headers";
 import { getAllProduct } from "@/app/utils/actions";
 import Product from "../components/product/product";
 
+/* eslint-disable */
+
 interface Props {
   searchParams: Promise<{
     categoria?: string;

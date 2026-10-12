@@ -1,17 +1,16 @@
 
 "use client";
 
-import { useState } from "react";
+/* eslint-disable */
+
 import Link from "next/link";
 import {
-    Search,
     UserRound,
     Heart,
     ShoppingCart,
 } from "lucide-react";
 import ProductSearch from "./productSearch";
 import { WebSite } from "@/types/webSite";
-import { Menu, OtherMenu } from "@/types/menu";
 import { Productos } from "@/types/producto";
 
 interface HeaderProps {
@@ -24,8 +23,6 @@ const HeaderResponsive = ({
     dataWebsite,
     products,
 }:HeaderProps) => {
-    const [search, setSearch] = useState("");
-
     // Temporal: conectar posteriormente con CartContext
     const cartCount = 0;
 

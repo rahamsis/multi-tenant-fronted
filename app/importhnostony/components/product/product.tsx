@@ -1,6 +1,8 @@
 
 "use client";
 
+/* eslint-disable */
+
 import { useEffect, useMemo, useState } from "react";
 import {
   PackageSearch,

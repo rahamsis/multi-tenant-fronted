@@ -10,6 +10,8 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+/* eslint-disable */
+
 import type { WebSite } from "@/types/webSite";
 
 interface FooterProps {

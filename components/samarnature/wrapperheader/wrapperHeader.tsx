@@ -22,7 +22,7 @@ export function WrapperHeader({
   menu,
   otherMenus,
   products,
-  tenant }: WrapperHeader) {
+}: WrapperHeader) {
   const [isVisible, setIsVisible] = useState(true)
 
   //controla visibilidad del top bar

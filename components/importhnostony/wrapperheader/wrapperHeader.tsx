@@ -22,10 +22,7 @@ interface WrapperHeaderProps {
 
 export function WrapperHeader({
   dataWebsite,
-  menu,
-  otherMenus,
   products,
-  tenant,
 }: WrapperHeaderProps) {
   const [isVisible, setIsVisible] = useState(true);
 

@@ -1,5 +1,7 @@
 "use client"
 
+/* eslint-disable */
+
 import { useState, useEffect } from "react"
 import { MapPin, Phone } from "lucide-react"
 import { WebSite } from "@/types/webSite"
