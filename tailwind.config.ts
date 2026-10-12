@@ -29,6 +29,16 @@ const config: Config = {
           secondary: "#696969",
           Gray: "#f0f0f0",
         },
+        'importhnostony': {
+          primary: '#DC2626',
+          primaryhover: '#B91C1C',
+          secondary: '#171717',
+          dark: '#262626',
+          background: '#FFFFFF',
+          surface: '#F5F5F5',
+          border: '#E5E7EB',
+          muted: '#6B7280'
+        },
         'depsac': {
           primary: "#0077B6", //Azul frío
           secondary: "#6C757D", //Gris metálico

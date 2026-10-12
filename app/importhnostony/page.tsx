@@ -2,426 +2,300 @@
 
 /* eslint-disable */
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
-import { getAllBrands, getFeaturesProduct } from "@/app/utils/actions";
+import { getAllBrands, getCategories, getFeaturesProduct } from "@/app/utils/actions";
 import { ModalDetailProduct } from "./components/modal/detailProducts";
-import { Marca, Productos } from "@/types/producto";
+import { Categoria, Marca, Productos } from "@/types/producto";
 import { useTenant } from "../context/TenantContext";
+import Link from "next/link";
+import {
+  ShieldCheck,
+  Headset,
+  Truck,
+  Wallet,
+  Star,
+  ArrowRight,
+  Boxes,
+} from "lucide-react";
 
-const images = [
-  "/importonyperu/images/banner/banner1.jpg",
-  "/importonyperu/images/banner/banner2.jpg",
-  "/importonyperu/images/banner/banner3.jpg",
+const benefits = [
+  {
+    label: "Calidad garantizada",
+    icon: ShieldCheck,
+  },
+  {
+    label: "Asesoría técnica",
+    icon: Headset,
+  },
+  {
+    label: "Envíos a todo el Perú",
+    icon: Truck,
+  },
+  {
+    label: "Pago seguro",
+    icon: Wallet,
+  },
 ];
 
 function Banner() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Cambia imagen cada 8 segundos
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 8000);
-    return () => clearInterval(interval);
-  }, [currentIndex]);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToSlide = (index: any) => {
-    setCurrentIndex(index);
-  };
-
   return (
-    <div className="relative w-full h-[200px] lg:h-full overflow-hidden lg:pt-6" onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}>
-      {/* Contenedor de las imágenes */}
+    <section className="relative isolate w-full overflow-hidden bg-importhnostony-dark text-white">
+
+      {/* IMAGEN DE FONDO */}
+      <Image
+        src="/importhnostony/images/banner/hero-banner.png"
+        alt="Máquina de coser industrial Juki"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+      />
+
+      {/* OSCURECIMIENTO PARA LEGIBILIDAD */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/5" />
+
+      {/* DETALLES ROJOS DECORATIVOS */}
       <div
-        className="flex transition-transform duration-700 ease-in-out "
-        style={{ transform: `translateX(-${currentIndex * 100.1}%)` }}
-      >
-        {images.map((src, index) => (
-          <div key={index} className="w-full flex-shrink-0 relative lg:h-[500px] h-[200px]">
-            <Image
-              src={src}
-              alt={`Banner ${index + 1}`}
-              fill
-              className="w-full lg:h-[500px] h-[200px]"
-              priority={index === 0}
-            />
-          </div>
-        ))}
-      </div>
+        aria-hidden="true"
+        className="absolute -left-8 top-0 h-20 w-12 -skew-x-[35deg] bg-importhnostony-primary lg:h-28"
+      />
 
-      {/* Botones izquierda/derecha visibles solo en escritorio */}
-      {isHovered && (
-        <>
-          <button
-            onClick={prevSlide}
-            className="hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 bg-opacity-50 text-3xl text-slate-300 p-2 hover:text-slate-800 transition"
-          >
-            &#10094;
-          </button>
-          <button
-            onClick={nextSlide}
-            className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 bg-opacity-50 text-3xl text-slate-300 p-2 hover:text-slate-800 transition"
-          >
-            &#10095;
-          </button>
-        </>
-      )}
+      <div
+        aria-hidden="true"
+        className="absolute -right-12 bottom-0 h-36 w-24 -skew-x-[36deg] bg-importhnostony-primary bg-opacity-55 lg:h-96 lg:w-40"
+      />
 
-      {/* Círculos de navegación */}
-      <div className="absolute lg:bottom-6 bottom-3 left-0 right-0 flex justify-center gap-3">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`lg:w-5 w-3 lg:h-5 h-3 rounded-full border-2 border-slate-800 ${currentIndex === index ? "bg-white" : "bg-importonyperu-secondary"
-              }`}
-          ></button>
-        ))}
-      </div>
-    </div>
-  );
-}
+      <div
+        aria-hidden="true"
+        className="absolute -right-12 bottom-0 h-36 w-24 -skew-x-[36deg] bg-importhnostony-primary lg:h-80 lg:w-40"
+      />
 
-function PostBanner() {
-  return (
-    <div className="relative w-full lg:pt-6 pt-4">
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
-        <div className="group relative overflow-hidden">
-          <div>
-            <Image
-              src={"/importonyperu/images/postBanner/postBanner1.jpg"}
-              alt={`Post Banner 1`}
-              width={600}
-              height={400}
-              priority={true}
-            />
-            {/* Capa izquierda */}
-            <div className="absolute top-0 left-0 group-hover:bg-white group-hover:opacity-5 h-full w-0 group-hover:w-1/2 transition-all duration-1000 ease-in-out" />
+      {/* CONTENIDO */}
+      <div className="relative z-10 mx-auto flex min-h-[360px] max-w-7xl flex-col justify-between px-5 py-9 sm:px-6 lg:min-h-[440px] lg:px-8 lg:py-10">
 
-            {/* Capa derecha */}
-            <div className="absolute top-0 right-0 group-hover:bg-white group-hover:opacity-5 h-full w-0 group-hover:w-1/2 transition-all duration-1000 ease-in-out" />
+        {/* TITULAR Y BOTONES */}
+        <div className="max-w-xl">
+
+          <h1 className="max-w-lg text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-[42px]">
+            Repuestos que mantienen
+            <br className="hidden sm:block" />
+            {" "}tu producción en movimiento
+          </h1>
+
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-gray-200 sm:text-base lg:text-lg">
+            Piezas originales y compatibles para máquinas
+            de coser industriales.
+          </p>
+
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+
+            <Link
+              href="/productos"
+              className="inline-flex min-h-11 items-center justify-center rounded-md bg-importhnostony-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-importhnostony-primary-hover"
+            >
+              Ver productos
+            </Link>
+
+            <Link
+              href="/marcas"
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-white px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-importhnostony-dark"
+            >
+              Nuestras marcas
+            </Link>
+
           </div>
         </div>
 
-        <div className="group relative overflow-hidden">
-          <div>
-            <Image
-              src={"/importonyperu/images/postBanner/postBanner2.jpg"}
-              alt={`Post Banner 1`}
-              width={600}
-              height={400}
-              priority={true}
-            />
-            {/* Capa izquierda */}
-            <div className="absolute top-0 left-0 group-hover:bg-white group-hover:opacity-5 h-full w-0 group-hover:w-1/2 transition-all duration-1000 ease-in-out" />
+        {/* BENEFICIOS */}
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-5 border-t border-white/20 pt-5 lg:grid-cols-4 lg:mt-12 lg:border-0 lg:pt-0 lg:w-3/4">
 
-            {/* Capa derecha */}
-            <div className="absolute top-0 right-0 group-hover:bg-white group-hover:opacity-5 h-full w-0 group-hover:w-1/2 transition-all duration-1000 ease-in-out" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+          {benefits.map(({ label, icon: Icon }) => (
+            <div
+              key={label}
+              className="flex items-center gap-2.5"
+            >
+              <Icon
+                size={22}
+                strokeWidth={1.7}
+                className="shrink-0 text-white"
+              />
 
-function Products() {
-  const [tenant, setTenant] = useState<string | null>(null);
-  const [featuresProduct, setFeaturesProducts] = useState<Productos[]>([]);
-  const [activeButton, setActiveButton] = useState<number>(1);
-  const [feature, setFeature] = useState<number>(1); // 1: nuevos, 2: destacados, 3: mas vendidos
-
-  const [showDetailProduct, setShowDetailProduct] = useState<Productos | null>(null)
-
-  useEffect(() => {
-    const host = window.location.hostname; // ej: importonyperu.com.pe
-    const t = host.split(".")[0]; // -> "importonyperu"
-    setTenant(t);
-  }, []);
-
-  // llenar los productos
-  useEffect(() => {
-    if (!tenant) return; // evita llamada vac
-
-    async function fetchData() {
-      try {
-        const data = await getFeaturesProduct(tenant || "", feature);
-        setFeaturesProducts(data);
-      } catch (error) {
-        console.error("Error obteniendo los productos destacados o nuevos o más vendidos:", error);
-      }
-    }
-    fetchData();
-  }, [tenant, feature]);
-
-  return (
-    <div className="relative w-full lg:pt-12 pt-9">
-      <div className="justify-center text-center mb-6">
-        <button
-          onClick={() => { setFeature(1); setActiveButton(1) }}
-          className={`font-semibold py-2 px-4 lg:mb-4 mb-2 w-full lg:w-auto hover:bg-black hover:text-white 
-          ${activeButton === 1 ? 'bg-black text-white' : 'bg-importonyperu-Gray text-importonyperu-primary'}`}>
-          PRODUCTOS DESTACADOS
-        </button>
-        <button
-          onClick={() => { setFeature(2); setActiveButton(2) }}
-          className={`font-semibold py-2 px-4 lg:mb-4 mb-2 lg:ml-4 w-full lg:w-auto hover:bg-black hover:text-white
-          ${activeButton === 2 ? 'bg-black text-white' : 'bg-importonyperu-Gray text-importonyperu-primary'}`}>
-          PRODUCTOS NUEVOS
-        </button>
-        <button
-          onClick={() => { setFeature(3); setActiveButton(3) }}
-          className={`font-semibold py-2 px-4 lg:mb-4 mb-2 lg:ml-4 w-full lg:w-auto hover:bg-black hover:text-white
-          ${activeButton === 3 ? 'bg-black text-white' : 'bg-importonyperu-Gray text-importonyperu-primary'}`}>
-          MAS VENDIDOS
-        </button>
-      </div>
-
-      <div className="grid lg:grid-cols-4 grid-cols-2 gap-4">
-        {featuresProduct.map((product, index) => (
-          <div key={index} className="group overflow-hidden">
-            <div className="border-slate-300 border">
-              <div className="relative">
-                <i className="lg:hidden absolute top-0 right-2 z-30 text-gray-400 bi bi-eye" onClick={() => setShowDetailProduct(product)}></i>
-                <div className="group">
-                  <Image
-                    src={product.fotos[0]}
-                    alt={product.nombre}
-                    width={500}
-                    height={500}
-                    className="my-6 object-cover"
-                    priority={true}
-                  />
-                  {product.fotos?.[1] &&
-                    <Image
-                      src={product.fotos[1]}
-                      alt={product.nombre}
-                      width={500}
-                      height={500}
-                      priority={true}
-                      className="object-cover absolute top-0 left-0 opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
-                    />
-                  }
-                </div>
-
-              </div>
+              <span className="text-xs font-medium text-white sm:text-sm">
+                {label}
+              </span>
             </div>
+          ))}
 
-            {/* Contenedor del texto y botón */}
-            <div className="text-center relative items-center justify-center mx-auto mt-2 w-full">
-              <h3 className="text-base text-importonyperu-secondary mb-2 w-full">{product.nombre}</h3>
-
-              {/* Precio: desaparece con hover */}
-              <h3 className="text-lg font-semibold  transition-opacity duration-300 lg:group-hover:opacity-0 ">
-                S/ {product.precio}
-              </h3>
-
-              {/* Botón: aparece desde abajo */}
-              <button
-                onClick={() => setShowDetailProduct(product)}
-                className="bg-black text-white lg:text-base text-xs py-2 px-4 
-                  lg:group-hover:opacity-100 lg:group-hover:translate-y-0 translate-y-12 transition-all duration-500">
-                VER DETALLE
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="w-full flex justify-center mt-8">
-        <div>
-          <button className="bg-importonyperu-Gray text-importonyperu-primary font-semibold py-2 px-4 lg:mb-4 mb-2 w-full lg:w-auto">
-            VER MÁS PRODUCTOS
-          </button>
         </div>
       </div>
-
-      {/* Modal de detalle del producto */}
-      {showDetailProduct && (
-        <ModalDetailProduct producto={showDetailProduct} onClose={() => setShowDetailProduct(null)} />
-      )}
-    </div>
+    </section>
   );
 }
 
-function Destacados() {
+function Categorias({ categorias }: { categorias: Categoria[] }) {
   return (
-    <div className="relative w-full pt-12">
-      <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-12 gap-4">
-        <div className="overflow-hidden">
-          <Image
-            src={"/importonyperu/images/destacados/destacado1.png"}
-            alt={`Destacado 1`}
-            width={1000}
-            height={1000}
-            priority={true}
-            className="transition-transform duration-1000 transform hover:scale-105"
-          />
+    <section className="w-full bg-white py-8 sm:py-10">
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        {/* ENCABEZADO */}
+        <div className="mb-5 flex items-center justify-between gap-3">
+
+          <h2 className="flex items-center gap-2 text-lg font-bold text-importhnostony-dark sm:text-xl">
+            <Star
+              size={22}
+              fill="currentColor"
+              className="shrink-0 text-importhnostony-primary"
+            />
+            Categorías principales
+          </h2>
+
+          <Link
+            href="/categorias"
+            className="group inline-flex shrink-0 items-center gap-1 text-xs font-medium text-importhnostony-primary transition-colors hover:text-red-700 sm:text-sm"
+          >
+            <span className="hidden sm:inline">
+              Ver todos
+            </span>
+            <span className="sm:hidden">
+              Ver todos
+            </span>
+            <ArrowRight
+              size={16}
+              className="transition-transform group-hover:translate-x-1"
+            />
+          </Link>
+
         </div>
-        <div className="overflow-hidden">
-          <Image
-            src={"/importonyperu/images/destacados/destacado2.png"}
-            alt={`Destacado 2`}
-            width={1000}
-            height={1000}
-            priority={true}
-            className="transition-transform duration-1000 transform hover:scale-105"
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
 
-const vendors = [
-  {
-    img: "/importonyperu/images/vendors/vendor1.jpg",
-    texto: "Un buen producto a un mejor precio y lo mejor de todo que es de muy buena calidad, ofrecemos a nuestros clientes una gran variedad en repuestos y accesorios.",
-    nombre: "Carme Llanos J.",
-    cargo: "Gte. Gnral.",
-  },
-  {
-    img: "/importonyperu/images/vendors/vendor2.jpg",
-    texto: "Nuestro enfoque y prioridad son nuestros clientes y ellos tienen la razón, por ello tratamos de atenderlos con un trato agradable y satisfaciendo sus necesidades.",
-    nombre: "Miguel Lazaro",
-    cargo: "Ventas",
-  },
-  {
-    img: "/importonyperu/images/vendors/vendor3.jpg",
-    texto: "Cualquier producto sale directo de la fábrica a sus manos y en caso no sea lo que el cliente busca siempre se le da una alternativa optima, por que ellos tienen la razón!",
-    nombre: "Rogger Vara E.",
-    cargo: "Ventas",
-  },
-  {
-    img: "/importonyperu/images/vendors/vendor4.jpg",
-    texto: "Ofrecemos una cómoda atención al cliente, desde su llegada hasta su despacho",
-    nombre: "David Hinostroza P.",
-    cargo: "Ventas",
-  },
-];
+        {/* TARJETAS */}
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
 
-const services = [
-  {
-    icon: <i className="bi bi-person-circle"></i>,
-    title: "Buena Atención",
-    description: "Ofrecemos una cómoda atención al cliente, hasta que compre lo deseado"
-  },
-  {
-    icon: <i className="bi bi-coin"></i>,
-    title: "Mejor Precio",
-    description: "Los mejores precios del mercado, garantizado"
-  },
-  {
-    icon: <i className="bi bi-award"></i>,
-    title: "Excelente calidad",
-    description: "Productos con garantía de calidad y durabilidad"
-  }
-]
-
-function Servicios() {
-  const [current, setCurrent] = useState(0);
-  const [time, setTime] = useState(3000);
-
-  // Cambiar automáticamente cada 10s
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % vendors.length);
-    }, time);
-    return () => clearInterval(interval);
-  }, [current, time]);
-
-  const goToVendor = (index: number) => {
-    setCurrent(index);
-    setTime(3000); // Reiniciar el temporizador a 10 segundos
-  };
-
-  return (
-    <div className="relative w-full lg:pt-16 pt-12">
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
-        <div className="">
-          <div className="text-xl font-semibold lg:mb-16 mb-4 text-zinc-800">
-            <h3>QUE DICEN NUESTROS TRABAJADORES</h3>
-          </div>
-          <div className="bg-importonyperu-Gray p-10 flex flex-col items-center gap-6">
-            {/* Contenido del vendedor actual */}
-            <div className="flex items-start gap-4 max-w-2xl py-10">
-              {/* Imagen */}
-              <div className="rounded-full overflow-hidden w-20 h-20 lg:w-28 lg:h-28 flex-shrink-0">
+          {categorias.slice(0, 7).map((category, index) => (
+            <Link
+              key={category.idCategoria}
+              href={`/productos?categoria=${encodeURIComponent(category.categoria?category.categoria:"")}`}
+              className={`
+                group overflow-hidden rounded-md
+                border border-gray-100
+                bg-importhnostony-surface
+                transition-all duration-300
+                hover:-translate-y-1
+                hover:border-importhnostony-primary
+                hover:shadow-md
+                ${index >= 4 ? "hidden lg:block" : index >= 2 ? "hidden sm:block" : ""}
+              `}
+            >
+              {/* IMAGEN */}
+              <div className="relative aspect-square w-full overflow-hidden">
                 <Image
-                  src={vendors[current].img}
-                  alt={vendors[current].nombre}
-                  width={80}
-                  height={80}
-                  className="rounded-full object-cover lg:w-28 lg:h-28"
+                  src={category.imagen}
+                  alt={`Repuestos de ${category.categoria}`}
+                  fill
+                  sizes="(max-width: 639px) 50vw, (max-width: 767px) 33vw, (max-width: 1023px) 25vw, 15vw"
+                  className="object-contain p-3 transition-transform duration-300 group-hover:scale-105"
                 />
+
               </div>
 
-              {/* Texto y nombre */}
-              <div className="text-left overflow-hidden lg:h-32">
-                <p className="text-gray-800 text-sm mb-2 leading-relaxed text-gray">
-                  {vendors[current].texto}
-                </p>
-                <h3 className="font-bold text-neutral-800">
-                  {vendors[current].nombre}{" "}
-                  <span className="font-normal text-importonyperu-secondary">{vendors[current].cargo}</span>
+              {/* NOMBRE */}
+              <div className="px-2 pb-4 text-center">
+                <h3 className="text-xs font-semibold text-importhnostony-dark transition-colors group-hover:text-importhnostony-primary sm:text-sm">
+                  {category.categoria}
                 </h3>
               </div>
-            </div>
 
-            {/* Puntos para cambiar de vendedor */}
-            <div className="flex justify-center gap-2 mt-2">
-              {vendors.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToVendor(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === current ? "bg-black" : "bg-neutral-400"
-                    }`}
-                ></button>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="">
-          <div className="text-xl font-semibold lg:mb-16 mb-4">
-            <h3>MENU DE SERVICIOS</h3>
-          </div>
-          <div>
-            <div className="flex flex-col grid-cols-1">
-              {services.map((service, index) => (
-                <div key={index} className="px-6 py-4 flex lg:flex-row flex-col items-center text-center gap-4">
-                  <div className="text-4xl text-zinc-300 border border-slate-300 p-4 hover:text-white hover:bg-black transition">
-                    {service.icon}
-                  </div>
-                  <div className="lg:text-left text-center text-zinc-800">
-                    <h3 className="font-semibold text-lg">
-                      {service.title}
-                    </h3>
-                    <p className="text-importonyperu-secondary">
-                      {service.description}
-                    </p>
-                  </div>
+            </Link>
+          ))}
 
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
+
       </div>
-    </div>
+    </section>
+  );
+}
+
+function ProductosDestacados({ productos }: { productos: Productos[] }) {
+  return (
+    <section className="w-full bg-white py-8 sm:py-10">
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        {/* ENCABEZADO */}
+        <div className="mb-5 flex items-center justify-between gap-3">
+
+          <h2 className="flex items-center gap-2 text-lg font-bold text-importhnostony-dark sm:text-xl">
+            <Star
+              size={22}
+              fill="currentColor"
+              className="shrink-0 text-importhnostony-primary"
+            />
+            Productos destacados
+          </h2>
+
+          <Link
+            href="/productos"
+            className="group inline-flex shrink-0 items-center gap-1 text-xs font-medium text-importhnostony-primary transition-colors hover:text-red-700 sm:text-sm"
+          >
+            <span className="hidden sm:inline">
+              Ver todos los productos
+            </span>
+            <span className="sm:hidden">
+              Ver todos
+            </span>
+            <ArrowRight
+              size={16}
+              className="transition-transform group-hover:translate-x-1"
+            />
+          </Link>
+
+        </div>
+
+        {/* TARJETAS */}
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+
+          {productos.slice(0, 7).map((producto, index) => (
+            <Link
+              key={producto.idProducto}
+              href={`/productos/${producto.nombre}`}
+              className={`
+                group overflow-hidden rounded-md
+                border border-gray-100
+                bg-importhnostony-surface
+                transition-all duration-300
+                hover:-translate-y-1
+                hover:border-importhnostony-primary
+                hover:shadow-md
+                ${index >= 4 ? "hidden lg:block" : index >= 2 ? "hidden sm:block" : ""}
+              `}
+            >
+              {/* IMAGEN */}
+              <div className="relative aspect-square w-full overflow-hidden">
+                <Image
+                  src={producto.fotos[0]}
+                  alt={`Repuestos de ${producto.nombre}`}
+                  fill
+                  sizes="(max-width: 639px) 50vw, (max-width: 767px) 33vw, (max-width: 1023px) 25vw, 15vw"
+                  className="object-contain p-3 transition-transform duration-300 group-hover:scale-105"
+                />
+
+              </div>
+
+              {/* NOMBRE */}
+              <div className="px-2 pb-4 text-center">
+                <h3 className="text-xs font-semibold text-importhnostony-dark transition-colors group-hover:text-importhnostony-primary sm:text-sm">
+                  {producto.nombre}
+                </h3>
+              </div>
+
+            </Link>
+          ))}
+
+        </div>
+
+      </div>
+    </section>
   );
 }
 
@@ -474,7 +348,7 @@ const Marcas = ({ marcas }: MarcasProps) => {
   };
 
   return (
-    <div className="relative w-full pt-12">
+    <div className="relative w-full">
       <div
         className="relative w-full overflow-hidden group py-8"
         onMouseEnter={() => setIsHovered(true)}
@@ -544,9 +418,198 @@ const Marcas = ({ marcas }: MarcasProps) => {
   );
 }
 
+function PromoBanners() {
+  return (
+    <section className="w-full bg-white py-3 sm:py-5">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3 px-4 sm:px-6 lg:grid-cols-2 lg:gap-4 lg:px-8">
+
+        {/* BANNER 1 - STOCK */}
+        <div className="group relative isolate min-h-[190px] overflow-hidden rounded-md bg-importhnostony-dark sm:min-h-[220px]">
+
+          <Image
+            src="/importhnostony/images/promobanners/banner-left.png"
+            alt="Repuestos para máquinas de coser industriales"
+            fill
+            sizes="(max-width: 1023px) 100vw, 50vw"
+            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+          />
+
+          {/* DEGRADADO */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-transparent" />
+
+          {/* CONTENIDO */}
+          <div className="relative z-10 flex h-full min-h-[190px] items-center px-5 py-6 sm:min-h-[220px] sm:px-7">
+
+            <div className="max-w-[65%]">
+              <div className="flex items-start gap-3">
+
+                <Boxes
+                  size={27}
+                  strokeWidth={1.7}
+                  className="mt-1 shrink-0 text-importhnostony-primary"
+                />
+
+                <div>
+                  <h2 className="text-lg font-bold leading-tight text-white sm:text-xl">
+                    Amplio stock
+                    <br />
+                    de repuestos
+                  </h2>
+
+                  <p className="mt-2 text-xs leading-relaxed text-gray-200 sm:text-sm">
+                    Todo lo que necesitas para tu máquina textil industrial.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* BANNER 2 - ASESORÍA */}
+        <div className="group relative isolate min-h-[190px] overflow-hidden rounded-md bg-importhnostony-dark sm:min-h-[220px]">
+
+          <Image
+            src="/importhnostony/images/promobanners/banner-rigth.png"
+            alt="Asesoría técnica para máquinas de coser industriales"
+            fill
+            sizes="(max-width: 1023px) 100vw, 50vw"
+            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+          />
+
+          {/* DEGRADADO */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
+
+          {/* CONTENIDO */}
+          <div className="relative z-10 flex h-full min-h-[190px] items-center px-5 py-6 sm:min-h-[220px] sm:px-7">
+
+            <div className="max-w-[70%]">
+              <div className="flex items-start gap-3">
+
+                <Headset
+                  size={27}
+                  strokeWidth={1.7}
+                  className="mt-1 shrink-0 text-importhnostony-primary"
+                />
+
+                <div>
+                  <h2 className="text-lg font-bold leading-tight text-white sm:text-xl">
+                    Asesoría
+                    <br />
+                    especializada
+                  </h2>
+
+                  <p className="mt-2 text-xs leading-relaxed text-gray-200 sm:text-sm">
+                    Te ayudamos a encontrar el repuesto ideal.
+                  </p>
+
+                  <Link
+                    href="/contactanos"
+                    className="mt-4 inline-flex items-center gap-2 rounded-md bg-importhnostony-primary px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-red-700 sm:text-sm"
+                  >
+                    Contáctanos
+                    <ArrowRight size={15} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+function ProductosMasVendidos({ productos }: { productos: Productos[] }) {
+  return (
+    <section className="w-full bg-white py-8 sm:py-10">
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        {/* ENCABEZADO */}
+        <div className="mb-5 flex items-center justify-between gap-3">
+
+          <h2 className="flex items-center gap-2 text-lg font-bold text-importhnostony-dark sm:text-xl">
+            <Star
+              size={22}
+              fill="currentColor"
+              className="shrink-0 text-importhnostony-primary"
+            />
+            Más Vendidos
+          </h2>
+
+          <Link
+            href="/productos"
+            className="group inline-flex shrink-0 items-center gap-1 text-xs font-medium text-importhnostony-primary transition-colors hover:text-red-700 sm:text-sm"
+          >
+            <span className="hidden sm:inline">
+              Ver todos
+            </span>
+            <span className="sm:hidden">
+              Ver todos
+            </span>
+            <ArrowRight
+              size={16}
+              className="transition-transform group-hover:translate-x-1"
+            />
+          </Link>
+
+        </div>
+
+        {/* TARJETAS */}
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+
+          {productos.slice(0, 7).map((producto, index) => (
+            <Link
+              key={producto.idProducto}
+              href={`/productos/${producto.nombre}`}
+              className={`
+                group overflow-hidden rounded-md
+                border border-gray-100
+                bg-importhnostony-surface
+                transition-all duration-300
+                hover:-translate-y-1
+                hover:border-importhnostony-primary
+                hover:shadow-md
+                ${index >= 4 ? "hidden lg:block" : index >= 2 ? "hidden sm:block" : ""}
+              `}
+            >
+              {/* IMAGEN */}
+              <div className="relative aspect-square w-full overflow-hidden">
+                <Image
+                  src={producto.fotos[0]}
+                  alt={`Repuestos de ${producto.nombre}`}
+                  fill
+                  sizes="(max-width: 639px) 50vw, (max-width: 767px) 33vw, (max-width: 1023px) 25vw, 15vw"
+                  className="object-contain p-3 transition-transform duration-300 group-hover:scale-105"
+                />
+
+              </div>
+
+              {/* NOMBRE */}
+              <div className="px-2 pb-4 text-center">
+                <h3 className="text-xs font-semibold text-importhnostony-dark transition-colors group-hover:text-importhnostony-primary sm:text-sm">
+                  {producto.nombre}
+                </h3>
+              </div>
+
+            </Link>
+          ))}
+
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const { tenant } = useTenant();
   const [marcas, setMarcas] = useState<Marca[]>([]);
+  const [categorias, setCategorias] = useState<Categoria[]>([]);
+  const [productos, setProductos] = useState<Productos[]>([]);
 
   // llenar las marcas
   useEffect(() => {
@@ -563,19 +626,65 @@ export default function Home() {
     fetchData();
   }, [tenant]);
 
+  // llenar las categorias
+  useEffect(() => {
+    if (!tenant) return; // evita llamada vac
+
+    async function fetchData() {
+      try {
+        const data = await getCategories(tenant);
+        setCategorias(data);
+      } catch (error) {
+        console.error("Error obteniendo las categorías:", error);
+      }
+    }
+    fetchData();
+  }, [tenant]);
+
+  // llenar los productos Destacados
+  useEffect(() => {
+    if (!tenant) return; // evita llamada vac
+
+    async function fetchData() {
+      try {
+        const data = await getFeaturesProduct(tenant, 1);
+        setProductos(data);
+      } catch (error) {
+        console.error("Error obteniendo los productos destacados:", error);
+      }
+    }
+    fetchData();
+  }, [tenant]);
+
+  // llenar los productos Más Vendidos
+  useEffect(() => {
+    if (!tenant) return; // evita llamada vac
+
+    async function fetchData() {
+      try {
+        const data = await getFeaturesProduct(tenant, 3);
+        setProductos(data);
+      } catch (error) {
+        console.error("Error obteniendo los productos más vendidos:", error);
+      }
+    }
+    fetchData();
+  }, [tenant]);
+
   return (
     <div className="mx-auto justify-between items-center xl:w-8/12 2xl:w-8/12 w-11/12">
       <Banner />
 
-      <PostBanner />
+      <Categorias categorias={categorias} />
 
-      <Products />
-
-      <Destacados />
-
-      <Servicios />
+      <ProductosDestacados productos={productos} />
 
       <Marcas marcas={marcas} />
+
+      <PromoBanners />
+
+      <ProductosMasVendidos productos={productos} />
+
     </div>
   )
 }

@@ -20,7 +20,8 @@ export interface Productos {
 
 export interface Categoria {
     idCategoria: string;
-    categoria: string;
+    categoria?: string;
+    imagen: string;
     activo: boolean;
 }
 

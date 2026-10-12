@@ -59,9 +59,13 @@ export function middleware(req: NextRequest) {
   const tenant = tenants.find((name) => host.includes(name));
 
   if (tenant) {
-    return NextResponse.rewrite(
-      new URL(`/${tenant}${pathname}`, req.url)
-    );
+    // Clonar la URL original para conservar los query params
+    const url = req.nextUrl.clone();
+
+    // Modificar únicamente el pathname
+    url.pathname = `/${tenant}${pathname}`;
+
+    return NextResponse.rewrite(url);
   }
 
   return NextResponse.next();

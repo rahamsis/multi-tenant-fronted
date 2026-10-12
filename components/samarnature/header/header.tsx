@@ -20,7 +20,7 @@ interface HeaderProps {
   products: Productos[];
 }
 
-const HeaderDesktop = ({
+const Header = ({
   dataWebsite,
   menu,
   products,
@@ -212,14 +212,14 @@ const HeaderDesktop = ({
   );
 };
 
-const Header = ({
+const HeaderDesktop = ({
   dataWebsite,
   menu,
   otherMenus,
   products,
 }: HeaderProps) => {
   return (
-    <HeaderDesktop
+    <Header
       dataWebsite={dataWebsite}
       menu={menu}
       otherMenus={otherMenus}
@@ -228,4 +228,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default HeaderDesktop;

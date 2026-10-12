@@ -169,6 +169,33 @@ export async function getAllProduct(tenant: string) {
     }
 }
 
+export async function getCategories(tenant: string) {
+    try {
+        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/all-categories`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "X-Tenant-ID": tenant,
+                'accept': '/'
+            },
+            next: { revalidate: 0 }
+        });
+
+        const data = await response.json();
+
+        return data.map((row: any) => ({
+            idCategoria: row.idCategoria,
+            categoria: row.categoria,
+            imagen: row.urlFoto,
+            activo: Boolean(row.activo)
+        }));
+    
+    } catch (error) {
+        console.error('Error al obtener las categorías:', error);
+        throw new Error("Error al obtener las categorías");
+    }
+}
+
 export async function getProductByCategory(tenant: string, category: string, subCategory: string | null) {
     try {
         const response = await fetch(`${process.env.APP_BACK_END}/backendApi/product-by-category?category=${category}&subcategory=${subCategory}`, {
