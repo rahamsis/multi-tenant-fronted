@@ -10,7 +10,6 @@ import Content from "./content";
 
 import { notFound } from "next/navigation";
 import { Menu } from "@/types/menu";
-import { Categoria } from "@/types/producto";
 
 interface Props {
     params: Promise<{ menu: string[] }>;
@@ -80,7 +79,7 @@ export default async function DinamicPage({ params }: Props) {
     const menusFromDb = await getMenus(tenant);
 
     // Normalizamos categorías y subcategorías
-    const categorias = menusFromDb.categorias.map((c: Categoria) => ({
+    const categorias = menusFromDb.categorias.map((c) => ({
         key: "/" + c.categoria.toLowerCase().replace(/\s+/g, "-"),
         nombre: c.categoria.toUpperCase()
     }));

@@ -198,7 +198,11 @@ export async function getCategories(tenant: string) {
 
 export async function getProductByCategory(tenant: string, category: string, subCategory: string | null) {
     try {
-        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/product-by-category?category=${category}&subcategory=${subCategory}`, {
+        const query = new URLSearchParams({
+            category,
+            subcategory: subCategory ?? "null",
+        });
+        const response = await fetch(`${process.env.APP_BACK_END}/backendApi/product-by-category?${query.toString()}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

@@ -5,11 +5,20 @@ import Content from "./content";
 
 import { notFound } from "next/navigation";
 import { Menu } from "@/types/menu";
-import { Categoria } from "@/types/producto";
 
 interface Props {
     params: Promise<{ menu: string[] }>;
 }
+
+const toSlug = (value: string) =>
+    value.trim().toLowerCase().replace(/\s+/g, "-");
+
+const normalizeMenuPath = (value: string) =>
+    `/${value
+        .split("/")
+        .filter(Boolean)
+        .map(toSlug)
+        .join("/")}`;
 
 function Banner({ titulo, subTitulo }: { titulo: string, subTitulo: string }) {
     return (
@@ -47,47 +56,46 @@ export default async function DinamicPage({ params }: Props) {
     const menusFromDb = await getMenus(tenant);
     const marcas = await getAllBrands(tenant);
 
-    // Normalizamos categorías y subcategorías
-    const categorias = menusFromDb.categorias.map((c: Categoria) => ({
-        key: "/" + c.categoria.toLowerCase().replace(/\s+/g, "-"),
-        nombre: c.categoria.toUpperCase()
+    const categorias = menusFromDb.categorias.map((categoria) => ({
+        key: `/${toSlug(categoria.categoria)}`,
+        nombre: categoria.categoria,
+        subMenu: categoria.subMenu ?? [],
     }));
 
-    const menus = menusFromDb.menus.map((m: Menu) => ({
-        key: m.urlMenu,
-        nombre: m.urlMenu.replace("/", "").toUpperCase()
+    const menus = menusFromDb.menus.map((menu: Menu) => ({
+        key: normalizeMenuPath(menu.urlMenu),
+        nombre: menu.urlMenu.replace(/^\/+/, "").replace(/-/g, " "),
+        subMenu: menu.subMenu ?? [],
     }));
 
-    // ✅ Normalizamos submenús
-    const subMenus = menusFromDb.menus.flatMap((m: Menu) =>
-        (m.subMenu || []).map((s: string) => ({
-            key: `${m.urlMenu}/${s.toLowerCase().replace(/\s+/g, "-")}`,
-            nombre: s.toUpperCase()
+    const subMenus = [...menus, ...categorias].flatMap((parent) =>
+        parent.subMenu.map((subMenu: string) => ({
+            key: `${parent.key}/${toSlug(subMenu)}`,
+            nombre: subMenu,
         }))
     );
 
-    // Combinamos en un solo array
-    const combined = [...menus, ...categorias, ...subMenus];
+    const topLevelMenus = [...menus, ...categorias];
 
-    // ✅ Validamos categoría
-    const categoriaKey = "/" + categoriaFromParam;
-    const foundCategoria = combined.find(item => item.key === categoriaKey);
+    const categoriaKey = `/${toSlug(categoriaFromParam ?? "")}`;
+    const foundCategoria = topLevelMenus.find((item) => item.key === categoriaKey);
     if (!foundCategoria) {
         notFound();
     }
 
-    // ✅ Validamos subcategoría si existe
+    let foundSubCategoria: (typeof subMenus)[number] | undefined;
     if (subCategoriaFromParam) {
-        const subCategoriaKey = `/${categoriaFromParam}/${subCategoriaFromParam}`;
-        const foundSubCategoria = combined.find((item) => item.key === subCategoriaKey);
+        const subCategoriaKey =
+            `${categoriaKey}/${toSlug(subCategoriaFromParam)}`;
+        foundSubCategoria = subMenus.find((item) => item.key === subCategoriaKey);
 
         if (!foundSubCategoria) {
             notFound();
         }
     }
 
-    const categoria = categoriaFromParam ? categoriaFromParam.toUpperCase().replace(/-/g, " ") : "";
-    const subCategoria = subCategoriaFromParam ? subCategoriaFromParam.toUpperCase().replace(/-/g, " ") : null;
+    const categoria = foundCategoria.nombre.toUpperCase();
+    const subCategoria = foundSubCategoria?.nombre.toUpperCase() ?? null;
 
     const products = await getProductByCategory(tenant, categoria, subCategoria);
 
