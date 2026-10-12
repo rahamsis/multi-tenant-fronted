@@ -43,13 +43,13 @@ export const metadata: Metadata = {
     icon: "/samarnature/images/samarnature.ico",
   },
   openGraph: {
-    title: 'Samar',
+    title: 'Samarnature',
     description: 'Samar es una marca de productos naturales para el cuidado personal, que ofrece jabones, aceites esenciales y cosméticos elaborados con ingredientes de alta calidad y respetuosos con el medio ambiente.',
-    url: 'https://samarnature.com.pe',
+    url: 'https://samarnature.com',
     siteName: "Samar",
     images: [
       {
-        url: 'https://samarnature.com.pe/samarnature/images/samarnature_miniatura.png',
+        url: 'https://samarnature.com/samarnature/images/samarnature_miniatura.png',
         width: 1200,
         height: 630,
         alt: 'Imagen de vista previa',
