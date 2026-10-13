@@ -157,7 +157,7 @@ export default function ProductSearch({
                 {filteredProducts.map((product) => (
                   <li key={product.idProducto}>
                     <Link
-                      href={`/producto/${encodeURIComponent(
+                      href={`/productos/${encodeURIComponent(
                         product.idProducto
                       )}`}
                       onClick={handleSelect}
