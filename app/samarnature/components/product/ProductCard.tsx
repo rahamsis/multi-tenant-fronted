@@ -33,7 +33,7 @@ export default function ProductCard({
 
       <div className="relative overflow-hidden ">
         {/* <div className="relative mb-4"> */}
-        <Link href={`/producto/${encodeURIComponent(product.idProducto)}`} className="block">
+        <Link href={`/productos/${encodeURIComponent(product.idProducto)}`} className="block">
           <Image
             src={imageUrl}
             alt={product.nombre}
